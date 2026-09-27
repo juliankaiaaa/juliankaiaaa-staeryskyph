@@ -5,6 +5,30 @@ import * as sightings from './sightingsRepo.js'
 
 const app = express()
 
+// Basic Auth protects the API routes.
+function basicAuth(request, response, next) {
+  const auth = request.headers.authorization
+
+  if (!auth || !auth.startsWith('Basic ')) {
+    response.setHeader('WWW-Authenticate', 'Basic')
+    return response.status(401).json({ error: 'Authentication required' })
+  }
+
+  const encoded = auth.split(' ')[1]
+  const decoded = Buffer.from(encoded, 'base64').toString()
+  const [username, password] = decoded.split(':')
+
+  if (
+    username !== process.env.BASIC_AUTH_USER ||
+    password !== process.env.BASIC_AUTH_PASSWORD
+  ) {
+    response.setHeader('WWW-Authenticate', 'Basic')
+    return response.status(401).json({ error: 'Invalid credentials' })
+  }
+
+  next()
+}
+
 // CORS before the routes. Middleware registered after a route never sees that
 // route's requests, which is the m4 lesson showing up in production.
 //
@@ -36,6 +60,9 @@ app.get('/readyz', async (request, response) => {
   }
 })
 
+// Protect all API routes with Basic Auth.
+app.use('/api', basicAuth)
+
 // Validation lives on the server because the client can be bypassed. The
 // browser form is for a fast, friendly message; this is for correctness.
 function validate(body) {
@@ -47,7 +74,9 @@ function validate(body) {
 
   if (!place) errors.push('place is required')
   if (place.length > 120) errors.push('place must be 120 characters or fewer')
-  if (description.length > 2000) errors.push('description must be 2000 characters or fewer')
+  if (description.length > 2000) {
+    errors.push('description must be 2000 characters or fewer')
+  }
   if (!Number.isInteger(spookiness) || spookiness < 1 || spookiness > 5) {
     errors.push('spookiness must be a whole number from 1 to 5')
   }
@@ -75,7 +104,9 @@ app.get('/api/sightings/:id', async (request, response, next) => {
 
 app.post('/api/sightings', async (request, response, next) => {
   const { errors, value } = validate(request.body ?? {})
-  if (errors.length > 0) return response.status(400).json({ error: errors.join('; ') })
+  if (errors.length > 0) {
+    return response.status(400).json({ error: errors.join('; ') })
+  }
 
   try {
     response.status(201).json(await sightings.create(pool, value))
@@ -86,7 +117,9 @@ app.post('/api/sightings', async (request, response, next) => {
 
 app.put('/api/sightings/:id', async (request, response, next) => {
   const { errors, value } = validate(request.body ?? {})
-  if (errors.length > 0) return response.status(400).json({ error: errors.join('; ') })
+  if (errors.length > 0) {
+    return response.status(400).json({ error: errors.join('; ') })
+  }
 
   try {
     const row = await sightings.update(pool, request.params.id, value)
