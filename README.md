@@ -142,7 +142,7 @@ React / Vite Frontend
         ↓
     Express API
         ↓
-   PostgreSQL
+    PostgreSQL
 ```
 
 The React/Vite frontend provides the website interface and is deployed through GitHub Pages. The Express API and PostgreSQL database will be hosted separately once they are completed.
@@ -166,8 +166,6 @@ AI assistance was used during development for coding support, debugging, documen
 The AI tools used during development were:
 - **ChatGPT**
 - **Claude**
-
-![Built with AI assistance](https://img.shields.io/badge/built%20with-AI%20assistance-0b5fff)
 
 See [AI-USAGE.md](AI-USAGE.md) for the full documentation of AI usage.
 
