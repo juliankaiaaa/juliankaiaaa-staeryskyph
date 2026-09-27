@@ -18,6 +18,10 @@
 * Includes a Connect/Footer section
 * Uses a Figma-based design with custom visual assets
 
+## Screenshot
+
+![Staery Sky PH Week 2 Progress](docs/images/week2-progress.png)
+
 ## Built with
 
 React and Vite are used on the front end. An Express and PostgreSQL back end is currently being developed but is not yet connected to the website.
