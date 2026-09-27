@@ -2,8 +2,8 @@
 
 > A portfolio and business website for Staery Sky PH, created to showcase its services and information for K-POP fans.
 
-**Live site:** [https://juliankiaaaa.github.io/juliankiaaaa-staeryskyph/](https://juliankiaaaa.github.io/juliankiaaaa-staeryskyph/)
-**API:** Not yet available
+**Live site:**
+**API:** 
 **Demo video:** 
 
 > **This deployment is currently running in demo mode.** The interface is real; the backend API is still under development, so the website currently uses a mock API in the browser.
