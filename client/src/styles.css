@@ -1,127 +1,453 @@
-/* Deliberately plain. Module 3 covered styling in React properly: CSS modules,
-   Tailwind, styled-components, a component library. Replace this with whichever
-   you chose and can defend. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root {
-  color-scheme: light dark;
-  --bg: #fbfbfd;
-  --fg: #1a1a1f;
-  --muted: #5c5c6b;
-  --line: #dcdce6;
-  --card: #ffffff;
-  --accent: #4a3f8f;
-  --warn-bg: #fff6dd;
-  --warn-line: #e0bf6a;
-  --error-bg: #fdeaea;
-  --error-line: #d98a8a;
+  --brown: #3b2923;
+  --pink: #efc5d2;
+  --dark: #3b2923;
+  --white: #ffffff;
+  --gray: #d9d9d9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #14141a;
-    --fg: #ececf2;
-    --muted: #a0a0b0;
-    --line: #33333f;
-    --card: #1d1d25;
-    --accent: #a99cf0;
-    --warn-bg: #3a3320;
-    --warn-line: #7d6a30;
-    --error-bg: #3a2323;
-    --error-line: #7d4040;
-  }
+* {
+  box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--fg);
-  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding: 0;
+
+  font-family: 'Poppins', sans-serif;
+
+  background: var(--brown);
+  color: var(--dark);
 }
 
-.page { max-width: 44rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+/* =========================
+   FULL PAGE BACKGROUND
+========================= */
 
-h1 { margin: 0 0 .25rem; font-size: 1.9rem; }
-h2 { margin: 0 0 .75rem; font-size: 1.15rem; }
-h3 { margin: 0; font-size: 1.05rem; }
+.page {
+  width: 100%;
+  min-height: 100vh;
 
-.lede, .muted { color: var(--muted); }
-.lede { margin-top: 0; }
-
-.demo-notice {
-  background: var(--warn-bg);
-  border: 1px solid var(--warn-line);
-  border-radius: .5rem;
-  padding: .9rem 1rem;
-  margin: 1.5rem 0;
+  background-color: var(--brown);
+  background-size: 1100px auto;
+  background-position: top center;
+  background-repeat: repeat-y;
 }
 
-.error {
-  background: var(--error-bg);
-  border: 1px solid var(--error-line);
-  border-radius: .5rem;
-  padding: .75rem 1rem;
+/* =========================
+   SAME WIDTH FOR EVERYTHING
+========================= */
+
+.content {
+  width: 1100px;
+  max-width: 100%;
+
+  margin: 0 auto;
+
+  background: var(--brown);
 }
 
-.card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: .5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
+/* =========================
+   HOME
+========================= */
+
+.hero {
+  position: relative;
+
+  width: 100%;
+  height: 650px;
+
+  background-color: var(--brown);
+
+  overflow: hidden;
 }
 
-form.card { display: flex; flex-direction: column; gap: .35rem; }
+/* Pink scalloped panel */
 
-label { font-size: .85rem; color: var(--muted); margin-top: .5rem; }
+.pink-panel {
+  position: absolute;
 
-input, textarea {
-  font: inherit;
-  color: inherit;
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: .35rem;
-  padding: .5rem .6rem;
+  width: 1000px;
+  height: 500px;
+
+  top: 65px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  object-fit: fill;
+
+  z-index: 1;
 }
 
-button {
-  font: inherit;
-  cursor: pointer;
-  border: 1px solid var(--accent);
-  background: var(--accent);
-  color: #fff;
-  border-radius: .35rem;
-  padding: .45rem .9rem;
-  margin-top: .75rem;
-  align-self: flex-start;
-}
+/* =========================
+   NAVIGATION
+========================= */
 
-button:disabled { opacity: .6; cursor: default; }
+nav {
+  position: absolute;
 
-/* Never remove a focus outline without replacing it. Keyboard users need to
-   see where they are, and it is checked. */
-:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  width: 900px;
 
-.list { list-style: none; padding: 0; margin: 0; }
+  top: 88px;
+  left: 50%;
 
-.row-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+  transform: translateX(-50%);
 
-.spooky { color: var(--accent); letter-spacing: .15em; }
-
-.card footer {
   display: flex;
+
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  margin-top: .5rem;
-  font-size: .85rem;
-  color: var(--muted);
+
+  z-index: 3;
 }
 
-.card footer button {
-  margin-top: 0;
-  background: transparent;
-  color: var(--muted);
-  border-color: var(--line);
+nav a {
+  color: var(--dark);
+
+  text-decoration: none;
+
+  font-size: 9px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}
+
+/* =========================
+   HERO CONTENT
+========================= */
+
+.hero-content {
+  position: absolute;
+
+  top: 285px;
+
+  left: 0;
+  right: 0;
+
+  z-index: 3;
+
+  text-align: center;
+}
+
+.hero-content h1 {
+  margin: 0;
+
+  color: var(--dark);
+
+  font-size: 46px;
+  line-height: 1;
+
+  font-weight: 600;
+  letter-spacing: -1px;
+}
+
+.hero-content p {
+  margin: 8px 0 0;
+
+  color: var(--dark);
+
+  font-size: 9px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  width: 100%;
+  min-height: 330px;
+}
+
+.about-text {
+  padding: 55px;
+
+  background: var(--pink);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-text h2 {
+  margin: 0 0 14px;
+
+  max-width: 320px;
+
+  font-size: 27px;
+  line-height: 1.05;
+
+  font-weight: 700;
+}
+
+.about-text p {
+  margin: 0;
+
+  max-width: 400px;
+
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.about-text button {
+  width: fit-content;
+
+  margin-top: 20px;
+
+  padding: 9px 21px;
+
+  border: none;
+  border-radius: 20px;
+
+  background: var(--brown);
+  color: white;
+
+  font-family: inherit;
+  font-size: 8px;
+
+  cursor: pointer;
+}
+
+/* Right side is brown polka-dot only for now */
+
+.about-image {
+  min-height: 330px;
+
+  background-size: cover;
+  background-position: center;
+}
+
+/* =========================
+   SERVICES
+========================= */
+
+.services {
+  display: grid;
+
+  grid-template-columns: 180px 1fr;
+
+  gap: 55px;
+
+  width: 100%;
+
+  padding: 65px 55px;
+
+  background: var(--brown);
+}
+
+.services-heading {
+  position: relative;
+
+  align-self: center;
+
+  width: fit-content;
+}
+
+.services-heading h2 {
+  margin: 0;
+
+  color: var(--white);
+
+  font-size: 27px;
+  line-height: 1;
+
+  font-weight: 700;
+}
+
+.star {
+  position: absolute;
+
+  color: var(--pink);
+
+  font-size: 20px;
+}
+
+.star-top {
+  top: -15px;
+  right: -20px;
+}
+
+.star-bottom {
+  bottom: -15px;
+  left: -15px;
+}
+
+.services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+.service-card {
+  color: var(--white);
+}
+
+.service-photo {
+  width: 100%;
+
+  aspect-ratio: 1;
+
+  margin-bottom: 10px;
+
+  background: var(--gray);
+}
+
+.service-card h3 {
+  margin: 0;
+
+  font-size: 8px;
+  line-height: 1.2;
+
+  font-weight: 500;
+}
+
+.service-card p {
+  margin: 3px 0 0;
+
+  color: #d9cfcb;
+
+  font-size: 6px;
+  line-height: 1.3;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 50px;
+
+  width: 100%;
+
+  padding: 50px 55px 20px;
+
+  background: var(--brown);
+
+  color: var(--white);
+}
+
+footer h3 {
+  margin: 0 0 8px;
+
+  font-size: 9px;
+}
+
+footer p {
+  margin: 0 0 3px;
+
+  color: #d9cfcb;
+
+  font-size: 6px;
+  line-height: 1.4;
+}
+
+.copyright {
+  grid-column: 1 / -1;
+
+  padding-top: 15px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+  text-align: center;
+
+  color: #d9cfcb;
+
+  font-size: 6px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+  .content {
+    width: 100%;
+  }
+
+  .pink-panel {
+    width: 90%;
+  }
+
+  nav {
+    width: 82%;
+  }
+}
+
+@media (max-width: 700px) {
+
+  .hero {
+    height: 500px;
+  }
+
+  .pink-panel {
+    top: 35px;
+
+    width: 90%;
+    height: 420px;
+  }
+
+  nav {
+    width: 82%;
+
+    top: 58px;
+  }
+
+  nav a {
+    font-size: 7px;
+  }
+
+  .hero-content {
+    top: 220px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .hero-content p {
+    font-size: 7px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    min-height: 250px;
+  }
+
+  .services {
+    display: block;
+
+    padding: 45px 30px;
+  }
+
+  .services-heading {
+    margin-bottom: 30px;
+  }
+
+  footer {
+    grid-template-columns: 1fr 1fr;
+
+    padding: 40px 30px 20px;
+  }
 }
