@@ -20,7 +20,7 @@
 
 ## Screenshot
 
-![Staery Sky PH Week 2 Progress](docs/images/week2-progress.png)
+![Staery Sky PH Week 2 Progress](docs/week2-progress.png)
 
 ## Built with
 
