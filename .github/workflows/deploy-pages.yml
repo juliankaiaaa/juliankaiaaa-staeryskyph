@@ -93,7 +93,7 @@ jobs:
         run: npm run build
 
       - if: steps.check.outputs.ready == 'true'
-        uses: actions/upload-pages-artifact@0252cf4b726f0298fc0cf00902a25c6afc77fa8
+        uses: actions/upload-pages-artifact@0252fc4b726f0298fc0cf00902a25c6afc77fa8
         with:
           path: client/dist
 
