@@ -67,8 +67,11 @@ export function useScallopFit(ref, sizeVar) {
       const probe = document.createElement('div')
       probe.style.cssText = `position:absolute;visibility:hidden;width:${value}`
       el.appendChild(probe)
+
       const px = probe.getBoundingClientRect().width
+
       probe.remove()
+
       return px
     }
 
@@ -161,13 +164,13 @@ function Navbar({ active }) {
   return (
     <nav aria-label="Main">
       {NAV_LINKS.map(({ id, label, href }) => (
-        <a
+        <Link
           key={id}
-          href={href}
+          to={href}
           aria-current={active === id ? 'location' : undefined}
         >
           {label}
-        </a>
+        </Link>
       ))}
     </nav>
   )
@@ -304,9 +307,9 @@ export default function App() {
               helping you get items from Japan, Korea, and other places.
             </p>
 
-            <a className="about-action" href="/about">
+            <Link className="about-action" to="/about">
               Learn more
-            </a>
+            </Link>
           </div>
 
           {/* CSS polka-dot background with a photo frame layered on top */}
@@ -359,12 +362,12 @@ export default function App() {
 
                 <p>{description}</p>
 
-                <a
+                <Link
                   className="service-action"
-                  href="/services"
+                  to="/services"
                 >
                   Learn more
-                </a>
+                </Link>
               </div>
             ))}
           </ServiceCarousel>
@@ -399,15 +402,15 @@ export default function App() {
             <h3>Links</h3>
 
             <p>
-              <a href="/about">About</a>
+              <Link to="/about">About</Link>
             </p>
 
             <p>
-              <a href="/services">Services</a>
+              <Link to="/services">Services</Link>
             </p>
 
             <p>
-              <a href="/request">Got A Request?</a>
+              <Link to="/request">Got A Request?</Link>
             </p>
 
             {SOCIAL_LINKS.map(({ label, href }) => (
