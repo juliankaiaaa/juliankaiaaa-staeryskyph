@@ -12,7 +12,7 @@ import './pages/pages.css'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename="/juliankiaaaa-staeryskyph">
+    <BrowserRouter basename="/juliankaiaaa-staeryskyph">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/services" element={<Services />} />
