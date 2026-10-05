@@ -1655,7 +1655,7 @@ img.service-photo {
 
   max-width: 640px;
   margin-inline: auto;
-  padding: clamp(56px, 6vw, 84px) clamp(28px, 4vw, 56px) 150px;
+  padding: clamp(56px, 6vw, 84px) clamp(28px, 4vw, 56px) 110px;
 
   background: var(--sky);
   border-radius: 8px;
