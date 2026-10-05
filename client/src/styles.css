@@ -3319,3 +3319,16 @@ img.service-photo {
   min-height: 3.2em;
   font-size: clamp(13px, 1vw, 15px);
 }
+
+/* Grid cards: equal inner space left and right around the title and description */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > h3,
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
+  width: auto;
+  max-width: none;
+  margin-left: clamp(22px, 2.2vw, 32px);
+  margin-right: clamp(22px, 2.2vw, 32px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
+  text-wrap: balance;
+}
