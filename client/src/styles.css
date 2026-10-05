@@ -3074,32 +3074,3 @@ img.service-photo {
 .service-card:not(.service-card--expanded) .service-actions {
   padding-bottom: var(--space-xs);
 }
-
-/* Expanded card: details sit in the middle of the card */
-.service-card--expanded {
-  align-content: center;
-}
-
-.service-card--expanded > h3,
-.service-card--expanded > p {
-  text-align: center;
-}
-
-.service-card--expanded .service-details {
-  text-align: center;
-}
-
-.service-card--expanded .service-steps {
-  justify-content: center;
-  width: fit-content;
-  margin: 0 auto;
-  padding-left: 0;
-}
-
-.service-card--expanded .service-steps li {
-  justify-content: flex-start;
-}
-
-.service-card--expanded .service-actions {
-  justify-content: center;
-}
