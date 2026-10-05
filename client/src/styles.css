@@ -2082,3 +2082,50 @@ img.service-photo {
     grid-template-columns: 1fr;
   }
 }
+
+/* Request page left column */
+.request-info h2 {
+  font-size: clamp(28px, 2.8vw, 40px);
+  margin-bottom: var(--space-md);
+}
+
+.request-info > p {
+  font-size: var(--fs-body);
+  opacity: 0.9;
+}
+
+.request-note {
+  margin-top: var(--space-lg);
+  padding: 18px 22px;
+  box-shadow: none;
+  font-size: var(--fs-small);
+  line-height: 1.6;
+}
+
+.request-note p {
+  margin: 0;
+}
+
+.request-links {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.request-links .text-link {
+  margin-top: 0;
+  padding: 0.55em 1.2em;
+  border: 1.5px solid var(--pink);
+  border-radius: var(--radius-pill);
+  color: var(--pink);
+  text-decoration: none;
+  font-size: var(--fs-small);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.request-links .text-link:hover {
+  background: var(--pink);
+  color: var(--brown);
+  opacity: 1;
+}

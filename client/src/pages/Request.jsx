@@ -4,8 +4,6 @@ import Hero from '../components/Hero.jsx'
 import InquiryForm from '../components/InquiryForm.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
 import SiteFooter from '../components/SiteFooter.jsx'
-import Decor from '../components/Decor.jsx'
-import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
 
 /* Request page. ?service=korea opens the form for that service */
 export default function Request() {
@@ -39,8 +37,6 @@ export default function Request() {
               </p>
 
               <div className="card card--sky request-note">
-                <Decor src={brownAsterisk} className="decor-inline note-art" />
-
                 <p>
                   Please double-check your item link and details before
                   submitting your request.
