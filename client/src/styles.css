@@ -2543,3 +2543,22 @@ img.service-photo {
   border-top: 2px dashed rgba(62, 39, 35, 0.35);
   pointer-events: none;
 }
+
+/* Request form refinements: softer error messages and a clear star */
+.request-card .field-error {
+  margin-top: -2px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(181, 68, 58, 0.1);
+  color: #9a3b32;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+.request-card .inquiry-form > .btn--wide::after {
+  top: -34px;
+  right: 14px;
+  width: 26px;
+  opacity: 0.9;
+}
