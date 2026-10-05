@@ -33,5 +33,8 @@ export async function createInquiry(input) {
       details: input.details,
     })
 
-  if (error) throw new Error('We could not send your request. Please try again.')
+  if (error) {
+    console.error('Inquiry failed:', error)
+    throw new Error('We could not send your request. Please try again.')
+  }
 }
