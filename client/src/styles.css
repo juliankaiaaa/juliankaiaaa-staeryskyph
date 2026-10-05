@@ -220,7 +220,9 @@ h3 {
 .band--pink {
   position: relative;
 
-  background: var(--pink);
+  background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.28), transparent 60%),
+    var(--pink);
   color: var(--brown);
 }
 
@@ -582,7 +584,7 @@ nav a[aria-current]:hover {
 
 /* Washi tape, translucent with torn looking ends, used on photos and cards */
 .polaroid::before,
-.service-card::before {
+.service-card::after {
   content: "";
 
   position: absolute;
@@ -608,7 +610,7 @@ nav a[aria-current]:hover {
   transform: translateX(-50%) rotate(-4deg);
 }
 
-.service-card:nth-child(even)::before {
+.service-card:nth-child(even)::after {
   transform: translateX(-50%) rotate(5deg);
 }
 
@@ -763,71 +765,58 @@ nav a[aria-current]:hover {
   right: 24px;
 }
 
-/* Service card, a polaroid style frame with the art square and text inside */
+/* Service card, the approved scrapbook card with soft refinements */
 
 .service-card {
+  --card: var(--pink);
+
   position: relative;
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  padding: 12px 12px 20px;
+  padding-bottom: var(--space-md);
 
-  border-radius: 4px;
+  border-radius: 14px;
 
   background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.12) 0 1px,
-      transparent 1px 4px
-    ),
-    var(--pink);
+    linear-gradient(180deg, rgba(255, 250, 240, 0.3), transparent 55%),
+    var(--card);
   color: var(--brown);
-  text-align: left;
+  text-align: center;
 
-  /* Two offset sheets under the frame, a cream layer and a shadow */
   box-shadow:
-    6px 7px 0 var(--cream),
-    7px 8px 0 rgba(62, 39, 35, 0.4);
-
+    0 10px 22px rgba(62, 39, 35, 0.28),
+    3px 4px 0 rgba(62, 39, 35, 0.14);
   transform: rotate(var(--tilt, 0deg));
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
 }
 
-
 .service-card:nth-child(odd) {
-  --tilt: -0.8deg;
+  --tilt: -1deg;
 }
 
 .service-card:nth-child(even) {
-  --tilt: 0.7deg;
+  --tilt: 1deg;
+}
+
+/* Pastel bodies and tape rotate through the palette */
+.service-card:nth-child(3n + 2) {
+  --card: var(--sky);
+}
+
+.service-card:nth-child(3n) {
+  --card: var(--sage);
 }
 
 .service-card:hover {
   transform: rotate(0deg) translateY(-4px);
   box-shadow:
-    8px 9px 0 var(--cream),
-    9px 10px 0 rgba(62, 39, 35, 0.4);
-}
-
-.service-card .btn {
-  background: var(--brown);
-  color: var(--pink);
-}
-
-.service-card .tag {
-  border-color: var(--brown);
-  background: var(--mustard);
-  color: var(--brown);
-}
-
-/* The About and Services call to action is a sticker on the brown band */
-.cta-inner.sticker {
-  max-width: 640px;
-  box-shadow: none;
-  filter: drop-shadow(4px 5px 0 rgba(181, 68, 58, 0.6));
+    0 16px 30px rgba(62, 39, 35, 0.32),
+    3px 4px 0 rgba(62, 39, 35, 0.14);
 }
 
 .service-track > .service-card {
@@ -835,87 +824,118 @@ nav a[aria-current]:hover {
   scroll-snap-align: start;
 }
 
-.service-panel {
-  background-image: linear-gradient(160deg, rgba(255, 250, 240, 0.25), transparent 60%);
-  display: grid;
-  place-items: center;
-
-  aspect-ratio: 1;
-
-  border-radius: 2px;
-
-  background: var(--sky);
-}
-
-/* Art panels rotate through the accent colors inside the pink frame */
-.service-card:nth-child(4n + 2) .service-panel {
-  background: var(--sage);
-}
-
-.service-card:nth-child(4n + 3) .service-panel {
-  background: var(--cream);
-}
-
-/* CSS placeholder until a real photo is added */
-.service-placeholder {
-  position: relative;
-
-  width: 100%;
-  height: 100%;
-
+/* Pastel tape, so it shows against the cream photo area */
+.service-card::after {
   background:
     repeating-linear-gradient(
-      45deg,
-      rgba(62, 39, 35, 0.06) 0 10px,
-      transparent 10px 20px
-    );
+      135deg,
+      rgba(255, 255, 255, 0.3) 0 2px,
+      transparent 2px 7px
+    ),
+    var(--tape, rgba(216, 235, 249, 0.92));
 }
 
-.service-placeholder::after {
-  content: "";
+.service-card:nth-child(3n + 2) {
+  --tape: rgba(244, 201, 214, 0.92);
+}
 
+.service-card:nth-child(3n) {
+  --tape: rgba(252, 230, 183, 0.95);
+}
+
+/* Number badge in the top left corner of the photo */
+.service-number {
   position: absolute;
-  inset: 30%;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1;
 
-  border: 2px dashed rgba(62, 39, 35, 0.35);
-  border-radius: 50%;
+  padding: 0.1em 0.7em;
+
+  border-radius: var(--radius-pill);
+
+  background: var(--brown);
+  color: var(--cream);
+
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.08em;
 }
 
-/* Real photos fill the square, and gently zoom on hover */
+/* Photo area with a stitched edge, replace it with a real photo in data/services.js */
 .service-photo {
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 5 / 4;
+  margin-bottom: var(--space-sm);
 
+  border-radius: 14px 14px 0 0;
+
+  background: var(--cream);
+  outline: 1.5px dashed rgba(62, 39, 35, 0.22);
+  outline-offset: -8px;
   object-fit: cover;
-  transition: transform 0.4s ease;
 }
 
-.service-card:hover .service-photo {
-  transform: scale(1.04);
+img.service-photo {
+  outline: 0;
 }
 
-.service-card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-sm);
-
-  margin-top: var(--space-md);
+.service-card h3,
+.service-card > p {
+  padding-inline: var(--space-md);
 }
 
 .service-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 2.6em;
+
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.service-card-body > p {
+.service-card > p {
+  flex: 1;
+  margin-top: var(--space-xs);
+
   font-size: var(--fs-small);
   line-height: 1.5;
 }
 
-.service-card-body > .btn {
-  margin-top: auto;
+.service-action {
+  margin-top: var(--space-md);
+  padding: 0.6em 1.6em;
+
+  border: 1px solid rgba(62, 39, 35, 0.55);
+  border-radius: var(--radius-pill);
+
+  background: var(--cream);
+  color: var(--brown);
+  text-decoration: none;
+
+  font-size: var(--fs-small);
+  font-weight: 500;
+
+  box-shadow: 2px 3px 6px rgba(62, 39, 35, 0.18);
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.service-action:hover {
+  box-shadow: 1px 1px 3px rgba(62, 39, 35, 0.18);
+  transform: translate(1px, 1px);
+}
+
+/* The About and Services call to action is a sticker on the brown band */
+.cta-inner.sticker {
+  max-width: 640px;
+  box-shadow: none;
+  filter: drop-shadow(0 10px 16px rgba(181, 68, 58, 0.35));
 }
 
 /* Services page grid and steps */
