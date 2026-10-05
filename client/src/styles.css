@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Palette is only brown and pink, everything else is a tint of those two */
+/* Brown and pink are the foundation, the other three are small accents */
 :root {
   --brown: #3e2723;
   --pink: #f4c9d6;
+  --cream: #f4eee6;
+  --sage: #b5d3a0;
+  --sky: #b4dde3;
   --shadow: 4px 5px 0 rgba(62, 39, 35, 0.45);
 
   --font-main: 'Poppins', sans-serif;
@@ -719,6 +722,19 @@ nav a[aria-current]:hover {
 
   background: var(--pink);
   box-shadow: var(--shadow);
+}
+
+/* Accent panels rotate through the palette, pink is the default */
+.service-card:nth-child(4n + 2) .service-panel {
+  background: var(--sky);
+}
+
+.service-card:nth-child(4n + 3) .service-panel {
+  background: var(--sage);
+}
+
+.service-card:nth-child(4n + 4) .service-panel {
+  background: var(--cream);
 }
 
 .service-art {

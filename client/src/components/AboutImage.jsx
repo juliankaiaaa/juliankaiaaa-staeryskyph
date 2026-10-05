@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import Decor from './Decor.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
-import brownStar from '../assets/images/decorations/brown_star.png'
-import brownHeart from '../assets/images/decorations/brown_heart.png'
+import pinkStar from '../assets/images/decorations/pink_star.png'
+import pinkHeart from '../assets/images/decorations/pink_heart.png'
 
 /* Scalloped dotted side with a photo frame on top, used by Home and About */
 export default function AboutImage() {
@@ -17,8 +17,8 @@ export default function AboutImage() {
       <div className="polaroid">
         <div className="polaroid-photo"></div>
 
-        <Decor src={brownStar} className="star-about" />
-        <Decor src={brownHeart} className="heart-about" />
+        <Decor src={pinkStar} className="star-about" />
+        <Decor src={pinkHeart} className="heart-about" />
       </div>
     </div>
   )
