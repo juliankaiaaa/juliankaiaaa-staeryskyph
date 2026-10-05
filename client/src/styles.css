@@ -1676,7 +1676,7 @@ img.service-photo {
     linear-gradient(to bottom right, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) left / 50% 100% no-repeat,
     linear-gradient(to bottom left, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) right / 50% 100% no-repeat,
     var(--sky);
-  clip-path: polygon(0 62%, 50% 78%, 100% 62%, 100% 100%, 0 100%);
+  clip-path: polygon(0 64%, 50% 72%, 100% 64%, 100% 100%, 0 100%);
   -webkit-mask: none;
   mask: none;
   pointer-events: none;
@@ -1722,7 +1722,7 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 -110px;
+    translate: 0 -50px;
     z-index: 4;
   }
 }
