@@ -3059,3 +3059,18 @@ img.service-photo {
   margin-top: 0;
   padding-bottom: var(--space-sm);
 }
+
+/* Tighter small card spacing: text blocks reserve less height */
+.service-card:not(.service-card--expanded) h3 {
+  min-height: 2.2em;
+  margin: var(--space-xs) var(--space-sm) 0;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  min-height: 3.1em;
+  margin: 0 var(--space-sm) var(--space-xs);
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  padding-bottom: var(--space-xs);
+}
