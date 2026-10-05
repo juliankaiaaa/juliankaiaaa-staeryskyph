@@ -1537,15 +1537,11 @@ img.service-photo {
 
 /* Red wax seal sits on the flap point */
 .band--brown .grid--2 > .card::before {
-  background:
-    radial-gradient(circle at 50% 62%, var(--red) 0 15px, rgba(0, 0, 0, 0.15) 15px 17px, transparent 18px),
-    rgba(62, 39, 35, 0.07);
+  background: rgba(62, 39, 35, 0.07);
 }
 
 .band--brown .grid--2 > .card--brown::before {
-  background:
-    radial-gradient(circle at 50% 62%, var(--red) 0 15px, rgba(0, 0, 0, 0.15) 15px 17px, transparent 18px),
-    rgba(244, 201, 214, 0.08);
+  background: rgba(244, 201, 214, 0.08);
 }
 
 /* Letter: lined paper with a torn top edge */
@@ -1578,5 +1574,23 @@ img.service-photo {
   border: 4px dotted var(--cream);
   box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
   transform: rotate(7deg);
+  pointer-events: none;
+}
+
+/* More dots around the mission and vision band */
+.band--brown:has(.grid--2) {
+  position: relative;
+  isolation: isolate;
+}
+
+.band--brown:has(.grid--2)::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: var(--dots) 0 0 / var(--dot-tile) var(--dot-tile);
+  opacity: 0.35;
   pointer-events: none;
 }
