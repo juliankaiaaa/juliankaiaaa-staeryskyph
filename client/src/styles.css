@@ -2563,14 +2563,14 @@ img.service-photo {
   opacity: 0.9;
 }
 
-/* Pink panels get a soft, richer gradient. The brown background is unchanged */
-.pink-panel,
+/* Pink panels get a soft gradient. The scallop edge layers are kept */
 .about-text,
 .band--pink,
-.card--pink,
-.hero .pink-panel {
+.card--pink {
   background-image: linear-gradient(160deg, #f9dde6 0%, var(--pink) 55%, #eab3c4 100%);
 }
+
+/* The scalloped hero panel stays solid pink so its edge matches the bumps */
 
 .band--pink {
   background-color: var(--pink);
