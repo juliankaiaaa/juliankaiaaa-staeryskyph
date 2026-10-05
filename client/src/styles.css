@@ -933,7 +933,7 @@ img.service-photo {
   justify-content: center;
   min-height: 2.6em;
 
-  font-size: var(--fs-label);
+  font-size: clamp(16px, 1.45vw, 20px);
   font-weight: 600;
   line-height: 1.3;
 }
@@ -942,7 +942,7 @@ img.service-photo {
   flex: 1;
   margin-top: var(--space-xs);
 
-  font-size: clamp(14px, 1.1vw, 17px);
+  font-size: clamp(14px, 1.05vw, 16px);
   line-height: 1.5;
 }
 
