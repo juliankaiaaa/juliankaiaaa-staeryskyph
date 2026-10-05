@@ -2946,3 +2946,22 @@ img.service-photo {
 .service-card--expanded .service-toggle {
   margin-right: var(--space-md);
 }
+
+/* Expanded card buttons sit in one row with equal height */
+.service-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.service-actions .service-toggle,
+.service-actions .service-action {
+  margin: 0;
+  height: 40px;
+  padding: 0 1.4em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}

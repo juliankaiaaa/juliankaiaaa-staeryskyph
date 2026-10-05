@@ -39,20 +39,22 @@ export default function ServiceCard({
         </div>
       )}
 
-      {onToggle && (
-        <button
-          type="button"
-          className="service-toggle"
-          aria-expanded={expanded}
-          onClick={onToggle}
-        >
-          {expanded ? 'Show less' : 'View details'}
-        </button>
-      )}
+      <div className="service-actions">
+        {onToggle && (
+          <button
+            type="button"
+            className="service-toggle"
+            aria-expanded={expanded}
+            onClick={onToggle}
+          >
+            {expanded ? 'Show less' : 'View details'}
+          </button>
+        )}
 
-      <Link className="service-action" to={action.to}>
-        {action.label}
-      </Link>
+        <Link className="service-action" to={action.to}>
+          {action.label}
+        </Link>
+      </div>
     </article>
   )
 }
