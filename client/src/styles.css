@@ -541,13 +541,13 @@ nav a[aria-current]:hover {
 .paper-scrap {
   place-self: center;
 
-  width: 52%;
-  max-width: 290px;
+  width: 46%;
+  max-width: 250px;
   aspect-ratio: 1;
 
-  background: var(--brown);
+  background: var(--cream);
   clip-path: var(--torn);
-  transform: translate(8%, 6%) rotate(-5deg);
+  transform: translate(6%, 5%) rotate(-4deg);
 }
 
 /* Photo frame on top of the scalloped shape */
