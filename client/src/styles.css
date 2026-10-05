@@ -1647,3 +1647,63 @@ img.service-photo {
   border-radius: 10px 10px 0 0;
   background: var(--sky);
 }
+
+/* Call to action as an envelope with a letter sliding out, based on the reference */
+.cta-inner.sticker {
+  position: relative;
+  isolation: isolate;
+
+  max-width: 640px;
+  margin-inline: auto;
+  padding: clamp(56px, 6vw, 84px) clamp(28px, 4vw, 56px);
+
+  background: none;
+  color: var(--brown);
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.3));
+}
+
+/* Envelope body with a V flap */
+.cta-inner.sticker::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  border-radius: 8px;
+  background:
+    linear-gradient(to bottom right, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) left / 50% 100% no-repeat,
+    linear-gradient(to bottom left, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) right / 50% 100% no-repeat,
+    var(--sky);
+  -webkit-mask: none;
+  mask: none;
+  pointer-events: none;
+}
+
+/* Cream letter sliding out of the top of the envelope */
+.cta-inner.sticker::after {
+  content: "";
+
+  position: absolute;
+  top: -22px;
+  left: 10%;
+  right: 10%;
+  z-index: -1;
+
+  height: 58%;
+  border-radius: 4px;
+  background: var(--cream);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  -webkit-mask: none;
+  mask: none;
+  pointer-events: none;
+}
+
+.cta-inner.sticker > * {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-inner.sticker .cta-art {
+  margin-top: 0;
+}
