@@ -3183,3 +3183,25 @@ img.service-photo {
   margin: 0;
   padding: 0;
 }
+
+/* Small cards: text inset from the edges, same gap between blocks */
+.service-card:not(.service-card--expanded) {
+  --block-gap: var(--space-md);
+}
+
+.service-card:not(.service-card--expanded) h3,
+.service-card:not(.service-card--expanded) > p {
+  padding-inline: var(--space-md);
+  margin-inline: 0;
+  min-height: 0;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  margin-top: var(--space-sm);
+  margin-bottom: 0;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  padding: var(--space-md) var(--space-md) var(--space-md);
+  margin-top: var(--space-md);
+}
