@@ -3396,3 +3396,29 @@ img.service-photo {
 .service-card:not(.service-card--expanded) .service-actions {
   display: none;
 }
+
+/* Grid cards, final spacing pass: shorter photo, two-line titles, no empty space at the bottom */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) {
+  padding-bottom: var(--space-md);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-photo {
+  aspect-ratio: 16 / 10;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  gap: var(--space-xs);
+  padding-top: var(--space-xs);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(16px, 1.35vw, 19px);
+  min-height: 2.5em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  margin: 0;
+  line-height: 1.5;
+}
