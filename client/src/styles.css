@@ -1331,12 +1331,23 @@ img.service-photo {
 }
 
 /* Steps share the same heading and text rhythm */
+.step {
+  padding: var(--card-pad);
+
+  border-radius: 14px;
+
+  background: var(--cream);
+  color: var(--brown);
+  box-shadow: var(--shadow);
+}
+
 .step h3 {
-  margin-bottom: var(--space-xs);
+  margin-bottom: var(--space-md);
 }
 
 .step > p {
   max-width: 24em;
+  margin-top: 0;
 }
 
 /* Polaroid lifts straight on hover, like a photo being picked up */
