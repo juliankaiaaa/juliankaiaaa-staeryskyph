@@ -36,7 +36,9 @@ export default function ServiceCard({
 
       <h3>{title}</h3>
 
-      <p>{text}</p>
+      {expanded && text.includes('\n\n')
+        ? text.split('\n\n').map((paragraph) => <p key={paragraph.slice(0, 24)}>{paragraph}</p>)
+        : <p>{text}</p>}
 
       {expanded && (
         <div className="service-details">

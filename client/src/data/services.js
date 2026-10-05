@@ -12,7 +12,7 @@ export const SERVICES = [
     title: 'Consolidation Services',
     summary: 'Combine your orders into one shipment',
     description:
-      'Combine your purchases into one shipment to make receiving your items easier and more organized.',
+      'Combine your purchases into one shipment to make receiving your items easier and more organized.\n\nWhen you order from several shops, we gather everything at one address, check each item, and send it together. This saves you from paying for many small parcels and tracking several deliveries.',
     photo: null,
   },
   {
@@ -20,7 +20,7 @@ export const SERVICES = [
     title: 'Korea Purchase Assistance',
     summary: 'We buy items from Korea for you',
     description:
-      'We help you purchase K-pop merchandise and other items from Korean websites and sellers.',
+      'We help you purchase K-pop merchandise and other items from Korean websites and sellers.\n\nSend us the item link or the shop you want, and we handle the purchase on your behalf. We keep you updated at each step so you always know where your order stands.',
     photo: null,
   },
   {
@@ -28,7 +28,7 @@ export const SERVICES = [
     title: 'Japan Site Purchase Assistance',
     summary: 'We buy from Japanese shopping sites',
     description:
-      'Get items from Japanese shopping websites even when direct international purchasing is not available.',
+      'Get items from Japanese shopping websites even when direct international purchasing is not available.\n\nMany Japanese shops do not ship to the Philippines directly. We place the order for you, confirm the details with you first, and arrange the forwarding once the item is ready.',
     photo: null,
   },
   {
@@ -36,7 +36,7 @@ export const SERVICES = [
     title: 'Thailand Purchase Assistance',
     summary: 'We buy items from Thailand for you',
     description:
-      'Purchase items from Thailand with assistance from checkout to forwarding.',
+      'Purchase items from Thailand with assistance from checkout to forwarding.\n\nWe help you buy from Thai shops and marketplaces, handle the checkout, and make sure your item reaches you safely, from the first payment to the final delivery.',
     photo: null,
   },
   {
@@ -44,7 +44,7 @@ export const SERVICES = [
     title: 'Mercari Japan Purchase Assistance',
     summary: 'Mercari Japan purchase assistance',
     description:
-      'Looking for something on Mercari Japan? Send us the listing and we can assist with the purchase.',
+      'Looking for something on Mercari Japan? Send us the listing and we can assist with the purchase.\n\nWe review the listing with you, check the seller and the item details, and purchase it on your behalf, so you can shop from Mercari Japan with more confidence.',
     photo: null,
   },
   {
@@ -52,7 +52,7 @@ export const SERVICES = [
     title: 'Bunjang Korea Purchase Assistance',
     summary: 'Bunjang Korea purchase assistance',
     description:
-      'We assist with purchases from Bunjang Korea so you can access listings from Korean sellers.',
+      'We assist with purchases from Bunjang Korea so you can access listings from Korean sellers.\n\nBunjang has many sellers and listings that are hard to reach from abroad. We help you find the right item, confirm its condition with you, and complete the purchase.',
     photo: null,
   },
   {
@@ -60,7 +60,7 @@ export const SERVICES = [
     title: 'Weverse Purchase Assistance',
     summary: 'Weverse shop purchase assistance',
     description:
-      'Get your favorite official K-pop merchandise from Weverse Shop with our purchase assistance.',
+      'Get your favorite official K-pop merchandise from Weverse Shop with our purchase assistance.\n\nWe help you order official releases and merchandise from Weverse Shop, keep track of your order, and make the purchase process clearer if you are shopping from overseas.',
     photo: null,
   },
   {
@@ -68,7 +68,7 @@ export const SERVICES = [
     title: 'Address Rental / Forwarding',
     summary: 'Korea and Thailand address rental and forwarding',
     description:
-      'Use our available overseas address services for receiving and forwarding your purchases.',
+      'Use our available overseas address services for receiving and forwarding your purchases.\n\nIf a shop will not deliver to the Philippines, we can receive your package at an address in Korea or Thailand and forward it to you. You send us the details, and we handle the rest.',
     photo: null,
   },
 ]
