@@ -1748,7 +1748,7 @@ img.service-photo {
   z-index: 1;
   min-height: 300px;
   justify-content: center;
-  translate: 0 170px;
+  translate: 0 130px;
   z-index: 1;
 
   display: flex;
@@ -1787,6 +1787,6 @@ img.service-photo {
   }
 
   100% {
-    translate: 0 170px;
+    translate: 0 130px;
   }
 }
