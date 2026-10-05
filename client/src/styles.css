@@ -1707,3 +1707,32 @@ img.service-photo {
 .cta-inner.sticker .cta-art {
   margin-top: 0;
 }
+
+/* Hover pulls the letter further out and lifts the envelope */
+.cta-inner.sticker {
+  transition: translate 0.4s ease;
+}
+
+.cta-inner.sticker::after {
+  transition:
+    top 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.5s ease;
+}
+
+@media (hover: hover) {
+  .cta-inner.sticker:hover {
+    translate: 0 -4px;
+  }
+
+  .cta-inner.sticker:hover::after {
+    top: -54px;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-inner.sticker,
+  .cta-inner.sticker::after {
+    transition: none;
+  }
+}
