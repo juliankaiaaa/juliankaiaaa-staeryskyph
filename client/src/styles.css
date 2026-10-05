@@ -3391,3 +3391,8 @@ img.service-photo {
   margin-top: var(--space-md);
   padding-top: 0;
 }
+
+/* Small cards hide the request button. It appears when the card is opened */
+.service-card:not(.service-card--expanded) .service-actions {
+  display: none;
+}
