@@ -647,6 +647,9 @@ nav a[aria-current]:hover {
 /* Services on Home, plain brown with no pattern */
 
 .services {
+  position: relative;
+  isolation: isolate;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -745,30 +748,37 @@ nav a[aria-current]:hover {
 
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   padding: 0;
 
-  border: 1px solid var(--pink);
+  border: 0;
   border-radius: 50%;
 
-  background: var(--brown);
-  color: var(--pink);
+  background: var(--cream);
+  color: var(--brown);
 
   font: inherit;
-  font-size: var(--fs-label);
+  font-size: 26px;
   line-height: 1;
 
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease;
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .carousel-arrow:hover {
-  background: var(--pink);
-  color: var(--brown);
+  background: var(--mustard);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.carousel-arrow:active {
+  transform: translateY(0);
 }
 
 .carousel-arrow-prev {
@@ -1417,4 +1427,19 @@ img.service-photo {
 
 .service-number {
   transition: transform 0.3s ease;
+}
+
+/* Soft warm glow and faint cream dots behind the featured services */
+.services::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(246, 236, 220, 0.16), transparent 62%),
+    var(--dots) 0 0 / var(--dot-tile) var(--dot-tile);
+  opacity: 0.5;
+  pointer-events: none;
 }
