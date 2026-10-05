@@ -3,7 +3,6 @@ import Navbar from './Navbar.jsx'
 import Decor from './Decor.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
 import brownStar from '../assets/images/decorations/brown_star.png'
-import paperClip from '../assets/images/decorations/paper_clip.png'
 
 /* The cover shared by every page. variant "page" uses the smaller inner title */
 export default function Hero({ id, active, kicker, title, intro, variant }) {
@@ -26,8 +25,6 @@ export default function Hero({ id, active, kicker, title, intro, variant }) {
 
         {intro && <p className="hero-intro">{intro}</p>}
       </div>
-
-      <Decor src={paperClip} className="hero-clip" />
     </section>
   )
 }
