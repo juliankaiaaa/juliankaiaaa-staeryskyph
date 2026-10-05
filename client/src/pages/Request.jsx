@@ -1,17 +1,11 @@
-import { useRef } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
 import InquiryForm from '../components/InquiryForm.jsx'
-import useScallopFit from '../hooks/useScallopFit.js'
 import SiteFooter from '../components/SiteFooter.jsx'
 
 /* Request page. ?service=korea opens the form for that service */
 export default function Request() {
   const [searchParams] = useSearchParams()
-  const formRef = useRef(null)
-
-  useScallopFit(formRef, '--scallop')
-
   return (
     <div className="page">
       <main className="content">
@@ -54,7 +48,7 @@ export default function Request() {
               </div>
             </div>
 
-            <div ref={formRef} className="sticker request-card">
+            <div className="request-card">
               <InquiryForm initialService={searchParams.get('service') ?? ''} />
             </div>
           </div>
