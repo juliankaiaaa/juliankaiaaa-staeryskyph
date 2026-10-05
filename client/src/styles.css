@@ -3259,3 +3259,11 @@ img.service-photo {
   padding-left: var(--card-inset);
   padding-right: var(--card-inset);
 }
+
+/* Small card descriptions wrap inside the inner spacing */
+.service-card:not(.service-card--expanded) > p {
+  display: block;
+  text-align: center;
+  padding-inline: 0;
+  overflow-wrap: break-word;
+}
