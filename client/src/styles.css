@@ -3032,3 +3032,30 @@ img.service-photo {
   line-height: 1.55;
   text-wrap: balance;
 }
+
+/* Small cards share one spacing rhythm, so titles, text and buttons line up across each row */
+.service-card:not(.service-card--expanded) {
+  --card-gap: var(--space-sm);
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  min-height: 2.4em;
+  margin: var(--space-sm) var(--space-sm) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  min-height: 4.65em;
+  max-width: none;
+  margin: 0 var(--space-md) var(--space-md);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  margin-top: 0;
+  padding-bottom: var(--space-sm);
+}
