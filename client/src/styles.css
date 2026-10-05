@@ -2742,3 +2742,57 @@ img.service-photo {
     animation: none;
   }
 }
+
+/* Expandable service card: the open card moves to the front and spans two columns */
+.service-card--expanded {
+  grid-column: span 2;
+  transform: none;
+}
+
+.service-card--expanded .service-photo {
+  aspect-ratio: 16 / 7;
+}
+
+.service-details {
+  width: 100%;
+  margin-top: var(--space-sm);
+  padding-inline: var(--space-md);
+  text-align: left;
+}
+
+.service-steps {
+  margin: 0;
+  padding-left: 1.3em;
+  font-size: var(--fs-small);
+  line-height: 1.7;
+}
+
+.service-toggle {
+  margin-top: var(--space-sm);
+  padding: 0.3em 1em;
+  border: 1.5px solid var(--brown);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--brown);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.service-toggle:hover {
+  background: var(--brown);
+  color: var(--cream);
+}
+
+@media (max-width: 1000px) {
+  .service-card--expanded {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .service-card--expanded {
+    grid-column: auto;
+  }
+}

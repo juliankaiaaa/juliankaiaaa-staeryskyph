@@ -1,14 +1,20 @@
 import { Link } from 'react-router-dom'
 
 /*
-  One service card: number badge, photo area, title, text and a button.
-  When photo is null, an empty stitched photo area shows until a real photo
-  is added in data/services.js.
+  One service card. When onToggle is given, the card can expand to show its
+  details and steps. Without it, the card is the plain version used on Home.
 */
-export default function ServiceCard({ title, text, photo, action }) {
+export default function ServiceCard({
+  title,
+  text,
+  photo,
+  action,
+  expanded = false,
+  onToggle,
+  steps = [],
+}) {
   return (
-    <article className="service-card">
-
+    <article className={`service-card${expanded ? ' service-card--expanded' : ''}`}>
       {photo ? (
         <img className="service-photo" src={photo} alt={title} />
       ) : (
@@ -18,6 +24,27 @@ export default function ServiceCard({ title, text, photo, action }) {
       <h3>{title}</h3>
 
       <p>{text}</p>
+
+      {expanded && (
+        <div className="service-details">
+          <ol className="service-steps">
+            {steps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+
+      {onToggle && (
+        <button
+          type="button"
+          className="service-toggle"
+          aria-expanded={expanded}
+          onClick={onToggle}
+        >
+          {expanded ? 'Show less' : 'View details'}
+        </button>
+      )}
 
       <Link className="service-action" to={action.to}>
         {action.label}
