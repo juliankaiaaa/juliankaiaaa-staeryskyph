@@ -50,10 +50,14 @@ export default function About() {
 
               <h2>Make overseas shopping easier.</h2>
 
-              <p>
+              <div className="mv-letter">
+
+                <p>
                 To provide accessible and organized purchase assistance
                 services for fans who want to shop from overseas platforms.
               </p>
+
+              </div>
             </article>
 
             <article className="card card--brown">
@@ -61,10 +65,14 @@ export default function About() {
 
               <h2>More finds, fewer barriers.</h2>
 
-              <p>
+              <div className="mv-letter">
+
+                <p>
                 To become a trusted bridge between fans in the Philippines
                 and the merchandise they love from around the world.
               </p>
+
+              </div>
             </article>
           </div>
         </section>

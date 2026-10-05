@@ -1451,23 +1451,49 @@ img.service-photo {
   background: linear-gradient(160deg, #4a322c 0%, var(--brown) 70%);
 }
 
-/* Mission and vision text appears on hover, on devices that can hover */
+/* Mission and vision letter slides up out of the card on hover */
+.mv-letter {
+  overflow: hidden;
+  max-height: 0;
+  margin-top: 0;
+  transition:
+    max-height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
+    margin-top 0.6s ease;
+}
+
+.mv-letter > p {
+  padding: 18px 20px;
+
+  border-radius: 4px;
+
+  background: var(--cream);
+  color: var(--brown);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  translate: 0 110%;
+  transition: translate 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
 @media (hover: hover) {
-  .band--brown .grid--2 > .card > p {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    translate: 0 8px;
-    transition:
-      max-height 0.5s ease,
-      opacity 0.4s ease,
-      translate 0.4s ease;
+  .band--brown .grid--2 > .card:hover .mv-letter,
+  .band--brown .grid--2 > .card:focus-within .mv-letter {
+    max-height: 340px;
+    margin-top: var(--space-md);
   }
 
-  .band--brown .grid--2 > .card:hover > p,
-  .band--brown .grid--2 > .card:focus-within > p {
-    max-height: 12em;
-    opacity: 1;
+  .band--brown .grid--2 > .card:hover .mv-letter > p,
+  .band--brown .grid--2 > .card:focus-within .mv-letter > p {
+    translate: 0 0;
+  }
+}
+
+/* Touch screens have no hover, so the letter is always out */
+@media (hover: none) {
+  .mv-letter {
+    max-height: none;
+    margin-top: var(--space-md);
+  }
+
+  .mv-letter > p {
     translate: 0 0;
   }
 }
