@@ -1676,7 +1676,7 @@ img.service-photo {
     linear-gradient(to bottom right, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) left / 50% 100% no-repeat,
     linear-gradient(to bottom left, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) right / 50% 100% no-repeat,
     var(--sky);
-  clip-path: polygon(0 66%, 50% 80%, 100% 66%, 100% 100%, 0 100%);
+  clip-path: polygon(0 50%, 50% 80%, 100% 50%, 100% 100%, 0 100%);
   -webkit-mask: none;
   mask: none;
   pointer-events: none;
