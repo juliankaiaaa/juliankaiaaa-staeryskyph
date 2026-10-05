@@ -5,7 +5,6 @@ import useScallopFit from '../hooks/useScallopFit.js'
 import AboutSection from '../components/AboutSection.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
-import SpreadText from '../components/SpreadText.jsx'
 import brownHeart from '../assets/images/decorations/brown_heart.png'
 import pinkStar from '../assets/images/decorations/pink_star.png'
 import pinkOctagram from '../assets/images/decorations/pink_octagram.png'
@@ -130,7 +129,7 @@ export default function About() {
             <div className="cta-letter">
               <Decor src={brownHeart} className="decor-inline cta-art" />
   
-              <h2><SpreadText text={"Ready to find something?"} /></h2>
+              <h2>Ready to find something?</h2>
   
               <p>Tell us what you are looking for and we'll take it from there.</p>
   

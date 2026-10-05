@@ -1722,8 +1722,11 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    animation: letter-out 2s ease-in-out forwards;
+    translate: 0 -4px;
+    rotate: -3deg;
     z-index: 4;
+    transition-duration: 1s;
+    transition-timing-function: ease-out;
   }
 }
 
@@ -1765,40 +1768,11 @@ img.service-photo {
     0 1px 0 rgba(255, 255, 255, 0.7) inset,
     inset 0 0 40px rgba(120, 90, 60, 0.1);
   transition:
-    translate 0.9s ease-in-out,
-    rotate 0.9s ease-in-out;
+    translate 2.4s ease-in-out,
+    rotate 2.4s ease-in-out;
 }
 
 .cta-letter .btn {
   margin-top: var(--space-xs);
 }
 
-/* Letter slides out of the envelope, then settles into a slight tilt */
-@keyframes letter-out {
-  0% {
-    translate: 0 90px;
-    rotate: 0deg;
-  }
-
-  60% {
-    translate: 0 -10px;
-    rotate: 0deg;
-  }
-
-  100% {
-    translate: 0 -4px;
-    rotate: -3deg;
-  }
-}
-
-/* Heading letters spread apart while the letter is hovered and settle back slowly */
-.spread > span {
-  display: inline-block;
-  transition: translate 1.4s ease-in-out;
-}
-
-.cta-letter:hover .spread > span {
-  translate: calc(var(--i) * 0.07em) 0;
-  transition-duration: 0.7s;
-  transition-timing-function: ease-out;
-}
