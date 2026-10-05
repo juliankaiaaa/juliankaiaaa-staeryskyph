@@ -3243,3 +3243,19 @@ img.service-photo {
   margin-top: auto;
   padding: var(--space-md) var(--space-md) var(--space-sm);
 }
+
+/* Small cards: equal space on the left and right inside each card */
+.service-card:not(.service-card--expanded) {
+  --card-inset: clamp(18px, 1.8vw, 24px);
+}
+
+.service-card:not(.service-card--expanded) h3,
+.service-card:not(.service-card--expanded) > p {
+  margin-left: var(--card-inset);
+  margin-right: var(--card-inset);
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  padding-left: var(--card-inset);
+  padding-right: var(--card-inset);
+}
