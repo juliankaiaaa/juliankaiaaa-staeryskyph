@@ -3267,3 +3267,13 @@ img.service-photo {
   padding-inline: 0;
   overflow-wrap: break-word;
 }
+
+/* Small card descriptions use a fixed inner width, so every line wraps inside the card */
+.service-card:not(.service-card--expanded) > p {
+  width: calc(100% - 2 * var(--card-inset));
+  max-width: calc(100% - 2 * var(--card-inset));
+  margin-left: auto;
+  margin-right: auto;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
