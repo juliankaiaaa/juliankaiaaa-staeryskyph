@@ -908,10 +908,6 @@ nav a[aria-current]:hover {
   margin-bottom: var(--space-md);
 }
 
-.step .tag {
-  margin-bottom: var(--space-md);
-}
-
 .step h3 {
   margin-bottom: var(--space-sm);
 }
