@@ -1722,7 +1722,8 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 -80px;
+    translate: 0 -30px;
+    rotate: -2deg;
     z-index: 4;
   }
 }
@@ -1749,10 +1750,15 @@ img.service-photo {
   padding: clamp(28px, 3.4vw, 44px) clamp(24px, 3.4vw, 44px);
 
   border-radius: 4px;
-  background: var(--cream);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 27px, rgba(62, 39, 35, 0.06) 27px 28px),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.45), transparent 45%),
+    var(--cream);
   color: var(--brown);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-  transition: translate 0.9s ease-in-out;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), inset 0 0 40px rgba(120, 90, 60, 0.08);
+  transition:
+    translate 0.9s ease-in-out,
+    rotate 0.9s ease-in-out;
 }
 
 .cta-letter .btn {
