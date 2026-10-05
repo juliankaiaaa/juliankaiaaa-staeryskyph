@@ -1655,7 +1655,7 @@ img.service-photo {
 
   max-width: 640px;
   margin-inline: auto;
-  padding: 0 clamp(28px, 4vw, 56px) 150px;
+  padding: 0 clamp(28px, 4vw, 56px) 190px;
 
   background: var(--sky);
   border-radius: 8px;
@@ -1741,7 +1741,7 @@ img.service-photo {
   z-index: 1;
   min-height: 300px;
   justify-content: center;
-  translate: 0 150px;
+  translate: 0 110px;
   z-index: 1;
 
   display: flex;
