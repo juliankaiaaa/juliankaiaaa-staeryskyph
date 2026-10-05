@@ -687,7 +687,7 @@ nav a[aria-current]:hover {
 /* Carousel, three cards and a peek at the next one */
 
 .services-carousel {
-  --card-w: clamp(230px, 18vw, 280px);
+  --card-w: clamp(260px, 21vw, 330px);
   --card-gap: clamp(20px, 2.5vw, 36px);
 
   position: relative;
@@ -828,10 +828,36 @@ nav a[aria-current]:hover {
 }
 
 .service-card:hover {
-  transform: rotate(0deg) translateY(-4px);
+  transform: rotate(0deg) translateY(-6px) scale(1.02);
   box-shadow:
-    0 16px 30px rgba(62, 39, 35, 0.32),
+    0 20px 36px rgba(62, 39, 35, 0.36),
     3px 4px 0 rgba(62, 39, 35, 0.14);
+}
+
+/* Soft sheen that sweeps across the card on hover */
+.service-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    115deg,
+    transparent 35%,
+    rgba(255, 250, 240, 0.4) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  background-position: 120% 0;
+  pointer-events: none;
+  transition: background-position 0.8s ease;
+}
+
+.service-card:hover::before {
+  background-position: -20% 0;
 }
 
 .service-track > .service-card {
@@ -1247,7 +1273,7 @@ img.service-photo {
   }
 
   .services-carousel {
-    --card-w: 240px;
+    --card-w: 270px;
   }
 
   .form-row {
@@ -1374,4 +1400,21 @@ img.service-photo {
 /* Featured services heading in cream */
 .services .services-heading h2 {
   color: var(--cream);
+}
+
+/* Card art and text lift a little on hover */
+.service-photo {
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-photo {
+  transform: scale(1.03);
+}
+
+.service-card:hover .service-number {
+  transform: scale(1.08);
+}
+
+.service-number {
+  transition: transform 0.3s ease;
 }
