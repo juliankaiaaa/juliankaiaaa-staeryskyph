@@ -1745,9 +1745,9 @@ img.service-photo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-md);
+  gap: var(--space-sm);
 
-  padding: clamp(28px, 3.4vw, 44px) clamp(24px, 3.4vw, 44px);
+  padding: clamp(18px, 2.2vw, 28px) clamp(24px, 3.4vw, 44px);
 
   border-radius: 4px;
   background:
