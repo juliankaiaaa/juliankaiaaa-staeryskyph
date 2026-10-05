@@ -1507,11 +1507,11 @@ img.service-photo {
   background: rgba(244, 201, 214, 0.08);
 }
 
-/* Mission and vision band is the same height as the top section */
+/* Mission and vision band sits at its natural height, centered */
 .band--brown:has(.grid--2) {
   display: flex;
   align-items: center;
-  min-height: var(--section-height);
+  min-height: 0;
 }
 
 .band--brown:has(.grid--2) > .band-inner {
