@@ -1655,7 +1655,7 @@ img.service-photo {
 
   max-width: 640px;
   margin-inline: auto;
-  padding: clamp(56px, 6vw, 84px) clamp(28px, 4vw, 56px);
+  padding: clamp(56px, 6vw, 84px) clamp(28px, 4vw, 56px) 150px;
 
   background: none;
   color: var(--brown);
@@ -1668,13 +1668,14 @@ img.service-photo {
 
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 2;
 
   border-radius: 8px;
   background:
     linear-gradient(to bottom right, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) left / 50% 100% no-repeat,
     linear-gradient(to bottom left, transparent 49.5%, rgba(62, 39, 35, 0.07) 50%) right / 50% 100% no-repeat,
     var(--sky);
+  clip-path: polygon(0 70%, 50% 84%, 100% 70%, 100% 100%, 0 100%);
   -webkit-mask: none;
   mask: none;
   pointer-events: none;
@@ -1688,7 +1689,7 @@ img.service-photo {
   bottom: 14px;
   left: 0;
   right: 0;
-  z-index: 0;
+  z-index: 3;
 
   font-size: var(--fs-small);
   font-weight: 600;
@@ -1720,7 +1721,8 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 -40px;
+    translate: 0 -110px;
+    z-index: 4;
   }
 }
 
@@ -1735,6 +1737,7 @@ img.service-photo {
 .cta-letter {
   position: relative;
   z-index: 1;
+  translate: 0 -60px;
 
   display: flex;
   flex-direction: column;
