@@ -1722,8 +1722,7 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 80px;
-    rotate: -2deg;
+    animation: letter-out 1s ease-in-out forwards;
     z-index: 4;
   }
 }
@@ -1771,4 +1770,22 @@ img.service-photo {
 
 .cta-letter .btn {
   margin-top: var(--space-xs);
+}
+
+/* Letter slides out of the envelope, then settles into a slight tilt */
+@keyframes letter-out {
+  0% {
+    translate: 0 90px;
+    rotate: 0deg;
+  }
+
+  60% {
+    translate: 0 -40px;
+    rotate: 0deg;
+  }
+
+  100% {
+    translate: 0 -28px;
+    rotate: -3deg;
+  }
 }
