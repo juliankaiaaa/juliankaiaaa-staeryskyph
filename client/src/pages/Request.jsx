@@ -52,6 +52,7 @@ export default function Request() {
             </div>
 
             <div ref={cardRef} className="request-card">
+              <span className="clip" aria-hidden="true"></span>
               <InquiryForm initialService={searchParams.get('service') ?? ''} />
             </div>
           </div>

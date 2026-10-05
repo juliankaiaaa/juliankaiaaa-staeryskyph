@@ -2321,3 +2321,55 @@ img.service-photo {
   background: var(--cream);
   color: var(--brown);
 }
+
+/* Request form, clip and perforated strips */
+.request-card::after {
+  display: none;
+}
+
+.request-card .clip {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  z-index: 3;
+  width: 74px;
+  height: 46px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.clip::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 24px;
+  border: 5px solid #d9b96b;
+  border-bottom: 0;
+  border-radius: 40px 40px 0 0;
+}
+
+.clip::after {
+  content: "";
+  position: absolute;
+  inset: 16px 0 0;
+  background: linear-gradient(90deg, #f3d98f, #d9b96b 50%, #f3d98f);
+  border-radius: 4px;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.request-card::before {
+  top: clamp(28px, 3.4vw, 44px);
+  bottom: clamp(28px, 3.4vw, 44px);
+  left: clamp(18px, 2.2vw, 26px);
+  width: 12px;
+  background: radial-gradient(circle, var(--brown) 0 4.5px, transparent 5px) center top / 12px 34px repeat-y;
+}
+
+.request-card .inquiry-form::after {
+  content: "";
+  display: block;
+  height: 14px;
+  margin-top: 10px;
+  background: radial-gradient(circle, var(--pink) 0 5px, transparent 5.5px) center / 14px 14px repeat-x;
+  opacity: 0.9;
+}
