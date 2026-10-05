@@ -3125,3 +3125,31 @@ img.service-photo {
   font-size: var(--fs-body);
   line-height: 1.7;
 }
+
+/* Expanded card: one spacing value between every block of text and controls */
+.service-card--expanded .service-copy {
+  gap: var(--space-md);
+}
+
+.service-card--expanded .service-copy > h3,
+.service-card--expanded .service-copy > p,
+.service-card--expanded .service-copy > .service-details,
+.service-card--expanded .service-copy > .service-actions {
+  margin: 0;
+}
+
+.service-card--expanded .service-copy > h3 {
+  margin-bottom: 0;
+}
+
+.service-card--expanded .service-details {
+  padding: 0;
+}
+
+.service-card--expanded .service-steps {
+  gap: 8px;
+}
+
+.service-card--expanded .service-actions {
+  gap: var(--space-sm);
+}
