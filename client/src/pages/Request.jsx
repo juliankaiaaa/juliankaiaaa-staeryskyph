@@ -55,12 +55,6 @@ export default function Request() {
               <span className="clip" aria-hidden="true"></span>
               <InquiryForm initialService={searchParams.get('service') ?? ''} />
             </div>
-            <div className="request-strips" aria-hidden="true">
-              <span>Forwarding</span>
-              <span>Consolidation</span>
-              <span>Address</span>
-              <span>Pickup</span>
-            </div>
 
           </div>
         </section>
