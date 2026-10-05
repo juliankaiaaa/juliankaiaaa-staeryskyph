@@ -1638,13 +1638,12 @@ img.service-photo {
 
   position: absolute;
   top: -22px;
-  left: 0;
+  left: 14px;
   z-index: -1;
 
   width: 46%;
-  height: 26px;
+  height: 30px;
 
   border-radius: 10px 10px 0 0;
   background: var(--sky);
-  box-shadow: 0 -2px 0 rgba(62, 39, 35, 0.08);
 }
