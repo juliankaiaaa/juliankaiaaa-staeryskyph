@@ -1751,11 +1751,17 @@ img.service-photo {
 
   border-radius: 4px;
   background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.03) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(120, 90, 60, 0.02) 0 1px, transparent 1px 4px),
     repeating-linear-gradient(to bottom, transparent 0 27px, rgba(62, 39, 35, 0.06) 27px 28px),
-    linear-gradient(160deg, rgba(255, 255, 255, 0.45), transparent 45%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.6), transparent 45%),
+    linear-gradient(to bottom, #f7f2e4, #efe6d2),
     var(--cream);
   color: var(--brown);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), inset 0 0 40px rgba(120, 90, 60, 0.08);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    inset 0 0 40px rgba(120, 90, 60, 0.1);
   transition:
     translate 0.9s ease-in-out,
     rotate 0.9s ease-in-out;
