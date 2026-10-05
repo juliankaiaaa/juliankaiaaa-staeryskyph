@@ -1655,7 +1655,7 @@ img.service-photo {
 
   max-width: 640px;
   margin-inline: auto;
-  padding: 0 clamp(28px, 4vw, 56px) 230px;
+  padding: 0 clamp(28px, 4vw, 56px) 190px;
 
   background: var(--sky);
   border-radius: 8px;
@@ -1722,7 +1722,7 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 -30px;
+    translate: 0 80px;
     rotate: -2deg;
     z-index: 4;
   }
@@ -1739,9 +1739,9 @@ img.service-photo {
 .cta-letter {
   position: relative;
   z-index: 1;
-  min-height: 420px;
+  min-height: 360px;
   justify-content: center;
-  translate: 0 220px;
+  translate: 0 150px;
   z-index: 1;
 
   display: flex;
