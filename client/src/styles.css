@@ -3024,3 +3024,11 @@ img.service-photo {
   line-height: 1.7;
   letter-spacing: 0.01em;
 }
+
+/* Small card descriptions: balanced wrapping and space above the buttons */
+.service-card:not(.service-card--expanded) > p {
+  max-width: 26ch;
+  margin: var(--space-xs) auto var(--space-md);
+  line-height: 1.55;
+  text-wrap: balance;
+}
