@@ -3286,3 +3286,9 @@ img.service-photo {
   margin-right: auto;
   text-wrap: balance;
 }
+
+/* Service cards on the Services page: one equal gap between cards, side by side and in rows */
+.band--brown .grid--4 {
+  gap: clamp(24px, 2.6vw, 40px);
+  align-items: stretch;
+}
