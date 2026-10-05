@@ -2575,3 +2575,46 @@ img.service-photo {
 .band--pink {
   background-color: var(--pink);
 }
+
+/* Hero entrance: title and subtitle rise in once, and the star turns slowly */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes star-turn {
+  from {
+    transform: rotate(var(--tilt, 0deg));
+  }
+
+  to {
+    transform: rotate(calc(var(--tilt, 0deg) + 360deg));
+  }
+}
+
+.hero-content h1 {
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.hero-content p {
+  animation: hero-rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s both;
+}
+
+.star-hero {
+  animation: star-turn 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content h1,
+  .hero-content p,
+  .star-hero {
+    animation: none;
+  }
+}
