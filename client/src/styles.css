@@ -1366,10 +1366,12 @@ img.service-photo {
    It moves with the translate property, so hover transforms still work. */
 @keyframes reveal {
   from {
-    translate: 0 18px;
+    opacity: 0;
+    translate: 0 24px;
   }
 
   to {
+    opacity: 1;
     translate: 0 0;
   }
 }
@@ -1378,9 +1380,9 @@ img.service-photo {
   main
     :is(h1, h2, h3, p, .section-label, .page-kicker, .hero-intro, .btn, .card, .step, .tag)
     :not(.service-card, .service-card *) {
-    animation: reveal linear both;
+    animation: reveal ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% entry 35%;
+    animation-range: entry 0% entry 60%;
   }
 }
 
