@@ -2618,3 +2618,31 @@ img.service-photo {
     animation: none;
   }
 }
+
+/* Extra hero symbols, placed around the edges of the panel */
+.hero-sym {
+  z-index: 2;
+  filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
+}
+
+.hero-sym-heart {
+  --size: clamp(40px, 4.2vw, 64px);
+  --tilt: -10deg;
+  top: 16%;
+  left: 14%;
+}
+
+.hero-sym-asterisk {
+  --size: clamp(30px, 3.2vw, 48px);
+  --tilt: 12deg;
+  bottom: 18%;
+  right: 16%;
+}
+
+.hero-sym-octagram {
+  --size: clamp(34px, 3.6vw, 54px);
+  --tilt: 6deg;
+  bottom: 14%;
+  left: 22%;
+}
+
