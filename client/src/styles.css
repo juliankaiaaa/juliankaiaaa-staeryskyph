@@ -3014,3 +3014,49 @@ img.service-photo {
 .service-card--expanded[data-accent='sage'] .service-photo { background: var(--sage); }
 .service-card--expanded[data-accent='mustard'] .service-photo { background: var(--mustard); }
 .service-card--expanded[data-accent='cream'] .service-photo { background: var(--cream-deep); }
+
+/* Expanded details as scrapbook tags: a tear line, tilted paper strips and mustard numbers */
+.service-card--expanded .service-details {
+  position: relative;
+  padding-top: var(--space-md);
+}
+
+.service-card--expanded .service-details::before {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  border-top: 2px dashed rgba(62, 39, 35, 0.3);
+}
+
+.service-card--expanded .service-steps {
+  gap: 10px;
+}
+
+.service-card--expanded .service-steps li {
+  position: relative;
+  padding: 8px 14px 8px 10px;
+  border-radius: 4px;
+  background: #fffdf6;
+  box-shadow: 2px 3px 6px rgba(62, 39, 35, 0.15);
+  width: fit-content;
+  min-width: 60%;
+}
+
+.service-card--expanded .service-steps li:nth-child(odd) {
+  transform: rotate(-0.8deg);
+}
+
+.service-card--expanded .service-steps li:nth-child(even) {
+  transform: rotate(0.8deg);
+  margin-left: 16px;
+}
+
+.service-card--expanded .service-steps li::before {
+  background: var(--mustard);
+  color: var(--brown);
+  box-shadow: 1px 2px 3px rgba(62, 39, 35, 0.25);
+}
