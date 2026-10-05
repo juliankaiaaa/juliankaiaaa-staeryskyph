@@ -1722,7 +1722,7 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    animation: letter-out 1s ease-in-out forwards;
+    animation: letter-out 2s ease-in-out forwards;
     z-index: 4;
   }
 }
@@ -1780,12 +1780,12 @@ img.service-photo {
   }
 
   60% {
-    translate: 0 -40px;
+    translate: 0 -10px;
     rotate: 0deg;
   }
 
   100% {
-    translate: 0 -28px;
+    translate: 0 -4px;
     rotate: -3deg;
   }
 }
