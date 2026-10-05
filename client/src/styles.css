@@ -3332,3 +3332,20 @@ img.service-photo {
 .band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
   text-wrap: balance;
 }
+
+/* Grid cards: the text wrapper carries the inner spacing, so title, description and button share one padded area */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  padding-inline: clamp(24px, 2.6vw, 36px);
+  text-align: center;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy > h3,
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy > p {
+  margin-left: 0;
+  margin-right: 0;
+  padding-inline: 0;
+}
