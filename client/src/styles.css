@@ -7,6 +7,8 @@
   --cream: #f4eee6;
   --sage: #b5d3a0;
   --sky: #b4dde3;
+  --mustard: #e7b75a;
+  --red: #b5443a;
   --shadow: 4px 5px 0 rgba(62, 39, 35, 0.45);
 
   --font-main: 'Poppins', sans-serif;
@@ -346,13 +348,15 @@ h3 {
   side and sets --cols and --rows, so every tile fits exactly.
 */
 .pink-panel,
-.about-image {
+.about-image,
+.sticker {
   --cols: 24;
   --rows: 12;
 }
 
 .pink-panel,
-.about-image::before {
+.about-image::before,
+.sticker {
   --bump: radial-gradient(
     ellipse closest-side,
     var(--pink) calc(100% - 1px),
@@ -793,6 +797,15 @@ nav a[aria-current]:hover {
 
 .service-card .tag {
   border-color: var(--brown);
+  background: var(--mustard);
+  color: var(--brown);
+}
+
+/* The About and Services call to action is a sticker on the brown band */
+.cta-inner.sticker {
+  max-width: 640px;
+  box-shadow: none;
+  filter: drop-shadow(4px 5px 0 rgba(181, 68, 58, 0.6));
 }
 
 .service-track > .service-card {
@@ -942,8 +955,19 @@ nav a[aria-current]:hover {
   margin-top: var(--space-lg);
 }
 
-.request-card {
-  padding: var(--card-pad);
+/* Wavy edged sticker, the same scallop edge as the hero panel */
+.sticker {
+  position: relative;
+
+  padding: calc(var(--card-pad) + var(--scallop) * 0.5);
+
+  color: var(--brown);
+  filter: drop-shadow(4px 5px 0 rgba(62, 39, 35, 0.45));
+}
+
+.sticker .btn {
+  background: var(--brown);
+  color: var(--pink);
 }
 
 .form {

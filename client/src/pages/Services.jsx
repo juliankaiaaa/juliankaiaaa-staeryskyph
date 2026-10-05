@@ -1,5 +1,7 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
+import useScallopFit from '../hooks/useScallopFit.js'
 import ServiceCard from '../components/ServiceCard.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
@@ -27,6 +29,10 @@ const STEPS = [
 
 /* Services page, same cards as the Home carousel in a full grid */
 export default function Services() {
+  const ctaRef = useRef(null)
+
+  useScallopFit(ctaRef, '--scallop')
+
   return (
     <div className="page">
       <main className="content">
@@ -81,7 +87,7 @@ export default function Services() {
         </section>
 
         <section className="band band--brown cta">
-          <div className="band-inner cta-inner">
+          <div ref={ctaRef} className="band-inner cta-inner sticker">
             <Decor src={pinkHeart} className="decor-inline cta-art" />
 
             <h2>Have something specific in mind?</h2>

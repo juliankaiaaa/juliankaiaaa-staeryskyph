@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
+import useScallopFit from '../hooks/useScallopFit.js'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
 import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
@@ -9,6 +10,9 @@ import brownStar from '../assets/images/decorations/brown_star.png'
 /* Request page, the form for asking us to find an item */
 export default function Request() {
   const [submitted, setSubmitted] = useState(false)
+  const formRef = useRef(null)
+
+  useScallopFit(formRef, '--scallop')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -60,7 +64,7 @@ export default function Request() {
               </div>
             </div>
 
-            <div className="card card--pink request-card">
+            <div ref={formRef} className="sticker request-card">
               {submitted ? (
                 <div className="form-success">
                   <Decor src={brownStar} className="decor-inline success-art" />

@@ -1,5 +1,7 @@
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
+import useScallopFit from '../hooks/useScallopFit.js'
 import AboutSection from '../components/AboutSection.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
@@ -7,6 +9,10 @@ import pinkHeart from '../assets/images/decorations/pink_heart.png'
 
 /* About page, same cover and about layout as Home */
 export default function About() {
+  const ctaRef = useRef(null)
+
+  useScallopFit(ctaRef, '--scallop')
+
   return (
     <div className="page">
       <main className="content">
@@ -103,7 +109,7 @@ export default function About() {
         </section>
 
         <section className="band band--brown cta">
-          <div className="band-inner cta-inner">
+          <div ref={ctaRef} className="band-inner cta-inner sticker">
             <Decor src={pinkHeart} className="decor-inline cta-art" />
 
             <h2>Ready to find something?</h2>
