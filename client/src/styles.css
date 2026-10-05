@@ -3205,3 +3205,41 @@ img.service-photo {
   padding: var(--space-md) var(--space-md) var(--space-md);
   margin-top: var(--space-md);
 }
+
+/* Small cards: equal height per row, fixed text blocks, buttons pinned to the bottom */
+.service-card:not(.service-card--expanded) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card:not(.service-card--expanded) .service-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  min-height: 2.6em;
+  margin: var(--space-xs) var(--space-lg) 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  min-height: 4.8em;
+  margin: var(--space-sm) var(--space-lg) 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  margin-top: auto;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+}
