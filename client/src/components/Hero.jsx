@@ -19,6 +19,10 @@ export default function Hero({ id, active, kicker, title, intro, variant }) {
 
       <Decor src={brownHeart} className="hero-sym hero-sym-heart" />
       <Decor src={brownAsterisk} className="hero-sym hero-sym-asterisk" />
+      <span className="hero-shape hero-shape-ring" aria-hidden="true"></span>
+      <span className="hero-shape hero-shape-triangle" aria-hidden="true"></span>
+      <span className="hero-shape hero-shape-dots" aria-hidden="true"></span>
+      <span className="hero-shape hero-shape-half" aria-hidden="true"></span>
       <Decor src={brownOctagram} className="hero-sym hero-sym-octagram" />
 
       <Navbar active={active} />
