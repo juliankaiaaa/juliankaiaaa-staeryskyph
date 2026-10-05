@@ -390,6 +390,8 @@ h3 {
   --tile: var(--sx) var(--sy);
 
   background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.035) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.35), transparent 50%),
     linear-gradient(var(--pink), var(--pink)) center /
       calc(100% - var(--sx)) calc(100% - var(--sy)) no-repeat,
     var(--bump) left top / var(--tile) repeat-x,
@@ -1830,27 +1832,6 @@ img.service-photo {
     inset 0 0 40px rgba(120, 90, 60, 0.1);
 }
 
-/* Washi tape strips on the top corners of the hero panel */
-.hero::before,
-.hero::after {
-  content: "";
-
-  position: absolute;
-  top: calc(var(--panel-inset) * 0.4);
-  z-index: 3;
-
-  width: clamp(70px, 8vw, 110px);
-  height: clamp(18px, 1.8vw, 26px);
-
-  background:
-    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0 2px, transparent 2px 7px),
-    rgba(216, 235, 249, 0.92);
-  clip-path: polygon(
-    0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%,
-    0 100%, 3% 75%, 0 50%, 3% 25%
-  );
-  pointer-events: none;
-}
 
 .hero::before {
   left: calc(var(--panel-inset) * 1.2);
