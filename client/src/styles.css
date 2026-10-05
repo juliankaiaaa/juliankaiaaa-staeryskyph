@@ -1739,6 +1739,8 @@ img.service-photo {
 .cta-letter {
   position: relative;
   z-index: 1;
+  min-height: 420px;
+  justify-content: center;
   translate: 0 150px;
   z-index: 1;
 
