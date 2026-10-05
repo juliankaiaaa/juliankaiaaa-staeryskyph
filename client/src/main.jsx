@@ -14,6 +14,7 @@ import Services from './pages/Services.jsx'
 import Request from './pages/Request.jsx'
 import Admin from './pages/Admin.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
+import RoleDialog from './components/RoleDialog.jsx'
 
 import './styles.css'
 
@@ -70,6 +71,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <HashRouter>
       <ScrollToTop />
+      <RoleDialog />
 
       <AnimatedRoutes />
     </HashRouter>
