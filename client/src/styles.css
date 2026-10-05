@@ -577,13 +577,13 @@ nav a[aria-current]:hover {
   position: relative;
   place-self: center;
 
-  width: 50%;
-  max-width: 280px;
-  padding: var(--space-sm) var(--space-sm) calc(var(--space-sm) * 3.2);
+  width: 62%;
+  max-width: 380px;
+  padding: calc(var(--space-sm) * 1.2) calc(var(--space-sm) * 1.2) calc(var(--space-sm) * 4);
 
   border-radius: 3px;
 
-  background: var(--pink);
+  background: var(--cream);
   box-shadow: var(--shadow);
   transform: rotate(2deg);
 }
@@ -628,21 +628,7 @@ nav a[aria-current]:hover {
   transform: translateX(-50%) rotate(5deg);
 }
 
-.star-about {
-  --size: clamp(32px, 3.2vw, 48px);
-  --tilt: -10deg;
 
-  left: -0.9em;
-  bottom: 18%;
-}
-
-.heart-about {
-  --size: clamp(22px, 2.2vw, 32px);
-  --tilt: 12deg;
-
-  top: -0.6em;
-  right: -0.9em;
-}
 
 /* Services on Home, plain brown with no pattern */
 
