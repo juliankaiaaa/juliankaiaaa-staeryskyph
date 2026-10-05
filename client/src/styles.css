@@ -2562,3 +2562,16 @@ img.service-photo {
   width: 26px;
   opacity: 0.9;
 }
+
+/* Pink panels get a soft, richer gradient. The brown background is unchanged */
+.pink-panel,
+.about-text,
+.band--pink,
+.card--pink,
+.hero .pink-panel {
+  background-image: linear-gradient(160deg, #f9dde6 0%, var(--pink) 55%, #eab3c4 100%);
+}
+
+.band--pink {
+  background-color: var(--pink);
+}
