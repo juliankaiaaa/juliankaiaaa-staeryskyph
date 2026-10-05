@@ -2965,3 +2965,21 @@ img.service-photo {
   justify-content: center;
   box-sizing: border-box;
 }
+
+/* Small service cards: buttons centred in a tidy column of equal width */
+.service-card:not(.service-card--expanded) .service-actions {
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+  padding-inline: var(--space-md);
+}
+
+.service-card:not(.service-card--expanded) .service-actions .service-toggle,
+.service-card:not(.service-card--expanded) .service-actions .service-action {
+  width: 100%;
+  max-width: 220px;
+  height: 38px;
+  padding: 0 1em;
+  font-size: var(--fs-small);
+}
