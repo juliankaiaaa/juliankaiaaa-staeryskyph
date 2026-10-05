@@ -1450,3 +1450,24 @@ img.service-photo {
 .band--brown .grid--2 > .card--brown {
   background: linear-gradient(160deg, #4a322c 0%, var(--brown) 70%);
 }
+
+/* Mission and vision text appears on hover, on devices that can hover */
+@media (hover: hover) {
+  .band--brown .grid--2 > .card > p {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    translate: 0 8px;
+    transition:
+      max-height 0.5s ease,
+      opacity 0.4s ease,
+      translate 0.4s ease;
+  }
+
+  .band--brown .grid--2 > .card:hover > p,
+  .band--brown .grid--2 > .card:focus-within > p {
+    max-height: 12em;
+    opacity: 1;
+    translate: 0 0;
+  }
+}
