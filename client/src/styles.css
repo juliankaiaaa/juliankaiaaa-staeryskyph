@@ -3079,3 +3079,19 @@ img.service-photo {
 .service-card--expanded {
   align-content: center;
 }
+
+/* Expanded card hugs its content: shorter photo, no extra height below */
+.service-card--expanded {
+  align-content: start;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.service-card--expanded .service-photo {
+  aspect-ratio: 4 / 3;
+  align-self: center;
+}
+
+.service-card--expanded .service-actions {
+  padding-bottom: 0;
+}
