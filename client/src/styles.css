@@ -868,17 +868,6 @@ nav a[aria-current]:hover {
   transform: scale(1.04);
 }
 
-/* Small sticker on the top corner of each card */
-.service-sticker {
-  --size: 40px;
-  --tilt: 14deg;
-
-  position: absolute;
-  top: -14px;
-  right: -12px;
-  z-index: 2;
-}
-
 .service-card-body {
   display: flex;
   flex: 1;

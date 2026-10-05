@@ -11,7 +11,6 @@ export default function ServiceCard({
   text,
   photo,
   art,
-  sticker,
   action,
 }) {
   return (
@@ -23,8 +22,6 @@ export default function ServiceCard({
           <Decor src={art} className="decor-inline service-art" />
         )}
       </div>
-
-      <Decor src={sticker} className="service-sticker" />
 
       <div className="service-card-body">
         <span className="tag">{number}</span>

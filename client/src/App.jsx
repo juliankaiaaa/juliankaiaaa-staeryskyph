@@ -61,7 +61,6 @@ export default function App() {
                 text={service.summary}
                 photo={service.photo}
                 art={service.art}
-                sticker={service.sticker}
                 action={{ label: 'Learn more', to: '/services' }}
               />
             ))}
