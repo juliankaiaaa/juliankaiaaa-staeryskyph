@@ -6,6 +6,9 @@ import AboutSection from '../components/AboutSection.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
 import brownHeart from '../assets/images/decorations/brown_heart.png'
+import pinkStar from '../assets/images/decorations/pink_star.png'
+import pinkOctagram from '../assets/images/decorations/pink_octagram.png'
+import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
 
 /* About page, same cover and about layout as Home */
 export default function About() {
@@ -43,7 +46,12 @@ export default function About() {
           </p>
         </AboutSection>
 
-        <section className="band band--brown">
+        <section className="band band--brown mv-band">
+          <Decor src={pinkStar} className="mv-deco mv-deco-star" />
+          <Decor src={brownAsterisk} className="mv-deco mv-deco-asterisk" />
+          <Decor src={pinkOctagram} className="mv-deco mv-deco-octagram" />
+          <span className="mv-scrap" aria-hidden="true"></span>
+
           <div className="band-inner grid grid--2">
             <article className="card card--pink">
               <span className="section-label">OUR MISSION</span>

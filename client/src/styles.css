@@ -1576,3 +1576,51 @@ img.service-photo {
   transform: rotate(7deg);
   pointer-events: none;
 }
+
+/* Stickers and a torn scrap around the mission and vision band */
+.mv-band {
+  position: relative;
+  overflow: hidden;
+}
+
+.mv-deco {
+  --size: clamp(36px, 4vw, 60px);
+}
+
+.mv-deco-star {
+  --tilt: 14deg;
+
+  top: 12%;
+  left: 6%;
+}
+
+.mv-deco-asterisk {
+  --size: clamp(30px, 3.2vw, 46px);
+  --tilt: -10deg;
+
+  bottom: 14%;
+  right: 7%;
+}
+
+.mv-deco-octagram {
+  --size: clamp(34px, 3.6vw, 52px);
+  --tilt: 8deg;
+
+  bottom: 10%;
+  left: 9%;
+}
+
+.mv-scrap {
+  position: absolute;
+  top: 9%;
+  right: 8%;
+
+  width: clamp(90px, 10vw, 150px);
+  height: clamp(60px, 7vw, 100px);
+
+  background: var(--sage);
+  clip-path: var(--torn);
+  transform: rotate(-6deg);
+  opacity: 0.85;
+  pointer-events: none;
+}
