@@ -1,8 +1,3 @@
-import brownHeart from '../assets/images/decorations/brown_heart.png'
-import brownStar from '../assets/images/decorations/brown_star.png'
-import brownEnvelope from '../assets/images/decorations/brown_envelope.png'
-import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
-import brownOctagram from '../assets/images/decorations/brown_octagram.png'
 
 /*
   One list for the Home carousel and the Services page.
@@ -10,7 +5,6 @@ import brownOctagram from '../assets/images/decorations/brown_octagram.png'
 
   photo is the real service photo. Leave it null to show the placeholder.
   To add a photo, import it at the top and set photo to that import.
-  art is the placeholder sticker shown until a photo is added.
 */
 export const SERVICES = [
   {
@@ -20,7 +14,6 @@ export const SERVICES = [
     description:
       'Combine your purchases into one shipment to make receiving your items easier and more organized.',
     photo: null,
-    art: brownEnvelope,
   },
   {
     number: '02',
@@ -29,7 +22,6 @@ export const SERVICES = [
     description:
       'We help you purchase K-pop merchandise and other items from Korean websites and sellers.',
     photo: null,
-    art: brownHeart,
   },
   {
     number: '03',
@@ -38,7 +30,6 @@ export const SERVICES = [
     description:
       'Get items from Japanese shopping websites even when direct international purchasing is not available.',
     photo: null,
-    art: brownOctagram,
   },
   {
     number: '04',
@@ -47,7 +38,6 @@ export const SERVICES = [
     description:
       'Purchase items from Thailand with assistance from checkout to forwarding.',
     photo: null,
-    art: brownStar,
   },
   {
     number: '05',
@@ -56,7 +46,6 @@ export const SERVICES = [
     description:
       'Looking for something on Mercari Japan? Send us the listing and we can assist with the purchase.',
     photo: null,
-    art: brownAsterisk,
   },
   {
     number: '06',
@@ -65,7 +54,6 @@ export const SERVICES = [
     description:
       'We assist with purchases from Bunjang Korea so you can access listings from Korean sellers.',
     photo: null,
-    art: brownHeart,
   },
   {
     number: '07',
@@ -74,7 +62,6 @@ export const SERVICES = [
     description:
       'Get your favorite official K-pop merchandise from Weverse Shop with our purchase assistance.',
     photo: null,
-    art: brownStar,
   },
   {
     number: '08',
@@ -83,6 +70,5 @@ export const SERVICES = [
     description:
       'Use our available overseas address services for receiving and forwarding your purchases.',
     photo: null,
-    art: brownEnvelope,
   },
 ]

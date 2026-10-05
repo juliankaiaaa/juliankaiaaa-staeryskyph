@@ -60,7 +60,6 @@ export default function App() {
                 title={service.title}
                 text={service.summary}
                 photo={service.photo}
-                art={service.art}
                 action={{ label: 'Learn more', to: '/services' }}
               />
             ))}

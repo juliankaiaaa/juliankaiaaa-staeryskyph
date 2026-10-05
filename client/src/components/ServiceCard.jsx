@@ -1,16 +1,14 @@
 import { Link } from 'react-router-dom'
-import Decor from './Decor.jsx'
 
 /*
   One service card: a polaroid frame with a photo, the number, title, text
-  and button. When photo is null, the placeholder shows the art sticker.
+  and button. When photo is null, a CSS placeholder fills the frame.
 */
 export default function ServiceCard({
   number,
   title,
   text,
   photo,
-  art,
   action,
 }) {
   return (
@@ -19,7 +17,7 @@ export default function ServiceCard({
         {photo ? (
           <img className="service-photo" src={photo} alt={title} />
         ) : (
-          <Decor src={art} className="decor-inline service-art" />
+          <div className="service-placeholder" aria-hidden="true"></div>
         )}
       </div>
 

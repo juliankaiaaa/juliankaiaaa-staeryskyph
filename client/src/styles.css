@@ -849,9 +849,29 @@ nav a[aria-current]:hover {
   background: var(--cream);
 }
 
-.service-art {
-  width: 40%;
-  max-width: 140px;
+/* CSS placeholder until a real photo is added */
+.service-placeholder {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(62, 39, 35, 0.06) 0 10px,
+      transparent 10px 20px
+    );
+}
+
+.service-placeholder::after {
+  content: "";
+
+  position: absolute;
+  inset: 30%;
+
+  border: 2px dashed rgba(62, 39, 35, 0.35);
+  border-radius: 50%;
 }
 
 /* Real photos fill the square, and gently zoom on hover */
