@@ -44,7 +44,7 @@ export default function Request() {
                 assistance.
               </p>
 
-              <div className="card card--pink request-note">
+              <div className="card card--sky request-note">
                 <Decor src={brownAsterisk} className="decor-inline note-art" />
 
                 <p>

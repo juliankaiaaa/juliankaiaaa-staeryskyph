@@ -273,6 +273,11 @@ h3 {
   color: var(--brown);
 }
 
+.card--sky {
+  background: var(--sky);
+  color: var(--brown);
+}
+
 .card--brown {
   border: 1.5px solid var(--pink);
   background: var(--brown);
