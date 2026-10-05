@@ -741,26 +741,26 @@ nav a[aria-current]:hover {
 
 .carousel-arrow {
   position: absolute;
-  top: calc(50% - 23px);
+  top: calc(50% - 21px);
   z-index: 4;
 
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: 42px;
+  height: 42px;
   padding: 0;
 
-  border: 0;
+  border: 1px solid rgba(244, 241, 226, 0.5);
   border-radius: 50%;
 
-  background: var(--cream);
+  background: rgba(244, 241, 226, 0.78);
   color: var(--brown);
 
   font: inherit;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1;
 
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
   cursor: pointer;
 
   transition:
@@ -770,9 +770,9 @@ nav a[aria-current]:hover {
 }
 
 .carousel-arrow:hover {
-  background: var(--mustard);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
+  background: rgba(252, 230, 183, 0.92);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
 }
 
 .carousel-arrow:active {
