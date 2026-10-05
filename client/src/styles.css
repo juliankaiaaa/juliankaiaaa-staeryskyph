@@ -1517,3 +1517,66 @@ img.service-photo {
 .band--brown:has(.grid--2) > .band-inner {
   width: 100%;
 }
+
+/* Envelope details: wax seal, postage stamp, lined letter and a slight tilt */
+.band--brown .grid--2 > .card {
+  transition: transform 0.4s ease;
+}
+
+.band--brown .grid--2 > .card:nth-child(1) {
+  transform: rotate(-0.6deg);
+}
+
+.band--brown .grid--2 > .card:nth-child(2) {
+  transform: rotate(0.6deg);
+}
+
+.band--brown .grid--2 > .card:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+/* Red wax seal sits on the flap point */
+.band--brown .grid--2 > .card::before {
+  background:
+    radial-gradient(circle at 50% 62%, var(--red) 0 15px, rgba(0, 0, 0, 0.15) 15px 17px, transparent 18px),
+    rgba(62, 39, 35, 0.07);
+}
+
+.band--brown .grid--2 > .card--brown::before {
+  background:
+    radial-gradient(circle at 50% 62%, var(--red) 0 15px, rgba(0, 0, 0, 0.15) 15px 17px, transparent 18px),
+    rgba(244, 201, 214, 0.08);
+}
+
+/* Letter: lined paper with a torn top edge */
+.mv-letter > p {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 25px,
+    rgba(62, 39, 35, 0.08) 25px 26px
+  ), none;
+  background-color: var(--cream);
+  clip-path: polygon(
+    0 4%, 8% 0, 16% 4%, 26% 1%, 36% 5%, 46% 0, 56% 4%,
+    66% 1%, 76% 5%, 86% 0, 94% 4%, 100% 2%, 100% 100%, 0 100%
+  );
+  padding-top: 26px;
+}
+
+/* Postage stamp on the corner of the letter */
+.mv-letter::after {
+  content: "";
+
+  position: absolute;
+  top: -16px;
+  right: -8px;
+
+  width: 46px;
+  height: 54px;
+
+  background: var(--sky);
+  border: 4px dotted var(--cream);
+  box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+  transform: rotate(7deg);
+  pointer-events: none;
+}
