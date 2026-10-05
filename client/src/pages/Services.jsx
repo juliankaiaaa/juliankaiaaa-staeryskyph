@@ -78,7 +78,7 @@ export default function Services() {
                       setOpenNumber(null)
                       return
                     }
-                    const colours = ['pink', 'sky', 'sage', 'mustard', 'cream']
+                    const colours = ['pink', 'sky', 'sage', 'mustard']
                     setAccent(colours[Math.floor(Math.random() * colours.length)])
                     setOpenNumber(service.number)
                   }}
