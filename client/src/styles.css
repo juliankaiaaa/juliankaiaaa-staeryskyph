@@ -1717,6 +1717,10 @@ img.service-photo {
 
 
 @media (hover: hover) {
+  .cta-inner.sticker:not(:hover) .cta-letter {
+    animation: letter-idle 4s ease-in-out infinite;
+  }
+
   .cta-inner.sticker:hover {
     translate: 0 -4px;
   }
@@ -1731,6 +1735,7 @@ img.service-photo {
   .cta-inner.sticker,
   .cta-letter {
     transition: none;
+    animation: none;
   }
 }
 
@@ -1787,5 +1792,17 @@ img.service-photo {
   100% {
     translate: 0 -4px;
     rotate: -3deg;
+  }
+}
+
+/* Idle letter slides gently in and out of the envelope when not hovered */
+@keyframes letter-idle {
+  0%,
+  100% {
+    translate: 0 90px;
+  }
+
+  50% {
+    translate: 0 74px;
   }
 }
