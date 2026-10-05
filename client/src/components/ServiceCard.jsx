@@ -16,8 +16,17 @@ export default function ServiceCard({
 }) {
   return (
     <article
-      className={`service-card${expanded ? ' service-card--expanded' : ''}`}
+      className={`service-card${expanded ? ' service-card--expanded' : ''}${onToggle ? ' service-card--clickable' : ''}`}
       data-accent={expanded ? accent : undefined}
+      onClick={onToggle}
+      onKeyDown={(event) => {
+        if (onToggle && (event.key === 'Enter' || event.key === ' ')) {
+          event.preventDefault()
+          onToggle()
+        }
+      }}
+      tabIndex={onToggle ? 0 : undefined}
+      aria-expanded={onToggle ? expanded : undefined}
     >
       {photo ? (
         <img className="service-photo" src={photo} alt={title} />
@@ -40,18 +49,11 @@ export default function ServiceCard({
       )}
 
       <div className="service-actions">
-        {onToggle && (
-          <button
-            type="button"
-            className="service-toggle"
-            aria-expanded={expanded}
-            onClick={onToggle}
-          >
-            {expanded ? 'Show less' : 'View details'}
-          </button>
-        )}
-
-        <Link className="service-action" to={action.to}>
+        <Link
+          className="service-action"
+          to={action.to}
+          onClick={(event) => event.stopPropagation()}
+        >
           {action.label}
         </Link>
       </div>
