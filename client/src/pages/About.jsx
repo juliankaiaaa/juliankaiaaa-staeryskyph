@@ -5,7 +5,7 @@ import useScallopFit from '../hooks/useScallopFit.js'
 import AboutSection from '../components/AboutSection.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
-import pinkHeart from '../assets/images/decorations/pink_heart.png'
+import brownHeart from '../assets/images/decorations/brown_heart.png'
 
 /* About page, same cover and about layout as Home */
 export default function About() {
@@ -110,7 +110,7 @@ export default function About() {
 
         <section className="band band--brown cta">
           <div ref={ctaRef} className="band-inner cta-inner sticker">
-            <Decor src={pinkHeart} className="decor-inline cta-art" />
+            <Decor src={brownHeart} className="decor-inline cta-art" />
 
             <h2>Ready to find something?</h2>
 

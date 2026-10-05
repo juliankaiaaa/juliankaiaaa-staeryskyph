@@ -6,7 +6,7 @@ import ServiceCard from '../components/ServiceCard.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
 import { SERVICES } from '../data/services.js'
-import pinkHeart from '../assets/images/decorations/pink_heart.png'
+import brownHeart from '../assets/images/decorations/brown_heart.png'
 
 const STEPS = [
   {
@@ -88,7 +88,7 @@ export default function Services() {
 
         <section className="band band--brown cta">
           <div ref={ctaRef} className="band-inner cta-inner sticker">
-            <Decor src={pinkHeart} className="decor-inline cta-art" />
+            <Decor src={brownHeart} className="decor-inline cta-art" />
 
             <h2>Have something specific in mind?</h2>
 
