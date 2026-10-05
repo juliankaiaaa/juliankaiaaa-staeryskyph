@@ -5,6 +5,7 @@ import useScallopFit from '../hooks/useScallopFit.js'
 import ServiceCard from '../components/ServiceCard.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
+import SpreadText from '../components/SpreadText.jsx'
 import { SERVICES } from '../data/services.js'
 import brownHeart from '../assets/images/decorations/brown_heart.png'
 
@@ -91,7 +92,7 @@ export default function Services() {
             <div className="cta-letter">
               <Decor src={brownHeart} className="decor-inline cta-art" />
   
-              <h2>Have something specific in mind?</h2>
+              <h2><SpreadText text={"Have something specific in mind?"} /></h2>
   
               <p>Send us your request and let us see how we can help.</p>
   

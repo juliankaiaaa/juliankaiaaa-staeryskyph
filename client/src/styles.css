@@ -1717,10 +1717,6 @@ img.service-photo {
 
 
 @media (hover: hover) {
-  .cta-inner.sticker:not(:hover) .cta-letter {
-    animation: letter-idle 4s ease-in-out infinite;
-  }
-
   .cta-inner.sticker:hover {
     translate: 0 -4px;
   }
@@ -1795,14 +1791,14 @@ img.service-photo {
   }
 }
 
-/* Idle letter slides gently in and out of the envelope when not hovered */
-@keyframes letter-idle {
-  0%,
-  100% {
-    translate: 0 90px;
-  }
+/* Heading letters spread apart while the letter is hovered and settle back slowly */
+.spread > span {
+  display: inline-block;
+  transition: translate 1.4s ease-in-out;
+}
 
-  50% {
-    translate: 0 74px;
-  }
+.cta-letter:hover .spread > span {
+  translate: calc(var(--i) * 0.07em) 0;
+  transition-duration: 0.7s;
+  transition-timing-function: ease-out;
 }
