@@ -1400,6 +1400,7 @@ img.service-photo {
 /* Featured services heading in cream */
 .services .services-heading h2 {
   color: var(--cream);
+  font-size: clamp(32px, 4.2vw, 60px);
 }
 
 /* Card art and text lift a little on hover */
@@ -1417,14 +1418,4 @@ img.service-photo {
 
 .service-number {
   transition: transform 0.3s ease;
-}
-
-/* Short line under the featured services carousel */
-.services-note {
-  margin-top: var(--space-xs);
-
-  font-size: var(--fs-small);
-  letter-spacing: 0.04em;
-  text-align: center;
-  opacity: 0.8;
 }
