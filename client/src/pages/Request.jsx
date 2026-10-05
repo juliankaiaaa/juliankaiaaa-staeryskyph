@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { createRequest } from '../api'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
@@ -10,13 +11,29 @@ import brownStar from '../assets/images/decorations/brown_star.png'
 /* Request page, the form for asking us to find an item */
 export default function Request() {
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
   const formRef = useRef(null)
 
   useScallopFit(formRef, '--scallop')
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    setSubmitted(true)
+
+    const form = new FormData(event.currentTarget)
+    const input = Object.fromEntries(form.entries())
+
+    setError('')
+    setSending(true)
+
+    try {
+      await createRequest(input)
+      setSubmitted(true)
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -155,8 +172,14 @@ export default function Request() {
                     ></textarea>
                   </label>
 
-                  <button type="submit" className="btn">
-                    Submit Request →
+                  {error && (
+                    <p className="form-error" role="alert">
+                      {error}
+                    </p>
+                  )}
+
+                  <button type="submit" className="btn" disabled={sending}>
+                    {sending ? 'Sending…' : 'Submit Request →'}
                   </button>
                 </form>
               )}

@@ -1840,3 +1840,10 @@ img.service-photo {
   right: calc(var(--panel-inset) * 1.2);
   transform: rotate(5deg);
 }
+
+/* Error message under the request form */
+.form-error {
+  color: var(--red);
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
