@@ -3292,3 +3292,30 @@ img.service-photo {
   gap: clamp(24px, 2.6vw, 40px);
   align-items: stretch;
 }
+
+/* Service card grid, consolidated: aligned tops, equal photo areas, shared text rows */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) {
+  transform: none;
+  height: 100%;
+  margin-top: 0;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded):hover {
+  transform: translateY(-4px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-photo {
+  aspect-ratio: 4 / 3;
+  flex: none;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  min-height: 2.5em;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.25;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
+  min-height: 3.2em;
+  font-size: clamp(13px, 1vw, 15px);
+}
