@@ -2156,3 +2156,58 @@ img.service-photo {
   color: var(--pink);
   box-shadow: 4px 5px 0 var(--sage);
 }
+
+/* Request section polish: clearer labels, roomier fields and a warmer shadow */
+.request-layout {
+  align-items: center;
+  gap: clamp(48px, 7vw, 110px);
+}
+
+.request-card {
+  box-shadow: 12px 12px 0 var(--mustard);
+}
+
+.request-card .field {
+  font-size: var(--fs-label);
+  gap: 10px;
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  min-height: 52px;
+  font-size: var(--fs-body);
+}
+
+.request-card .field textarea {
+  min-height: 150px;
+}
+
+.request-card .inquiry-form {
+  gap: 26px;
+}
+
+.request-card .inquiry-progress-text {
+  font-size: var(--fs-label);
+}
+
+.request-card .btn--wide {
+  min-height: 58px;
+  font-size: var(--fs-label);
+  letter-spacing: 0.02em;
+  box-shadow: 5px 6px 0 var(--mustard);
+}
+
+.request-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.request-info .section-label {
+  margin-bottom: 0;
+}
+
+.request-info > p {
+  max-width: 34em;
+}
