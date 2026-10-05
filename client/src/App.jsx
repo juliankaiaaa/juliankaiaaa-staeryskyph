@@ -64,6 +64,8 @@ export default function App() {
               />
             ))}
           </ServiceCarousel>
+
+          <p className="services-note">Swipe or use the arrows to see every service.</p>
         </section>
 
       </main>

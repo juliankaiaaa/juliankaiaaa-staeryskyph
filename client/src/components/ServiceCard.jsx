@@ -5,10 +5,9 @@ import { Link } from 'react-router-dom'
   When photo is null, an empty stitched photo area shows until a real photo
   is added in data/services.js.
 */
-export default function ServiceCard({ number, title, text, photo, action }) {
+export default function ServiceCard({ title, text, photo, action }) {
   return (
     <article className="service-card">
-      <span className="service-number">{number}</span>
 
       {photo ? (
         <img className="service-photo" src={photo} alt={title} />
