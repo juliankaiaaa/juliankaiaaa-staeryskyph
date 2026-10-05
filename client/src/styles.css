@@ -699,19 +699,11 @@ nav a[aria-current]:hover {
   padding-bottom: 44px;
 }
 
-/* Soft edge that hints the row continues */
-.services-carousel::after {
-  content: "";
-
-  position: absolute;
-  inset: 0 0 0 auto;
-  width: 24px;
-
-  background: linear-gradient(to right, transparent, var(--brown));
-  pointer-events: none;
-}
 
 .service-track {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+
   display: flex;
   gap: var(--card-gap);
 
