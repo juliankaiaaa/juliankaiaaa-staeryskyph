@@ -3014,3 +3014,13 @@ img.service-photo {
 .service-card--expanded[data-accent='sage'] .service-photo { background: var(--sage); }
 .service-card--expanded[data-accent='mustard'] .service-photo { background: var(--mustard); }
 .service-card--expanded[data-accent='cream'] .service-photo { background: var(--cream-deep); }
+
+/* Expanded description: clean, readable and evenly spaced */
+.service-card--expanded > p {
+  max-width: 62ch;
+  margin: 0 0 var(--space-lg);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
