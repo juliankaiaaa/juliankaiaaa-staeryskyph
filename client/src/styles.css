@@ -1,34 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Tokens */
-
+/* Palette is only brown and pink, everything else is a tint of those two */
 :root {
-  /* Color */
-  --brown: #4e3228;
-  --espresso: #3d2b27;
-  --espresso-deep: #33231f;
-  --pink: #f4c2d0;
-  --sky: #a9d6dc;
-  --sage: #a8c98b;
-  --ink: #3b2923;
-  --white: #ffffff;
-  --cream: #f4eee6;
-  --cream-deep: #e6dccd;
-  --muted: #d9cfcb;
-  --line: rgba(255, 255, 255, 0.2);
-
-  /* Paper details */
-  --tape-cream: rgba(244, 238, 230, 0.8);
-  --tape-sky: rgba(169, 214, 220, 0.82);
-  --tape-pink: rgba(244, 194, 208, 0.85);
-  --paper-shadow: 3px 4px 0 rgba(0, 0, 0, 0.2);
-  --edge: var(--ink);
-  --torn: polygon(0.0% 3%, 14.3% 0%, 28.6% 3%, 42.9% 3%, 57.1% 0%, 71.4% 0%, 85.7% 2%, 100.0% 2%, 99% 20.0%, 98% 40.0%, 99% 60.0%, 99% 80.0%, 100.0% 98%, 85.7% 100%, 71.4% 97%, 57.1% 99%, 42.9% 98%, 28.6% 100%, 14.3% 100%, 0.0% 97%, 2% 80.0%, 1% 60.0%, 1% 40.0%, 1% 20.0%);
+  --brown: #3e2723;
+  --pink: #f4c9d6;
+  --shadow: 4px 5px 0 rgba(62, 39, 35, 0.45);
 
   --font-main: 'Poppins', sans-serif;
 
-  /* Type scale, fixed caps so text never grows to fill the screen */
+  /* Type scale, capped so text never grows to fill the screen */
   --fs-display: clamp(36px, 8vw, 112px);
+  --fs-page-title: clamp(32px, 6vw, 72px);
   --fs-subtitle: clamp(13px, 1.9vw, 26px);
   --fs-h2: clamp(24px, 3vw, 42px);
   --fs-label: clamp(14px, 1.1vw, 16px);
@@ -39,20 +21,24 @@
   --lh-tight: 1.1;
   --lh-body: 1.6;
 
-  /* Spacing */
+  /* Spacing and layout */
   --gutter: clamp(24px, 8vw, 120px);
   --section-y: clamp(48px, 6vw, 96px);
+  --content-max: 1180px;
   --panel-inset: clamp(16px, 3vw, 44px);
   --nav-inset: clamp(28px, 8.5vw, 125px);
+  --card-pad: clamp(22px, 2.6vw, 32px);
+  --grid-gap: clamp(20px, 3vw, 32px);
+  --section-height: max(560px, 100svh);
+
   --space-xs: 4px;
   --space-sm: 10px;
   --space-md: 16px;
+  --space-lg: 24px;
+
   --radius: 8px;
   --radius-lg: 12px;
   --radius-pill: 999px;
-
-  /* Every major section fits the browser height */
-  --section-height: max(560px, 100svh);
 
   /* Scallop sizes */
   --scallop: clamp(26px, 3.4vw, 52px);
@@ -60,7 +46,10 @@
 
   /* Polka dots, one seamless half drop tile */
   --dot-tile: 48px;
-  --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23f4eee6'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Ccircle cx='36' cy='36' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
+  --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23f4c9d6'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Ccircle cx='36' cy='36' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
+
+  /* Torn paper edge used by the scrap and the footer */
+  --torn: polygon(0 3%, 14% 0, 29% 3%, 43% 3%, 57% 0, 71% 0, 86% 2%, 100% 2%, 99% 20%, 98% 40%, 99% 60%, 99% 80%, 100% 98%, 86% 100%, 71% 97%, 57% 99%, 43% 98%, 29% 100%, 14% 100%, 0 97%, 2% 80%, 1% 60%, 1% 40%, 1% 20%);
 }
 
 /* Base */
@@ -71,13 +60,11 @@
   box-sizing: border-box;
 }
 
-/* Full width shell for every page, clears starter template layout */
 html,
 body,
 #root,
 .page {
   width: 100%;
-  max-width: none;
   margin: 0;
   padding: 0;
 }
@@ -93,173 +80,264 @@ html {
 }
 
 body {
-  display: block;
   min-height: 100vh;
 
-  background: var(--espresso);
-  color: var(--ink);
+  background: var(--brown);
+  color: var(--pink);
 
   font-family: var(--font-main);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
-  text-align: left;
 }
 
-a:focus-visible,
-button:focus-visible {
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:is(a, button, input, select, textarea):focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
-/* Scrapbook parts */
+/* Typography, one style per level on every page */
 
-/* Washi tape, translucent with a faint stripe and torn ends */
-.service-card::after,
-.polaroid::before,
-.pink-panel::before,
-.pink-panel::after,
-.about::before {
-  content: "";
-
-  position: absolute;
-  left: 50%;
-  top: -10px;
-
-  width: 64px;
-  height: 20px;
-
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.25) 0 2px,
-      transparent 2px 7px
-    ),
-    var(--tape-color, var(--tape-cream));
-  clip-path: polygon(
-    0 0, 100% 0, 98% 25%, 100% 50%, 98% 75%, 100% 100%,
-    0 100%, 2% 75%, 0 50%, 2% 25%
-  );
-  pointer-events: none;
-  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
-/* Paper scrap with a torn outline */
-.paper-scrap,
-.hero::after {
-  content: "";
-
-  background: var(--scrap-color, var(--cream));
-  clip-path: var(--torn);
-  pointer-events: none;
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
 }
 
-/*
-  Sticker shapes built from plain CSS.
-  The wrapper carries a thin die cut outline and a paper shadow, and the
-  shape itself is drawn by the element or its pseudo elements.
-*/
-.star,
-.heart,
-.blob {
+h1 {
+  font-size: var(--fs-display);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-label);
+}
+
+.section-label {
+  display: block;
+  margin-bottom: 14px;
+
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.text-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.text-link:hover {
+  opacity: 0.7;
+}
+
+/* Buttons, one shape everywhere */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+
+  padding: 0.6em 1.6em;
+
+  border: 0;
+  border-radius: var(--radius-pill);
+
+  background: var(--brown);
+  color: var(--pink);
+
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* Tags, the small outlined numbers and labels */
+
+.tag {
+  display: inline-block;
+  padding: 0.15em 0.75em;
+
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* Bands and cards, shared by every page */
+
+.band {
+  padding-block: var(--section-y);
+  padding-inline: var(--gutter);
+}
+
+.band--brown {
+  background: var(--brown);
+  color: var(--pink);
+}
+
+.band--pink {
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.band-inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.band-head {
+  max-width: 40em;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+/* Buttons on a brown surface flip to pink */
+.band--brown .btn,
+.card--brown .btn {
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.card {
+  position: relative;
+
+  padding: var(--card-pad);
+
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.card--pink {
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.card--brown {
+  border: 1.5px solid var(--pink);
+  background: var(--brown);
+  color: var(--pink);
+}
+
+.card .section-label {
+  margin-bottom: var(--space-lg);
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Sticker art, drawn from the decorations folder */
+
+.decor {
   position: absolute;
 
+  display: block;
   width: var(--size, 28px);
+  height: auto;
 
-  filter:
-    drop-shadow(1px 0 0 var(--edge, transparent))
-    drop-shadow(-1px 0 0 var(--edge, transparent))
-    drop-shadow(0 1px 0 var(--edge, transparent))
-    drop-shadow(0 -1px 0 var(--edge, transparent))
-    drop-shadow(2px 3px 0 rgba(40, 22, 16, 0.25));
+  filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
   pointer-events: none;
   transform: rotate(var(--tilt, 0deg));
 }
 
-/* Five point star */
-.star {
-  aspect-ratio: 1;
+/* Art placed inside the flow of a card or section, not on the page edge */
+.decor-inline {
+  position: relative;
+  margin-inline: auto;
 }
 
-.star::before,
-.star::after {
-  content: "";
+/* Hero, the cover page */
 
-  position: absolute;
-  inset: 0;
+.hero {
+  position: relative;
+  isolation: isolate;
 
-  background: var(--fill, var(--pink));
-  clip-path: polygon(
-    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
-    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
-  );
-}
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
 
-/* Outlined star, the inner star cuts a hole in the fill */
-.star-outline::after {
-  inset: 24% 24% 22%;
+  min-height: var(--section-height);
+  padding: var(--panel-inset);
 
-  background: var(--hole, var(--espresso));
-}
-
-/* Heart from two rotated lobes */
-.heart {
-  height: calc(var(--size, 28px) * 0.9);
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-
-  position: absolute;
-  top: 0;
-
-  width: 50%;
-  height: 88%;
-
-  border-radius: 999px 999px 0 0;
-
-  background: var(--fill, var(--pink));
-}
-
-.heart::before {
-  left: 50%;
-
-  transform: rotate(-45deg);
-  transform-origin: 0 100%;
-}
-
-.heart::after {
-  left: 0;
-
-  transform: rotate(45deg);
-  transform-origin: 100% 100%;
-}
-
-/* Soft abstract blob */
-.blob {
-  aspect-ratio: 1.15;
-
-  border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
-
-  background: var(--fill, var(--sky));
-}
-
-/* Polka dots appear only on the hero and the About image */
-
-.hero,
-.about-image {
   background:
     var(--dots) 0 0 / var(--dot-tile) var(--dot-tile),
     var(--brown);
+}
+
+.hero > * {
+  grid-area: 1 / 1;
+}
+
+/* Paper scrap peeking out from behind the panel */
+.hero::after {
+  content: "";
+
+  position: absolute;
+  right: calc(var(--panel-inset) * 0.3);
+  bottom: calc(var(--panel-inset) * 0.2);
+  z-index: -1;
+
+  width: clamp(120px, 13vw, 190px);
+  height: clamp(80px, 8.5vw, 124px);
+
+  background: var(--pink);
+  clip-path: var(--torn);
+  pointer-events: none;
+  transform: rotate(3deg);
 }
 
 /*
   Shared scalloped shape.
   The body sits half a scallop inside the edge and rows of half circles
   form the border. A small script counts how many scallops fit along each
-  side and sets --cols and --rows, so every tile fits exactly and the
-  corners stay clean in any browser. The defaults below only apply until
-  the script runs.
+  side and sets --cols and --rows, so every tile fits exactly.
 */
 .pink-panel,
 .about-image {
@@ -287,63 +365,17 @@ button:focus-visible {
     var(--bump) right top / var(--tile) repeat-y;
 }
 
-/* Hero, the cover page */
-
-.hero {
-  position: relative;
-  isolation: isolate;
-
-  display: grid;
-  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
-
-  min-height: var(--section-height);
-  padding: var(--panel-inset);
-}
-
-/* Paper scrap peeking out from behind the panel */
-.hero::after {
-  --scrap-color: var(--cream-deep);
-
-  position: absolute;
-  right: calc(var(--panel-inset) * 0.3);
-  bottom: calc(var(--panel-inset) * 0.2);
-  z-index: -1;
-
-  width: clamp(120px, 13vw, 190px);
-  height: clamp(80px, 8.5vw, 124px);
-
-  transform: rotate(3deg);
-}
-
-/* Panel, nav and text share one grid cell and stack in order */
-.hero > * {
-  grid-area: 1 / 1;
-}
-
-/* Offset shadow makes the panel read as a sheet of paper */
 .pink-panel {
   position: relative;
   z-index: 0;
-  filter: drop-shadow(4px 5px 0 rgba(40, 22, 16, 0.3));
+
+  filter: drop-shadow(4px 5px 0 rgba(62, 39, 35, 0.45));
 }
 
-/* Tape holding two corners of the panel */
-.pink-panel::before {
-  --tape-tilt: -38deg;
-
-  top: calc(var(--scallop) * 0.15);
-  left: calc(var(--scallop) * 0.55);
-}
-
-.pink-panel::after {
-  --tape-tilt: 38deg;
-
-  top: calc(var(--scallop) * 0.15);
-  left: auto;
-  right: calc(var(--scallop) * -0.45);
-}
+/* Navigation, inside the hero panel */
 
 nav {
+  position: relative;
   z-index: 1;
   align-self: start;
 
@@ -353,11 +385,11 @@ nav {
   gap: var(--space-sm);
 
   padding: clamp(24px, 3.6vw, 56px) var(--nav-inset) 0;
+
+  color: var(--brown);
 }
 
 nav a {
-  color: var(--ink);
-
   font-size: var(--fs-nav);
   font-weight: 500;
 
@@ -376,7 +408,7 @@ nav a:hover {
   opacity: 0.6;
 }
 
-/* The current section or page keeps the underline */
+/* The current page or section keeps the underline */
 nav a[aria-current] {
   text-decoration-color: currentColor;
 }
@@ -392,39 +424,43 @@ nav a[aria-current]:hover {
 
   padding: 0 var(--scallop);
 
+  color: var(--brown);
   text-align: center;
 }
 
-.hero-content h1 {
-  margin: 0;
-
-  font-size: var(--fs-display);
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: -0.02em;
+.hero--page h1 {
+  font-size: var(--fs-page-title);
 }
 
-.hero-content p {
-  margin: 0.5em 0 0;
+.page-kicker {
+  margin: 0 0 var(--space-sm);
+
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.hero-intro {
+  max-width: 34em;
+  margin: 0.75em auto 0;
 
   font-size: var(--fs-subtitle);
   line-height: 1.3;
 }
 
-/* Paper star beside the title */
+/* Stickers on the hero */
+
 .star-hero {
-  --fill: var(--sage);
-  --size: calc(var(--fs-display) * 0.3);
+  --size: clamp(24px, 3.4vw, 44px);
   --tilt: 14deg;
 
-  top: calc(var(--fs-display) * -0.14);
-  right: calc(var(--scallop) - 0.6em);
+  top: calc(var(--size) * -0.5);
+  right: calc(var(--scallop) - var(--size) * 0.5);
 }
 
-/* Small sticker blob inside the panel corner */
-.hero-blob {
-  --fill: var(--sky);
-  --size: clamp(36px, 4vw, 60px);
+/* Paper clip clipped onto the bottom left corner of the hero panel */
+.hero-clip {
+  --size: clamp(48px, 5vw, 76px);
   --tilt: -8deg;
 
   position: relative;
@@ -434,19 +470,7 @@ nav a[aria-current]:hover {
   margin: 0 0 calc(var(--scallop) + var(--space-md)) var(--nav-inset);
 }
 
-/* Section headings share one style */
-
-.about-text h2,
-.services-heading h2 {
-  margin: 0;
-
-  font-size: var(--fs-h2);
-  font-weight: 600;
-  line-height: var(--lh-tight);
-  text-wrap: balance;
-}
-
-/* About, an about the shop page */
+/* About, pink text beside the scalloped image */
 
 .about {
   position: relative;
@@ -457,16 +481,6 @@ nav a[aria-current]:hover {
   min-height: var(--section-height);
 }
 
-/* Tape over the seam between the hero and this page */
-.about::before {
-  top: -13px;
-  z-index: 2;
-
-  width: 120px;
-  height: 26px;
-}
-
-/* Text block stays the same size and centers in wide columns */
 .about-text {
   display: flex;
   flex-direction: column;
@@ -477,92 +491,71 @@ nav a[aria-current]:hover {
   padding: var(--section-y) max(var(--gutter), calc((50vw - 34em) / 2));
 
   background: var(--pink);
+  color: var(--brown);
 }
 
-.about-text h2 {
-  max-width: 10em;
+.about-text > h2 {
+  max-width: 12em;
 }
 
-.about-text p {
+.about-text > p {
   max-width: 34em;
-  margin: 0;
 }
 
-.about-text button {
-  padding: 0.6em 1.6em;
-
-  border: 0;
-  border-radius: var(--radius-pill);
-
-  background: var(--espresso);
-  color: var(--white);
-
-  font: inherit;
-  font-size: var(--fs-small);
-  font-weight: 500;
-
-  cursor: pointer;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
+.about-text .btn {
+  margin-top: var(--space-xs);
 }
 
-.about-text button:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
-/* The scalloped shape fills the padded area of the image side */
+/* Dotted side, the scalloped shape fills the padded area */
 .about-image {
+  position: relative;
+
   display: grid;
   padding: clamp(24px, 3.5vw, 52px) clamp(24px, 6.5vw, 96px);
+
+  background:
+    var(--dots) 0 0 / var(--dot-tile) var(--dot-tile),
+    var(--brown);
+}
+
+.about-image > * {
+  grid-area: 1 / 1;
 }
 
 .about-image::before {
+  content: "";
   --scallop: var(--scallop-lg);
 
-  content: "";
-  grid-area: 1 / 1;
-  filter: drop-shadow(4px 5px 0 rgba(0, 0, 0, 0.22));
+  filter: drop-shadow(4px 5px 0 rgba(62, 39, 35, 0.45));
 }
 
-/* Paper scrap layered behind the photo frame */
+/* Brown scrap peeking out from behind the photo frame */
 .paper-scrap {
-  --scrap-color: var(--sage);
-
-  grid-area: 1 / 1;
   place-self: center;
 
   width: 52%;
   max-width: 290px;
   aspect-ratio: 1;
 
+  background: var(--brown);
+  clip-path: var(--torn);
   transform: translate(8%, 6%) rotate(-5deg);
 }
 
-/* Photo frame layered on the scalloped shape */
+/* Photo frame on top of the scalloped shape */
 .polaroid {
   position: relative;
-  grid-area: 1 / 1;
   place-self: center;
 
   width: 50%;
   max-width: 280px;
-  margin: 0;
   padding: var(--space-sm) var(--space-sm) calc(var(--space-sm) * 3.2);
 
   border-radius: 3px;
 
-  background: var(--cream);
-  box-shadow: var(--paper-shadow);
-
+  background: var(--pink);
+  box-shadow: var(--shadow);
   transform: rotate(2deg);
-}
-
-.polaroid::before {
-  --tape-color: var(--tape-sky);
-  --tape-tilt: -4deg;
 }
 
 .polaroid-photo {
@@ -570,13 +563,10 @@ nav a[aria-current]:hover {
 
   border-radius: 2px;
 
-  background: var(--cream-deep);
-  object-fit: cover;
+  background: var(--brown);
 }
 
-/* Star and heart stickers on the photo frame */
 .star-about {
-  --fill: var(--cream);
   --size: clamp(32px, 3.2vw, 48px);
   --tilt: -10deg;
 
@@ -585,7 +575,6 @@ nav a[aria-current]:hover {
 }
 
 .heart-about {
-  --fill: var(--sky);
   --size: clamp(22px, 2.2vw, 32px);
   --tilt: 12deg;
 
@@ -593,7 +582,7 @@ nav a[aria-current]:hover {
   right: -0.9em;
 }
 
-/* Services, plain dark brown with no pattern */
+/* Services on Home, plain brown with no pattern */
 
 .services {
   display: flex;
@@ -604,22 +593,19 @@ nav a[aria-current]:hover {
 
   min-height: var(--section-height);
   padding: var(--section-y) 0;
-
-  background: var(--espresso);
-  color: var(--white);
 }
 
 .services-heading {
   position: relative;
+
   width: max-content;
   max-width: 100%;
 
   text-align: center;
 }
 
-/* Paper stars beside the heading, no outline on the dark background */
+/* Stars beside the heading, sized from the heading */
 .star-top {
-  --edge: transparent;
   --size: calc(var(--fs-h2) * 0.7);
   --tilt: 12deg;
 
@@ -628,16 +614,14 @@ nav a[aria-current]:hover {
 }
 
 .star-bottom {
-  --edge: transparent;
   --size: calc(var(--fs-h2) * 0.5);
   --tilt: -8deg;
-  --hole: var(--espresso);
 
   bottom: 0;
   left: calc(var(--fs-h2) * -0.8);
 }
 
-/* Carousel */
+/* Carousel, three cards and a peek at the next one */
 
 .services-carousel {
   --card-w: clamp(230px, 18vw, 280px);
@@ -645,10 +629,9 @@ nav a[aria-current]:hover {
 
   position: relative;
 
-  /* Room for three cards and a peek at the next one */
   width: 100%;
-  padding-bottom: 44px;
   max-width: calc((var(--card-w) + var(--card-gap)) * 3.4 + 48px);
+  padding-bottom: 44px;
 }
 
 /* Soft edge that hints the row continues */
@@ -659,13 +642,11 @@ nav a[aria-current]:hover {
   inset: 0 0 0 auto;
   width: 24px;
 
-  background: linear-gradient(to right, transparent, var(--espresso));
+  background: linear-gradient(to right, transparent, var(--brown));
   pointer-events: none;
 }
 
-.services-grid {
-  counter-reset: service;
-
+.service-track {
   display: flex;
   gap: var(--card-gap);
 
@@ -680,16 +661,16 @@ nav a[aria-current]:hover {
   scrollbar-width: none;
 }
 
-.services-grid::-webkit-scrollbar {
+.service-track::-webkit-scrollbar {
   display: none;
 }
 
 /* Auto margins center the row and drop away once it overflows */
-.service-card:first-child {
+.service-track > :first-child {
   margin-left: auto;
 }
 
-.service-card:last-child {
+.service-track > :last-child {
   margin-right: auto;
 }
 
@@ -707,7 +688,7 @@ nav a[aria-current]:hover {
   border: 1px solid var(--pink);
   border-radius: 50%;
 
-  background: var(--espresso);
+  background: var(--brown);
   color: var(--pink);
 
   font: inherit;
@@ -723,10 +704,9 @@ nav a[aria-current]:hover {
 
 .carousel-arrow:hover {
   background: var(--pink);
-  color: var(--espresso);
+  color: var(--brown);
 }
 
-/* Controls sit together under the cards */
 .carousel-arrow-prev {
   right: calc(24px + 36px + var(--space-sm));
 }
@@ -735,29 +715,15 @@ nav a[aria-current]:hover {
   right: 24px;
 }
 
-/* Scrapbook card, photo on top and a colored panel below */
+/* Service card, art panel on the opposite color */
+
 .service-card {
-  counter-increment: service;
-
-  position: relative;
-  flex: 0 0 var(--card-w);
-
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-  padding-bottom: var(--space-md);
+  text-align: left;
 
-  border-radius: var(--radius-lg);
-
-  background: var(--card, var(--pink));
-  color: var(--ink);
-  text-align: center;
-
-  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.25);
-  scroll-snap-align: start;
   transform: rotate(var(--tilt, 0deg));
-
   transition: transform 0.25s ease;
 }
 
@@ -769,116 +735,240 @@ nav a[aria-current]:hover {
   --tilt: 1deg;
 }
 
-.service-card:nth-child(3n + 1) {
-  --tape-color: var(--tape-sky);
-}
-
-.service-card:nth-child(3n + 2) {
-  --card: var(--sky);
-  --tape-color: var(--tape-pink);
-  --tape-tilt: 2deg;
-}
-
-.service-card:nth-child(3n) {
-  --card: var(--sage);
-  --tape-color: var(--tape-cream);
-  --tape-tilt: -5deg;
-}
-
 .service-card:hover {
-  transform: rotate(0deg) translateY(-3px);
+  transform: translateY(-3px);
 }
 
-/* Card number */
-.service-card::before {
-  content: counter(service, decimal-leading-zero);
-
-  position: absolute;
-  top: var(--space-sm);
-  left: var(--space-sm);
-  z-index: 1;
-
-  padding: 0.1em 0.7em;
-
-  border-radius: var(--radius-pill);
-
-  background: var(--espresso);
-  color: var(--cream);
-
-  font-size: var(--fs-small);
-  font-weight: 500;
-  letter-spacing: 0.08em;
+.service-track > .service-card {
+  flex: 0 0 var(--card-w);
+  scroll-snap-align: start;
 }
 
-/* Stitched edge inside the photo area */
-.service-photo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 5 / 4;
-  margin-bottom: var(--space-sm);
+.service-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-
-  background: var(--cream);
-  outline: 1.5px dashed rgba(59, 41, 35, 0.22);
-  outline-offset: -8px;
-  object-fit: cover;
+  margin-bottom: var(--space-md);
 }
 
-.service-card h3,
-.service-card p {
-  padding-inline: var(--space-md);
+.service-arrow {
+  font-size: var(--fs-label);
+  line-height: 1;
 }
 
 .service-card h3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 2.6em;
-  margin: 0;
-
-  font-size: var(--fs-label);
-  font-weight: 600;
-  line-height: 1.3;
+  margin-bottom: var(--space-xs);
 }
 
-.service-card p {
-  flex: 1;
-  margin: var(--space-xs) 0 0;
-
+.service-card > p {
   font-size: var(--fs-small);
   line-height: 1.5;
 }
 
-.service-action {
-  margin-top: var(--space-md);
-  padding: 0.6em 1.6em;
+.service-panel {
+  position: relative;
 
-  border: 1px solid var(--ink);
-  border-radius: var(--radius-pill);
+  display: grid;
+  place-items: center;
 
-  background: var(--white);
-  color: var(--ink);
-  text-decoration: none;
+  flex: 1;
+  min-height: 150px;
+  margin: var(--space-md) 0;
+
+  border-radius: var(--radius);
+
+  background: var(--brown);
+}
+
+.card--brown .service-panel {
+  background: var(--pink);
+}
+
+.service-art {
+  width: 45%;
+  max-width: 140px;
+}
+
+.service-card > .btn {
+  margin-top: auto;
+}
+
+/* Services page grid and steps */
+
+.grid .service-card {
+  transform: none;
+}
+
+.grid .service-card:hover {
+  transform: translateY(-3px);
+}
+
+.step .tag {
+  margin-bottom: var(--space-md);
+}
+
+.step h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.step > p {
+  line-height: 1.65;
+}
+
+/* Mission, vision, why cards */
+
+.card > h2 {
+  margin-bottom: var(--space-md);
+}
+
+.card > p {
+  max-width: 30em;
+}
+
+.card .tag {
+  margin-bottom: var(--space-md);
+}
+
+/* Call to action bands */
+
+.cta {
+  text-align: center;
+}
+
+.cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cta-inner > p {
+  max-width: 34em;
+}
+
+.cta-art {
+  width: 44px;
+  margin-bottom: var(--space-sm);
+}
+
+/* Request page */
+
+.request-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: start;
+}
+
+.request-info > h2 {
+  margin-bottom: var(--space-md);
+}
+
+.request-info > p {
+  max-width: 34em;
+}
+
+.request-note {
+  display: flex;
+  gap: var(--space-md);
+  align-items: flex-start;
+
+  margin-top: var(--space-lg);
+  padding: 18px 20px;
+}
+
+.note-art {
+  flex: none;
+  width: 24px;
+  margin: 2px 0 0;
+}
+
+.request-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: var(--space-lg);
+}
+
+.request-card {
+  padding: var(--card-pad);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 
   font-size: var(--fs-small);
-  font-weight: 500;
-
-  box-shadow: 2px 2px 0 rgba(59, 41, 35, 0.35);
-
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  font-weight: 600;
 }
 
-.service-action:hover {
-  box-shadow: 1px 1px 0 rgba(59, 41, 35, 0.35);
-  transform: translate(1px, 1px);
+.form :is(input, select, textarea) {
+  width: 100%;
+  padding: 12px 14px;
+
+  border: 1.5px solid var(--brown);
+  border-radius: var(--radius);
+
+  background: transparent;
+  color: var(--brown);
+
+  font: inherit;
+  font-weight: 400;
 }
 
-/* Footer, the back page */
+.form select option {
+  background: var(--pink);
+  color: var(--brown);
+}
 
-footer {
+.form textarea {
+  resize: vertical;
+}
+
+.form ::placeholder {
+  color: var(--brown);
+  opacity: 0.55;
+}
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+
+  min-height: 360px;
+
+  text-align: center;
+}
+
+.form-success > p {
+  max-width: 30em;
+}
+
+.success-art {
+  width: 56px;
+}
+
+/* Footer, pink close with a torn top edge */
+
+.site-footer {
   position: relative;
 
   display: grid;
@@ -888,62 +978,59 @@ footer {
 
   padding: max(32px, 3.5vw) var(--gutter) clamp(20px, 2vw, 32px);
 
-  background: var(--espresso-deep);
-  color: var(--muted);
+  background: var(--pink);
+  color: var(--brown);
   font-size: var(--fs-small);
   line-height: 1.7;
 }
 
-/* Torn paper edge overlapping the page above */
-footer::before {
+.site-footer::before {
   content: "";
 
   position: absolute;
   inset: -11px 0 auto;
   height: 12px;
 
-  background: var(--espresso-deep);
-  clip-path: polygon(0 100%, 0 55%, 2.08% 45%, 4.17% 50%, 6.25% 30%, 8.33% 20%, 10.42% 35%, 12.5% 35%, 14.58% 45%, 16.67% 20%, 18.75% 65%, 20.83% 20%, 22.92% 35%, 25.0% 30%, 27.08% 30%, 29.17% 35%, 31.25% 65%, 33.33% 35%, 35.42% 30%, 37.5% 20%, 39.58% 35%, 41.67% 65%, 43.75% 20%, 45.83% 30%, 47.92% 20%, 50.0% 65%, 52.08% 20%, 54.17% 50%, 56.25% 80%, 58.33% 30%, 60.42% 50%, 62.5% 35%, 64.58% 80%, 66.67% 50%, 68.75% 35%, 70.83% 65%, 72.92% 45%, 75.0% 35%, 77.08% 35%, 79.17% 20%, 81.25% 65%, 83.33% 70%, 85.42% 30%, 87.5% 45%, 89.58% 70%, 91.67% 70%, 93.75% 45%, 95.83% 80%, 97.92% 65%, 100% 50%, 100% 100%);
+  background: var(--pink);
+  clip-path: polygon(0 100%, 0 55%, 3% 45%, 6% 50%, 9% 30%, 13% 20%, 17% 35%, 21% 35%, 25% 45%, 29% 20%, 33% 65%, 38% 20%, 42% 35%, 46% 30%, 50% 30%, 54% 35%, 58% 65%, 63% 35%, 67% 30%, 71% 20%, 75% 35%, 79% 65%, 83% 20%, 88% 30%, 92% 20%, 96% 65%, 100% 50%, 100% 100%);
+  pointer-events: none;
 }
 
-footer h3 {
-  margin: 0 0 var(--space-xs);
-
-  color: var(--white);
-
+.site-footer h3 {
+  margin-bottom: var(--space-xs);
   font-size: var(--fs-label);
   font-weight: 600;
   line-height: var(--lh-tight);
 }
 
-footer p {
+.site-footer p {
   margin: 0;
 }
 
-footer a {
-  color: inherit;
+.site-footer p + p {
+  margin-top: var(--space-xs);
+}
+
+.site-footer a {
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 
-footer a:hover {
-  color: var(--white);
+.site-footer a:hover {
+  text-decoration: underline;
 }
 
-footer > :nth-child(2) {
+.site-footer > :nth-child(2) {
   text-align: center;
 }
 
-footer > :nth-child(3) {
+.site-footer > :nth-child(3) {
   text-align: right;
 }
 
-/* Small outlined star above the copyright line */
 .footer-mark {
-  --edge: transparent;
   --size: 22px;
   --tilt: 8deg;
-  --hole: var(--espresso-deep);
 
   position: relative;
 
@@ -956,12 +1043,25 @@ footer > :nth-child(3) {
 
   padding-top: var(--space-md);
 
-  border-top: 1px dashed var(--line);
+  border-top: 1px dashed rgba(62, 39, 35, 0.35);
 
   text-align: center;
 }
 
-/* Mobile */
+/* Tablet and mobile */
+
+@media (max-width: 1000px) {
+  .grid--4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .grid--3,
+  .request-layout {
+    grid-template-columns: 1fr;
+  }
+}
 
 @media (max-width: 700px) {
   .about,
@@ -981,19 +1081,28 @@ footer > :nth-child(3) {
     min-height: 360px;
   }
 
+  .grid--2 {
+    grid-template-columns: 1fr;
+  }
+
   .services-carousel {
     --card-w: 240px;
   }
 
-  footer {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
     grid-template-columns: 1fr 1fr;
     align-items: start;
     row-gap: 28px;
   }
 
-  footer > :nth-child(2) {
+  .site-footer > :nth-child(2) {
     grid-column: 1 / -1;
     order: 1;
+    text-align: left;
   }
 
   .footer-mark {
@@ -1002,5 +1111,11 @@ footer > :nth-child(3) {
 
   .copyright {
     order: 3;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid--4 {
+    grid-template-columns: 1fr;
   }
 }
