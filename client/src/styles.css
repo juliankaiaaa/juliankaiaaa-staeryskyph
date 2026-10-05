@@ -1722,7 +1722,7 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 -50px;
+    translate: 0 -80px;
     z-index: 4;
   }
 }
@@ -1752,7 +1752,7 @@ img.service-photo {
   background: var(--cream);
   color: var(--brown);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-  transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: translate 0.9s ease-in-out;
 }
 
 .cta-letter .btn {
