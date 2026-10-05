@@ -16,6 +16,12 @@ CREATE TABLE IF NOT EXISTS inquiries (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Which service the inquiry is for, and that service's own answers.
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS service TEXT NOT NULL DEFAULT ''
+  CHECK (char_length(service) <= 120);
+ALTER TABLE inquiries ADD COLUMN IF NOT EXISTS details JSONB NOT NULL DEFAULT '{}'::jsonb
+  CHECK (octet_length(details::text) <= 4000);
+
 CREATE TABLE IF NOT EXISTS guestbook (
   id         SERIAL PRIMARY KEY,
   name       TEXT        NOT NULL CHECK (char_length(name) BETWEEN 1 AND 120),

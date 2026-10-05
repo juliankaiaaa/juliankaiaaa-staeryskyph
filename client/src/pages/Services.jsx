@@ -6,6 +6,7 @@ import ServiceCard from '../components/ServiceCard.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
 import { SERVICES } from '../data/services.js'
+import { SLUG_BY_NUMBER } from '../data/inquiryForms.js'
 import { listServices } from '../api'
 import brownHeart from '../assets/images/decorations/brown_heart.png'
 
@@ -67,7 +68,7 @@ export default function Services() {
                   title={service.title}
                   text={service.description}
                   photo={service.photo}
-                  action={{ label: 'Request this service', to: '/request' }}
+                  action={{ label: 'Request this service', to: `/request?service=${SLUG_BY_NUMBER[service.number]}` }}
                 />
               ))}
             </div>

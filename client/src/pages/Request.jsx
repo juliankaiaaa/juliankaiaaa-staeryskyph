@@ -1,40 +1,18 @@
-import { useRef, useState } from 'react'
-import { createRequest } from '../api'
-import { Link } from 'react-router-dom'
+import { useRef } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
+import InquiryForm from '../components/InquiryForm.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
 import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
-import brownStar from '../assets/images/decorations/brown_star.png'
 
-/* Request page, the form for asking us to find an item */
+/* Request page. ?service=korea opens the form for that service */
 export default function Request() {
-  const [submitted, setSubmitted] = useState(false)
-  const [sending, setSending] = useState(false)
-  const [error, setError] = useState('')
+  const [searchParams] = useSearchParams()
   const formRef = useRef(null)
 
   useScallopFit(formRef, '--scallop')
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-
-    const form = new FormData(event.currentTarget)
-    const input = Object.fromEntries(form.entries())
-
-    setError('')
-    setSending(true)
-
-    try {
-      await createRequest(input)
-      setSubmitted(true)
-    } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.')
-    } finally {
-      setSending(false)
-    }
-  }
 
   return (
     <div className="page">
@@ -56,9 +34,8 @@ export default function Request() {
               <h2>Tell us what you're looking for.</h2>
 
               <p>
-                Fill out the form with as much information as you can. Item
-                links are especially helpful when requesting purchase
-                assistance.
+                Pick the service you need and fill in its details. Item links
+                are especially helpful when requesting purchase assistance.
               </p>
 
               <div className="card card--sky request-note">
@@ -82,107 +59,7 @@ export default function Request() {
             </div>
 
             <div ref={formRef} className="sticker request-card">
-              {submitted ? (
-                <div className="form-success">
-                  <Decor src={brownStar} className="decor-inline success-art" />
-
-                  <h2>Request received!</h2>
-
-                  <p>
-                    Thank you for sending your request. We'll check the
-                    details and get back to you.
-                  </p>
-
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => setSubmitted(false)}
-                  >
-                    Send Another Request
-                  </button>
-                </div>
-              ) : (
-                <form className="form" onSubmit={handleSubmit}>
-                  <div className="form-row">
-                    <label>
-                      Name
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Your name"
-                        required
-                      />
-                    </label>
-
-                    <label>
-                      Contact / Username
-                      <input
-                        type="text"
-                        name="contact"
-                        placeholder="@username"
-                        required
-                      />
-                    </label>
-                  </div>
-
-                  <label>
-                    Service
-                    <select name="service" required defaultValue="">
-                      <option value="" disabled>
-                        Select a service
-                      </option>
-                      <option value="consolidation">
-                        Consolidation Services
-                      </option>
-                      <option value="korea">Korea Purchase Assistance</option>
-                      <option value="japan">
-                        Japan Site Purchase Assistance
-                      </option>
-                      <option value="thailand">
-                        Thailand Purchase Assistance
-                      </option>
-                      <option value="mercari">
-                        Mercari Japan Purchase Assistance
-                      </option>
-                      <option value="bunjang">
-                        Bunjang Korea Purchase Assistance
-                      </option>
-                      <option value="weverse">
-                        Weverse Purchase Assistance
-                      </option>
-                      <option value="address">
-                        Address Rental / Forwarding
-                      </option>
-                      <option value="other">Other</option>
-                    </select>
-                  </label>
-
-                  <label>
-                    Item / Request Link
-                    <input type="url" name="link" placeholder="https://..." />
-                  </label>
-
-                  <label>
-                    Request Details
-                    <textarea
-                      name="details"
-                      rows="6"
-                      placeholder="Tell us what you're looking for..."
-                      required
-                    ></textarea>
-                  </label>
-
-                  {error && (
-                    <p className="form-error" role="alert">
-                      {error}
-                    </p>
-                  )}
-
-                  <button type="submit" className="btn" disabled={sending}>
-                    {sending ? 'Sending…' : 'Submit Request →'}
-                  </button>
-                </form>
-              )}
+              <InquiryForm initialService={searchParams.get('service') ?? ''} />
             </div>
           </div>
         </section>

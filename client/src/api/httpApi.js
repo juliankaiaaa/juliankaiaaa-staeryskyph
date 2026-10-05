@@ -10,33 +10,28 @@ function requireClient() {
   return supabase
 }
 
-function fail(error) {
-  throw new Error(error?.message || 'Something went wrong. Please try again.')
-}
-
 export async function listServices() {
   const { data, error } = await requireClient()
     .from('services')
     .select('id, number, title, summary, description')
     .order('sort_order', { ascending: true })
 
-  if (error) fail(error)
+  if (error) throw new Error(error.message)
   return data
 }
 
-export async function createRequest(input) {
-  const { data, error } = await requireClient()
-    .from('requests')
+// No .select() after insert: anonymous visitors cannot read inquiries back,
+// so asking for the row would be refused.
+export async function createInquiry(input) {
+  const { error } = await requireClient()
+    .from('inquiries')
     .insert({
       name: input.name,
-      contact: input.contact,
+      email: input.email,
+      message: input.message,
       service: input.service,
-      link: input.link || '',
       details: input.details,
     })
-    .select()
-    .single()
 
-  if (error) fail(error)
-  return data
+  if (error) throw new Error('We could not send your request. Please try again.')
 }
