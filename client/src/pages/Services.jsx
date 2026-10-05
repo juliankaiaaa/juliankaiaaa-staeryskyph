@@ -58,7 +58,9 @@ export default function Services() {
                   number={service.number}
                   title={service.title}
                   text={service.description}
+                  photo={service.photo}
                   art={service.art}
+                  sticker={service.sticker}
                   action={{ label: 'Request this service', to: '/request' }}
                 />
               ))}
