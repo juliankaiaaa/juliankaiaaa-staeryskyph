@@ -34,30 +34,32 @@ export default function ServiceCard({
         <div className="service-photo" aria-hidden="true"></div>
       )}
 
-      <h3>{title}</h3>
+      <div className="service-copy">
+        <h3>{title}</h3>
 
-      {expanded && text.includes('\n\n')
-        ? text.split('\n\n').map((paragraph) => <p key={paragraph.slice(0, 24)}>{paragraph}</p>)
-        : <p>{text}</p>}
+        {expanded && text.includes('\n\n')
+          ? text.split('\n\n').map((paragraph) => <p key={paragraph.slice(0, 24)}>{paragraph}</p>)
+          : <p>{text}</p>}
 
-      {expanded && (
-        <div className="service-details">
-          <ol className="service-steps">
-            {steps.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ol>
+        {expanded && (
+          <div className="service-details">
+            <ol className="service-steps">
+              {steps.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        <div className="service-actions">
+          <Link
+            className="service-action"
+            to={action.to}
+            onClick={(event) => event.stopPropagation()}
+          >
+            {action.label}
+          </Link>
         </div>
-      )}
-
-      <div className="service-actions">
-        <Link
-          className="service-action"
-          to={action.to}
-          onClick={(event) => event.stopPropagation()}
-        >
-          {action.label}
-        </Link>
       </div>
     </article>
   )

@@ -3095,3 +3095,33 @@ img.service-photo {
 .service-card--expanded .service-actions {
   padding-bottom: 0;
 }
+
+/* Text block wrapper: transparent for small cards, a column for the expanded card */
+.service-copy {
+  display: contents;
+}
+
+.service-card--expanded .service-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.service-card--expanded .service-copy > * {
+  width: 100%;
+}
+
+/* Expanded card text stays left-aligned inside its text block */
+.service-card--expanded .service-copy {
+  text-align: left;
+}
+
+.service-card--expanded .service-copy > p {
+  margin: 0 0 var(--space-md);
+  max-width: 62ch;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
