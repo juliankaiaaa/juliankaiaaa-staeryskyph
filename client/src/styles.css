@@ -1827,3 +1827,16 @@ img.service-photo {
     transform: scale(1.12);
   }
 }
+
+/* Paper texture on How it works steps, matching the call to action letter */
+.step {
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.03) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(120, 90, 60, 0.02) 0 1px, transparent 1px 4px),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.6), transparent 45%),
+    linear-gradient(to bottom, #f7f2e4, #efe6d2),
+    var(--cream);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 0 40px rgba(120, 90, 60, 0.1);
+}
