@@ -2,21 +2,17 @@
 
 > A portfolio and business website for Staery Sky PH, created to showcase its services and information for K-POP fans.
 
-**Live site:**
-**API:** 
-**Demo video:** 
-
-> **This deployment is currently running in demo mode.** The interface is real; the backend API is still under development, so the website currently uses a mock API in the browser.
+**Live site:** https://juliankiaaaa.github.io/juliankaiaaa-staeryskyph/
 
 ## What it does
 
 * Showcases Staery Sky PH and its services
-* Provides information about the shop
-* Displays featured services
-* Provides information about Korea, Japan, and Thailand pasabuy services
-* Provides navigation between website sections
-* Includes a Connect/Footer section
-* Uses a Figma-based design with custom visual assets
+* Lists featured services in a horizontal carousel, loaded from the database
+* Provides a request form for each service, with fields specific to that service
+* Saves each inquiry to the database, with validation and success and error messages
+* Provides an admin page where the owner signs in to review and manage inquiries
+* Provides information about the shop, its team, and Korea, Japan, and Thailand pasabuy services
+* Uses a scrapbook-inspired design with custom visual assets
 
 ## Screenshot
 
@@ -24,32 +20,21 @@
 
 ## Built with
 
-React and Vite are used on the front end. An Express and PostgreSQL back end is currently being developed but is not yet connected to the website.
+* **Frontend:** React and Vite, deployed to GitHub Pages
+* **Backend:** Supabase (PostgreSQL database, with Row Level Security and its auto-generated API)
 
-The frontend is intended to be deployed on GitHub Pages, while the API and database will be hosted separately once the backend is completed.
+The website talks to Supabase directly, so there is no separate server to run or host. Visitors can read the services list and submit requests. The security rules in `supabase/schema.sql` limit them to those two actions.
 
 ## Demo mode
 
-This repository currently runs using a mock API while the actual API is still being developed.
+The site can run without Supabase, using a browser-only stand-in for the database. This is useful for developing the design and for a deployment before the database is set up.
 
-| `VITE_USE_MOCK_API` | What happens                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------------ |
-| unset, or `true`    | The client uses the mock API for development. No working backend or database is required.        |
-| `false`             | The client is intended to call the Express API at `VITE_API_BASE_URL` once the API is available. |
-
-Demo mode allows the website interface to be developed and tested before the actual API is completed.
-
-GitHub Pages can serve the frontend files, but it cannot run the Express server. The API and PostgreSQL database will therefore be hosted separately once they are ready.
-
-| Piece        | Current status                                  |
-| ------------ | ----------------------------------------------- |
-| **Frontend** | React/Vite, being deployed through GitHub Pages |
-| **API**      | Not yet available; currently under development  |
-| **Database** | PostgreSQL structure is being developed         |
+| `VITE_USE_MOCK_API`       | What happens                                                                                  |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| unset, or `true`          | Demo mode. Services come from `client/src/api/seed.json`, and requests are saved in the browser only. |
+| `false`                   | Live mode. The site reads and writes through Supabase, using the variables below.             |
 
 ## Running it yourself
-
-**The client only, in demo mode.** No working API or database is needed.
 
 ```bash
 cd client
@@ -64,100 +49,79 @@ The development site will normally be available at:
 http://localhost:5173
 ```
 
-**The backend.** The backend is currently under development and is not yet connected to the frontend.
+To use the live database, set `VITE_USE_MOCK_API=false` and the two Supabase values in `client/.env` (see below). Restart `npm run dev` after changing `.env`.
 
-```bash
-cd server
-npm install
-cp .env.example .env
-npm run dev
-```
+## Database setup (Supabase)
 
-The planned local API address is:
+1. Create a project at [supabase.com](https://supabase.com).
+2. In the **SQL Editor**, run `supabase/schema.sql`, then `supabase/seed.sql`.
+3. Copy the **Project URL** and the **anon public** key from **Project Settings > API**.
 
-```text
-http://localhost:3000
-```
+The schema creates five tables: `inquiries`, `guestbook`, `services`, `portfolio_items`, and `admins`. Row Level Security is on for all of them. Visitors can send inquiries and read visible services. Only admins can read or change inquiries.
+
+`schema.sql` is safe to run more than once. `seed.sql` clears the services table before inserting, so it can be re-run to reset the starter data.
+
+### Making yourself an admin
+
+1. In Supabase, open **Authentication > Users > Add user > Create new user**, enter your email and a password, and tick **Auto Confirm User**.
+2. Copy the new user's **UID** from the list.
+3. In the **SQL Editor**, run `insert into admins (user_id) values ('the-uid-here');`.
+4. Sign in at `/#/admin` on your site. The admin page is not linked from the site, so bookmark it.
 
 ## Environment variables
 
-None of these are committed. `.env.example` in each folder lists them with placeholder values.
+Copy `client/.env.example` to `client/.env` and fill in the values.
 
-| Name                  | Where                 | What it is                                      |
-| --------------------- | --------------------- | ----------------------------------------------- |
-| `DATABASE_URL`        | server                | PostgreSQL connection string                    |
-| `CORS_ORIGINS`        | server                | Comma-separated origins allowed to call the API |
-| `NODE_ENV`            | server                | Server environment                              |
-| `BASIC_AUTH_USER`     | server                | Username for API authentication                 |
-| `BASIC_AUTH_PASSWORD` | server                | Password for API authentication                 |
-| `VITE_USE_MOCK_API`   | client, at build time | Controls whether demo mode is used              |
-| `VITE_API_BASE_URL`   | client, at build time | URL of the future API                           |
+| Name                     | What it is                                                                     |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| `VITE_USE_MOCK_API`      | `false` for live mode. Anything else, including unset, is demo mode.           |
+| `VITE_SUPABASE_URL`      | Your Supabase Project URL.                                                     |
+| `VITE_SUPABASE_ANON_KEY` | Your Supabase anon public key.                                                 |
 
-Every `VITE_` value is compiled into the built JavaScript and is **public**. Never put a key, password, or database connection string in one.
+Every `VITE_` value is compiled into the built JavaScript and is **public**. The anon key is designed to be public, because the Row Level Security rules are what protect the data. Never put the database password or the `service_role` key in a `VITE_` variable.
 
 ## Deploying
 
-**Client, to GitHub Pages.** The project is already wired up in `.github/workflows/deploy-pages.yml`.
-
-One setup step is required:
+**Client, to GitHub Pages.** The workflow in `.github/workflows/deploy-pages.yml` builds the client and publishes it on every push to `main`.
 
 1. **Settings > Pages > Build and deployment > Source: GitHub Actions.**
-
-The frontend can currently be deployed using demo mode because the mock API does not require a working server.
-
-When the API is completed and hosted:
-
-1. Set `VITE_USE_MOCK_API` to `false`.
-2. Set `VITE_API_BASE_URL` to the public API URL.
-3. Re-run the GitHub Actions workflow.
-
-**API and database.** The API and PostgreSQL database are not yet deployed. They will be hosted separately from GitHub Pages once backend development is completed.
+2. **Settings > Secrets and variables > Actions**, then add the values the build needs for live mode.
 
 ## Project structure
 
 ```text
 client/          React front end, built by Vite
   src/
-    api/          mock API and future HTTP API
-    assets/       website images and visual assets
-    components/   reusable React components
-    App.jsx       main website component
-    main.jsx      React entry point
+    api/          Supabase client, demo stand-in and seed data
+    assets/       website images and decorations
+    components/   reusable components (Navbar, Hero, ServiceCard, ...)
+    data/         services shown while the API loads
+    hooks/        shared hooks
+    pages/        About, Services, Request
+    App.jsx       Home page
+    main.jsx      React entry point and routes
     styles.css    website styling
 
-server/          Express backend, currently under development
-  db/            PostgreSQL database files
-  server.js      Express server
+supabase/
+  schema.sql     tables and Row Level Security rules
+  seed.sql       starter services
 
 .github/
   workflows/
     deploy-pages.yml    GitHub Pages deployment workflow
 
 docs/             planning documents, weekly reports, and screenshots
-compose.yml       local database and backend configuration
 ```
 
 ## Architecture
 
-The project is planned as three connected parts:
-
 ```text
-React / Vite Frontend
-        ↓
-    Express API
-        ↓
-    PostgreSQL
+React / Vite front end  --->  Supabase (PostgreSQL + Auth + API, protected by Row Level Security)
+        |
+        +--- GitHub Pages hosts the built files
 ```
 
-The React/Vite frontend provides the website interface and is deployed through GitHub Pages. The Express API and PostgreSQL database will be hosted separately once they are completed.
-
-For now, the frontend uses a mock API while the actual API is still being developed.
-
-## What I would do next
-
-* Complete the remaining website pages and refine the current design to match the Figma mockup.
-* Develop and connect the Express API and PostgreSQL database.
-* Complete responsive testing, functionality testing, and final deployment.
+The site talks to Supabase directly, so there is no separate server to run or host. Visitors use the public anon key, and the security rules in `supabase/schema.sql` decide what that key can do.
 
 ## Author
 

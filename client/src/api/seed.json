@@ -1,8 +1,58 @@
 [
-  { "id": "seed-1", "place": "Library, third floor", "description": "Chairs rearranged overnight, every time. The night guard says he locks the room himself.", "spookiness": 3, "reported_at": "2026-08-01T14:20:00.000Z" },
-  { "id": "seed-2", "place": "Old gym", "description": "Lights flicker in a fixed pattern after 9pm, always three short and one long.", "spookiness": 4, "reported_at": "2026-08-03T11:05:00.000Z" },
-  { "id": "seed-3", "place": "Parking basement", "description": "Footsteps with no one there. Reported separately by three different people in one week, which is what makes this one hard to dismiss. Two of them were alone at the time and did not know about the others. This entry is deliberately long, because a seed row of four words hides every text-wrapping bug you have.", "spookiness": 5, "reported_at": "2026-08-05T22:40:00.000Z" },
-  { "id": "seed-4", "place": "Canteen", "description": "A cold spot near the back door, every morning before seven.", "spookiness": 1, "reported_at": "2026-08-06T07:15:00.000Z" },
-  { "id": "seed-5", "place": "AB Building stairwell", "description": "", "spookiness": 2, "reported_at": "2026-08-08T18:30:00.000Z" },
-  { "id": "seed-6", "place": "Chapel garden", "description": "Someone humming. Stops the moment you turn around.", "spookiness": 3, "reported_at": "2026-08-10T05:50:00.000Z" }
+  {
+    "id": 1,
+    "number": "01",
+    "title": "Consolidation Services",
+    "summary": "Combine your purchases into one shipment, so receiving your items is easier and more organized.",
+    "description": "Combine your purchases into one shipment to make receiving your items easier and more organized.\n\nWhen you order from several shops, we gather everything at one address, check each item, and send it together. This saves you from paying for many small parcels and tracking several deliveries."
+  },
+  {
+    "id": 2,
+    "number": "02",
+    "title": "Korea Purchase Assistance",
+    "summary": "We buy K-pop merchandise and other items from Korean websites and sellers, and keep you updated.",
+    "description": "We help you purchase K-pop merchandise and other items from Korean websites and sellers.\n\nSend us the item link or the shop you want, and we handle the purchase on your behalf. We keep you updated at each step so you always know where your order stands."
+  },
+  {
+    "id": 3,
+    "number": "03",
+    "title": "Japan Site Purchase Assistance",
+    "summary": "Get items from Japanese shopping websites, even when direct international purchasing is not available.",
+    "description": "Get items from Japanese shopping websites even when direct international purchasing is not available.\n\nMany Japanese shops do not ship to the Philippines directly. We place the order for you, confirm the details with you first, and arrange the forwarding once the item is ready."
+  },
+  {
+    "id": 4,
+    "number": "04",
+    "title": "Thailand Purchase Assistance",
+    "summary": "Purchase items from Thailand with help from checkout all the way to forwarding to your door.",
+    "description": "Purchase items from Thailand with assistance from checkout to forwarding.\n\nWe help you buy from Thai shops and marketplaces, handle the checkout, and make sure your item reaches you safely, from the first payment to the final delivery."
+  },
+  {
+    "id": 5,
+    "number": "05",
+    "title": "Mercari Japan Purchase Assistance",
+    "summary": "Found something on Mercari Japan? Send us the listing and we will assist with the purchase.",
+    "description": "Looking for something on Mercari Japan? Send us the listing and we can assist with the purchase.\n\nWe review the listing with you, check the seller and the item details, and purchase it on your behalf, so you can shop from Mercari Japan with more confidence."
+  },
+  {
+    "id": 6,
+    "number": "06",
+    "title": "Bunjang Korea Purchase Assistance",
+    "summary": "We help you access listings from Bunjang Korea and purchase items from Korean sellers safely.",
+    "description": "We assist with purchases from Bunjang Korea so you can access listings from Korean sellers.\n\nBunjang has many sellers and listings that are hard to reach from abroad. We help you find the right item, confirm its condition with you, and complete the purchase."
+  },
+  {
+    "id": 7,
+    "number": "07",
+    "title": "Weverse Purchase Assistance",
+    "summary": "Get your favorite official K-pop merchandise from Weverse Shop with our purchase assistance.",
+    "description": "Get your favorite official K-pop merchandise from Weverse Shop with our purchase assistance.\n\nWe help you order official releases and merchandise from Weverse Shop, keep track of your order, and make the purchase process clearer if you are shopping from overseas."
+  },
+  {
+    "id": 8,
+    "number": "08",
+    "title": "Address Rental / Forwarding",
+    "summary": "Use our overseas address services in Korea or Thailand to receive and forward your purchases.",
+    "description": "Use our available overseas address services for receiving and forwarding your purchases.\n\nIf a shop will not deliver to the Philippines, we can receive your package at an address in Korea or Thailand and forward it to you. You send us the details, and we handle the rest."
+  }
 ]

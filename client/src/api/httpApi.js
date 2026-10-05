@@ -1,40 +1,40 @@
-// The real client. Every function here talks to YOUR Express API.
-//
-// This is the file that matters for your finals project. mockApi.js exists so
-// you can build the interface before this has anywhere to point.
+// The live client. Talks straight to Supabase, with access limited by the
+// Row Level Security rules in supabase/schema.sql.
 
-const BASE = import.meta.env.VITE_API_BASE_URL || ''
+import { supabase, isSupabaseConfigured } from './supabaseClient.js'
 
-async function request(path, options) {
-  const response = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  })
-
-  if (!response.ok) {
-    // Try to use the API's own message; fall back to the status line.
-    let message = `${response.status} ${response.statusText}`
-    try {
-      const body = await response.json()
-      if (body?.error) message = body.error
-    } catch {
-      // The body was not JSON. The status line is all we have.
-    }
-    throw new Error(message)
+function requireClient() {
+  if (!isSupabaseConfigured) {
+    throw new Error('Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in client/.env.')
   }
-
-  return response.status === 204 ? null : response.json()
+  return supabase
 }
 
-export const listSightings = () => request('/api/sightings')
+export async function listServices() {
+  const { data, error } = await requireClient()
+    .from('services')
+    .select('id, number, title, summary, description')
+    .order('sort_order', { ascending: true })
 
-export const getSighting = (id) => request(`/api/sightings/${id}`)
+  if (error) throw new Error(error.message)
+  return data
+}
 
-export const createSighting = (input) =>
-  request('/api/sightings', { method: 'POST', body: JSON.stringify(input) })
+// No .select() after insert: anonymous visitors cannot read inquiries back,
+// so asking for the row would be refused.
+export async function createInquiry(input) {
+  const { error } = await requireClient()
+    .from('inquiries')
+    .insert({
+      name: input.name,
+      email: input.email,
+      message: input.message,
+      service: input.service,
+      details: input.details,
+    })
 
-export const updateSighting = (id, input) =>
-  request(`/api/sightings/${id}`, { method: 'PUT', body: JSON.stringify(input) })
-
-export const deleteSighting = (id) =>
-  request(`/api/sightings/${id}`, { method: 'DELETE' })
+  if (error) {
+    console.error('Inquiry failed:', error)
+    throw new Error('We could not send your request. Please try again.')
+  }
+}
