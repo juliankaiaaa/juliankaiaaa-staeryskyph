@@ -1451,14 +1451,38 @@ img.service-photo {
   background: linear-gradient(160deg, #4a322c 0%, var(--brown) 70%);
 }
 
-/* Mission and vision letter slides up out of the card on hover */
+/* Mission and vision cards look like envelopes, with a letter already sticking out */
+.band--brown .grid--2 > .card {
+  padding-bottom: clamp(44px, 5vw, 64px);
+}
+
+/* Envelope flap across the lower part of the card */
+.band--brown .grid--2 > .card::before {
+  content: "";
+
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 0;
+
+  height: 46%;
+
+  border-radius: 0 0 inherit inherit;
+
+  background: rgba(62, 39, 35, 0.07);
+  clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+/* The letter sits above the flap and sticks out of the envelope */
 .mv-letter {
-  overflow: hidden;
-  max-height: 0;
-  margin-top: 0;
+  position: relative;
+  z-index: 1;
+
+  margin-top: var(--space-md);
+  transform: rotate(-1deg);
   transition:
-    max-height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1),
-    margin-top 0.6s ease;
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .mv-letter > p {
@@ -1469,31 +1493,16 @@ img.service-photo {
   background: var(--cream);
   color: var(--brown);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-  translate: 0 110%;
-  transition: translate 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (hover: hover) {
-  .band--brown .grid--2 > .card:hover .mv-letter,
-  .band--brown .grid--2 > .card:focus-within .mv-letter {
-    max-height: 340px;
-    margin-top: var(--space-md);
-  }
-
-  .band--brown .grid--2 > .card:hover .mv-letter > p,
-  .band--brown .grid--2 > .card:focus-within .mv-letter > p {
-    translate: 0 0;
+  .band--brown .grid--2 > .card:hover .mv-letter {
+    transform: rotate(0deg) translateY(-6px);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.25);
   }
 }
 
-/* Touch screens have no hover, so the letter is always out */
-@media (hover: none) {
-  .mv-letter {
-    max-height: none;
-    margin-top: var(--space-md);
-  }
-
-  .mv-letter > p {
-    translate: 0 0;
-  }
+/* The brown envelope flap is lighter so it shows on dark brown */
+.band--brown .grid--2 > .card--brown::before {
+  background: rgba(244, 201, 214, 0.08);
 }
