@@ -2493,3 +2493,53 @@ img.service-photo {
 .request-card .field textarea {
   background: #fffdf6;
 }
+
+/* Request form send area: cream text, a tear line and a small star sticker */
+.request-card .btn--wide {
+  background: var(--brown);
+  color: var(--cream);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  box-shadow: 0 6px 14px rgba(62, 39, 35, 0.3);
+}
+
+.request-card .btn--wide:hover {
+  background: #523630;
+}
+
+.request-card .inquiry-form > .btn--wide {
+  position: relative;
+  margin-top: 6px;
+}
+
+.request-card .inquiry-form > .btn--wide::after {
+  content: "";
+
+  position: absolute;
+  top: -22px;
+  right: 6px;
+
+  width: 30px;
+  aspect-ratio: 1;
+
+  background: var(--mustard);
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  transform: rotate(12deg);
+  filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
+  pointer-events: none;
+}
+
+.request-card .inquiry-form > .btn--wide::before {
+  content: "";
+
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+
+  border-top: 2px dashed rgba(62, 39, 35, 0.35);
+  pointer-events: none;
+}
