@@ -3349,3 +3349,12 @@ img.service-photo {
   margin-right: 0;
   padding-inline: 0;
 }
+
+/* Grid card text, a little smaller */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  font-size: clamp(12px, 0.9vw, 14px);
+}
