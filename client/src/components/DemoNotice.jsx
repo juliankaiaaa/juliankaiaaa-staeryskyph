@@ -16,8 +16,7 @@ export default function DemoNotice() {
       It runs on a <strong>simulated backend</strong>: everything you add is
       stored in your own browser, is shared with nobody, and disappears when you
       clear your browsing data. There is no server and no database behind this
-      page. The full version runs against an Express API and a PostgreSQL
-      database, deployed separately. See the README.
+      page. The full version runs on Supabase, a hosted database. See the README.
     </div>
   )
 }

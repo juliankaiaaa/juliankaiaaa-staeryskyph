@@ -5,7 +5,7 @@
 | # | Check | Yes / No / N/A | Evidence |
 | --- | --- | --- | --- |
 | 1 | `.env` is gitignored and is not in the repository | Yes | `.gitignore` includes `.env` and `.env.*`, while `.env.example` files are allowed to be committed. |
-| 2 | `.env.example` files contain placeholder values only | Yes | `client/.env.example` and `server/.env.example` contain example values and no real credentials. |
+| 2 | `.env.example` files contain placeholder values only | Yes | `client/.env.example` contains placeholder values only. The real `client/.env` is git-ignored. |
 | 3 | No real password, API key, token, or database credential is hardcoded in the source code | Yes | Project files were checked for passwords, secrets, API keys, and database connection strings. Only placeholder/example values were found. |
 | 4 | Git history was checked for exposed credentials | Yes | Git history was searched for passwords, secrets, API keys, and database connection strings. No real credentials were found. |
 | 5 | Any credential that was ever committed has been rotated | N/A | No real production credential was found in the repository or Git history. |
@@ -26,11 +26,11 @@
 
 | # | Check | Yes / No / N/A | Evidence |
 | --- | --- | --- | --- |
-| 13 | Database queries use parameters instead of string concatenation | N/A | The PostgreSQL backend is still under development and is not yet connected to the deployed website. |
-| 14 | The database is not publicly exposed to the internet | N/A | The database is not deployed yet. |
-| 15 | The application database user has only the permissions it needs | Yes | The project uses a separate application database user in `server/db/02-user.sh` instead of using the main PostgreSQL user for the application. |
-| 16 | Sample data does not contain real people's personal information | Yes | The current project data is related to the Staery Sky PH website and sample service information, not real customer records. |
-| 17 | Debug, seed, or reset routes are not publicly exposed | N/A | The backend is still under development and is not publicly deployed. |
+| 13 | Database queries use parameters instead of string concatenation | Yes | All reads and writes go through the Supabase client, which sends values as parameters. |
+| 14 | The database is not publicly exposed to the internet | Yes | The database is hosted by Supabase and reached only through its API, with Row Level Security enabled on every table (`supabase/schema.sql`). |
+| 15 | The application uses only the permissions it needs | Yes | The browser uses the public anon key. Row Level Security limits visitors to sending inquiries and reading visible services and approved guestbook entries. |
+| 16 | Sample data does not contain real people's personal information | Yes | The seed data contains only the service descriptions in `supabase/seed.sql`. |
+| 17 | Debug, seed, or reset routes are not publicly exposed | Yes | There are no custom server routes. Schema and seed scripts run only in the Supabase SQL Editor. |
 
 ## Access control
 
@@ -38,17 +38,17 @@
 | --- | --- | --- | --- |
 | 18 | The application has an appropriate access layer when required | Yes | The backend includes Basic Authentication for API routes while the API is being developed. |
 | 19 | Supabase or Firebase security rules are enabled when applicable | N/A | The current project does not use Supabase or Firebase for its backend. |
-| 20 | API authentication credentials are stored outside the source code | Yes | Basic Authentication uses `BASIC_AUTH_USER` and `BASIC_AUTH_PASSWORD` environment variables from `server/.env`. |
+| 20 | Admin sign-in uses a managed authentication service | Yes | Admins sign in with Supabase Auth email and password. Only accounts listed in the `admins` table can read or change inquiries. |
 | 21 | Protected API routes use the authentication layer | Yes | The `/api` routes are placed behind the Basic Authentication middleware. |
-| 22 | Authentication credentials are not hardcoded in source files | Yes | The username and password are read from environment variables rather than being written directly in `server/server.js`. |
+| 22 | Keys and credentials are not hardcoded in source files | Yes | Supabase keys are read from `client/.env`, which is git-ignored. The anon key is public by design, and Row Level Security protects the data. |
 
 ## Input and output
 
 | # | Check | Yes / No / N/A | Evidence |
 | --- | --- | --- | --- |
-| 23 | User input is validated on the server | N/A | The actual website API is still under development, so server-side validation is not yet fully implemented. |
+| 23 | User input is validated on the server | Yes | The database enforces length and value limits with CHECK constraints in `supabase/schema.sql`, and the forms validate the same rules before sending. |
 | 24 | User-supplied text is safely rendered | Yes | The React frontend uses normal JSX rendering and does not use `dangerouslySetInnerHTML`. |
-| 25 | Error responses do not expose sensitive server information | Yes | The server returns controlled error responses instead of intentionally exposing passwords, credentials, or database connection strings. |
+| 25 | Error responses do not expose sensitive server information | Yes | Visitors see plain messages. Detailed database errors are logged to the browser console only. |
 | 26 | CORS is restricted to allowed origins | Yes | The backend uses the `CORS_ORIGINS` environment variable instead of allowing every origin by default. |
 
 ## Repository and privacy
@@ -75,4 +75,4 @@ I also updated the project so that:
 - The frontend build does not include private environment files or credentials.
 - GitHub secret scanning and push protection are enabled.
 
-The backend API and PostgreSQL database are still under development, so some security checks will need to be reviewed again once the backend is fully connected and deployed.
+Re-check the database and access rules after any change to `supabase/schema.sql`.

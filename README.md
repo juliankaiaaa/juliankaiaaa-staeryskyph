@@ -7,11 +7,11 @@
 ## What it does
 
 * Showcases Staery Sky PH and its services
-* Provides information about the shop and its team
 * Lists featured services in a horizontal carousel, loaded from the database
-* Provides a request form for overseas purchases, saved to the database
-* Provides information about Korea, Japan, and Thailand pasabuy services
-* Provides navigation between the Home, About, Services, and Request pages
+* Provides a request form for each service, with fields specific to that service
+* Saves each inquiry to the database, with validation and success and error messages
+* Provides an admin page where the owner signs in to review and manage inquiries
+* Provides information about the shop, its team, and Korea, Japan, and Thailand pasabuy services
 * Uses a scrapbook-inspired design with custom visual assets
 
 ## Screenshot
@@ -49,7 +49,7 @@ The development site will normally be available at:
 http://localhost:5173
 ```
 
-To use the live database, set `VITE_USE_MOCK_API=false` and the two Supabase values in `client/.env` (see below).
+To use the live database, set `VITE_USE_MOCK_API=false` and the two Supabase values in `client/.env` (see below). Restart `npm run dev` after changing `.env`.
 
 ## Database setup (Supabase)
 
@@ -57,7 +57,16 @@ To use the live database, set `VITE_USE_MOCK_API=false` and the two Supabase val
 2. In the **SQL Editor**, run `supabase/schema.sql`, then `supabase/seed.sql`.
 3. Copy the **Project URL** and the **anon public** key from **Project Settings > API**.
 
+The schema creates five tables: `inquiries`, `guestbook`, `services`, `portfolio_items`, and `admins`. Row Level Security is on for all of them. Visitors can send inquiries and read visible services. Only admins can read or change inquiries.
+
 `schema.sql` is safe to run more than once. `seed.sql` clears the services table before inserting, so it can be re-run to reset the starter data.
+
+### Making yourself an admin
+
+1. In Supabase, open **Authentication > Users > Add user > Create new user**, enter your email and a password, and tick **Auto Confirm User**.
+2. Copy the new user's **UID** from the list.
+3. In the **SQL Editor**, run `insert into admins (user_id) values ('the-uid-here');`.
+4. Sign in at `/#/admin` on your site. The admin page is not linked from the site, so bookmark it.
 
 ## Environment variables
 
@@ -107,10 +116,12 @@ docs/             planning documents, weekly reports, and screenshots
 ## Architecture
 
 ```text
-React / Vite front end  --->  Supabase (PostgreSQL + API, protected by Row Level Security)
+React / Vite front end  --->  Supabase (PostgreSQL + Auth + API, protected by Row Level Security)
         |
         +--- GitHub Pages hosts the built files
 ```
+
+The site talks to Supabase directly, so there is no separate server to run or host. Visitors use the public anon key, and the security rules in `supabase/schema.sql` decide what that key can do.
 
 ## Author
 
