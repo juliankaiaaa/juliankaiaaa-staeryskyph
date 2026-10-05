@@ -1506,3 +1506,14 @@ img.service-photo {
 .band--brown .grid--2 > .card--brown::before {
   background: rgba(244, 201, 214, 0.08);
 }
+
+/* Mission and vision band is the same height as the top section */
+.band--brown:has(.grid--2) {
+  display: flex;
+  align-items: center;
+  min-height: var(--section-height);
+}
+
+.band--brown:has(.grid--2) > .band-inner {
+  width: 100%;
+}
