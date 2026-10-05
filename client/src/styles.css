@@ -1341,12 +1341,10 @@ img.service-photo {
 /* Cards and steps rise into view as they scroll in, where the browser supports it */
 @keyframes reveal {
   from {
-    opacity: 0;
     transform: translateY(18px);
   }
 
   to {
-    opacity: 1;
     transform: none;
   }
 }
