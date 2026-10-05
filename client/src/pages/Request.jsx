@@ -51,18 +51,15 @@ export default function Request() {
               </div>
             </div>
 
-            <div className="request-form-column">
-              <div ref={cardRef} className="request-card">
-                <span className="clip" aria-hidden="true"></span>
-                <InquiryForm initialService={searchParams.get('service') ?? ''} />
-              </div>
-
-              <div className="request-strips" aria-hidden="true">
-                <span>Forwarding</span>
-                <span>Consolidation</span>
-                <span>Address</span>
-                <span>Pickup</span>
-              </div>
+            <div ref={cardRef} className="request-card">
+              <span className="clip" aria-hidden="true"></span>
+              <InquiryForm initialService={searchParams.get('service') ?? ''} />
+            </div>
+            <div className="request-strips" aria-hidden="true">
+              <span>Forwarding</span>
+              <span>Consolidation</span>
+              <span>Address</span>
+              <span>Pickup</span>
             </div>
 
           </div>
