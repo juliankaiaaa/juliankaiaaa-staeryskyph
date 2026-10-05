@@ -795,6 +795,7 @@ nav a[aria-current]:hover {
   border-radius: 14px;
 
   background:
+    linear-gradient(180deg, transparent 0 42%, rgba(62, 39, 35, 0.12) 100%),
     linear-gradient(180deg, rgba(255, 250, 240, 0.3), transparent 55%),
     var(--card);
   color: var(--brown);
@@ -1368,4 +1369,9 @@ img.service-photo {
   .polaroid {
     transition: none;
   }
+}
+
+/* Featured services heading in cream */
+.services .services-heading h2 {
+  color: var(--cream);
 }
