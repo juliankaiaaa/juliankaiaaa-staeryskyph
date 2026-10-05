@@ -1297,3 +1297,74 @@ img.service-photo {
     animation: none;
   }
 }
+
+/* Mission, vision, why choose us and how it works */
+
+/* Heading and text inside a card, one rhythm everywhere */
+.card h2,
+.card h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.card > p,
+.card h2 + p,
+.card h3 + p {
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+.card .tag {
+  margin-bottom: var(--space-md);
+}
+
+/* Steps share the same heading and text rhythm */
+.step h3 {
+  margin-bottom: var(--space-xs);
+}
+
+.step > p {
+  max-width: 24em;
+}
+
+/* Polaroid lifts straight on hover, like a photo being picked up */
+.polaroid {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 16px 30px rgba(62, 39, 35, 0.3);
+}
+
+/* Cards and steps rise into view as they scroll in, where the browser supports it */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .grid > .card,
+  .grid > .step {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid > .card,
+  .grid > .step,
+  .polaroid {
+    animation: none;
+    transition: none;
+  }
+}
