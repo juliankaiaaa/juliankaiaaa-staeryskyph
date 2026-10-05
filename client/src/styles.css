@@ -2473,3 +2473,23 @@ img.service-photo {
   color: var(--pink);
   box-shadow: 0 6px 14px rgba(62, 39, 35, 0.3);
 }
+
+/* Calmer form card: one soft texture, no competing dotted row */
+.request-card {
+  background:
+    linear-gradient(to bottom, #f8f4e6, #f1ead8),
+    var(--cream);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.22),
+    inset 0 0 30px rgba(120, 90, 60, 0.06);
+}
+
+.request-card .inquiry-form::after {
+  display: none;
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  background: #fffdf6;
+}
