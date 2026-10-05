@@ -1,11 +1,12 @@
 import express from 'express'
 import cors from 'cors'
 import { pool } from './db/pool.js'
-import * as sightings from './sightingsRepo.js'
+import * as services from './servicesRepo.js'
+import * as requests from './requestsRepo.js'
 
 const app = express()
 
-// Basic Auth protects the API routes.
+// Basic Auth protects the admin routes only. Visitors never need credentials.
 function basicAuth(request, response, next) {
   const auth = request.headers.authorization
 
@@ -29,12 +30,7 @@ function basicAuth(request, response, next) {
   next()
 }
 
-// CORS before the routes. Middleware registered after a route never sees that
-// route's requests, which is the m4 lesson showing up in production.
-//
-// Name your origins. app.use(cors()) with no options sends
-// Access-Control-Allow-Origin: *, which lets any site on the internet call this
-// API from a visitor's browser, and is incompatible with cookies.
+// Only the origins listed in CORS_ORIGINS may call this API from a browser.
 const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173')
   .split(',')
   .map((origin) => origin.trim())
@@ -48,8 +44,7 @@ app.get('/healthz', (request, response) => {
   response.json({ ok: true })
 })
 
-// Is the database reachable? A different question, and the one that tells you
-// in two seconds which half of a problem you have.
+// Is the database reachable?
 app.get('/readyz', async (request, response) => {
   try {
     await pool.query('SELECT 1')
@@ -60,81 +55,74 @@ app.get('/readyz', async (request, response) => {
   }
 })
 
-// Protect all API routes with Basic Auth.
-app.use('/api', basicAuth)
-
-// Validation lives on the server because the client can be bypassed. The
-// browser form is for a fast, friendly message; this is for correctness.
-function validate(body) {
+// Validation runs on the server too, because the browser form can be bypassed.
+function validateRequest(body) {
   const errors = []
-  const place = typeof body.place === 'string' ? body.place.trim() : ''
-  const description =
-    typeof body.description === 'string' ? body.description.trim() : ''
-  const spookiness = Number(body.spookiness)
-
-  if (!place) errors.push('place is required')
-  if (place.length > 120) errors.push('place must be 120 characters or fewer')
-  if (description.length > 2000) {
-    errors.push('description must be 2000 characters or fewer')
-  }
-  if (!Number.isInteger(spookiness) || spookiness < 1 || spookiness > 5) {
-    errors.push('spookiness must be a whole number from 1 to 5')
+  const clean = (key, max) => {
+    const value = typeof body[key] === 'string' ? body[key].trim() : ''
+    if (value.length > max) errors.push(`${key} must be ${max} characters or fewer`)
+    return value
   }
 
-  return { errors, value: { place, description, spookiness } }
+  const name = clean('name', 120)
+  const contact = clean('contact', 120)
+  const service = clean('service', 120)
+  const link = clean('link', 500)
+  const details = clean('details', 2000)
+
+  if (!name) errors.push('name is required')
+  if (!contact) errors.push('contact is required')
+  if (!service) errors.push('service is required')
+  if (!details) errors.push('details is required')
+
+  return { errors, value: { name, contact, service, link, details } }
 }
 
-app.get('/api/sightings', async (request, response, next) => {
+// Public routes
+app.get('/api/services', async (request, response, next) => {
   try {
-    response.json(await sightings.getAll(pool))
+    response.json(await services.getAll(pool))
   } catch (error) {
     next(error)
   }
 })
 
-app.get('/api/sightings/:id', async (request, response, next) => {
-  try {
-    const row = await sightings.getById(pool, request.params.id)
-    if (!row) return response.status(404).json({ error: 'Not found' })
-    response.json(row)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.post('/api/sightings', async (request, response, next) => {
-  const { errors, value } = validate(request.body ?? {})
+app.post('/api/requests', async (request, response, next) => {
+  const { errors, value } = validateRequest(request.body ?? {})
   if (errors.length > 0) {
     return response.status(400).json({ error: errors.join('; ') })
   }
 
   try {
-    response.status(201).json(await sightings.create(pool, value))
+    response.status(201).json(await requests.create(pool, value))
   } catch (error) {
     next(error)
   }
 })
 
-app.put('/api/sightings/:id', async (request, response, next) => {
-  const { errors, value } = validate(request.body ?? {})
-  if (errors.length > 0) {
-    return response.status(400).json({ error: errors.join('; ') })
+// Admin routes, behind Basic Auth
+app.use('/api/admin', basicAuth)
+
+app.get('/api/admin/requests', async (request, response, next) => {
+  try {
+    response.json(await requests.getAll(pool))
+  } catch (error) {
+    next(error)
   }
+})
+
+app.put('/api/admin/services/:id', async (request, response, next) => {
+  const body = request.body ?? {}
+  const title = typeof body.title === 'string' ? body.title.trim() : ''
+  const summary = typeof body.summary === 'string' ? body.summary.trim() : ''
+  const description = typeof body.description === 'string' ? body.description.trim() : ''
+
+  if (!title) return response.status(400).json({ error: 'title is required' })
 
   try {
-    const row = await sightings.update(pool, request.params.id, value)
+    const row = await services.update(pool, request.params.id, { title, summary, description })
     if (!row) return response.status(404).json({ error: 'Not found' })
     response.json(row)
-  } catch (error) {
-    next(error)
-  }
-})
-
-app.delete('/api/sightings/:id', async (request, response, next) => {
-  try {
-    const removed = await sightings.remove(pool, request.params.id)
-    if (!removed) return response.status(404).json({ error: 'Not found' })
-    response.status(204).end()
   } catch (error) {
     next(error)
   }
@@ -144,15 +132,12 @@ app.use((request, response) => {
   response.status(404).json({ error: 'No such route' })
 })
 
-// The detail goes in your logs; the visitor gets a plain message. Sending a
-// stack trace to a stranger tells them about your file layout and dependencies.
+// Details go to the logs. Visitors get a plain message.
 app.use((error, request, response, next) => {
   console.error(error)
   response.status(500).json({ error: 'Something went wrong on the server' })
 })
 
-// The host chooses the port and tells you through PORT. Hardcoding 3000 is the
-// commonest reason a first deploy is marked unhealthy and killed.
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {

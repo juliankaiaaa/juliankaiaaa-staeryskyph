@@ -1,27 +1,13 @@
--- Sample data for development.
---
--- This starts with TRUNCATE. That is correct on your laptop and catastrophic
--- against the database your live demo depends on. Check which DATABASE_URL is
--- loaded before you run it.
+-- Starter services. Running this twice adds duplicates, so run db:reset to
+-- start clean.
+TRUNCATE services RESTART IDENTITY;
 
-TRUNCATE TABLE sightings RESTART IDENTITY CASCADE;
-
-INSERT INTO sightings (place, description, spookiness, reported_at) VALUES
-  ('Library, third floor',
-   'Chairs rearranged overnight, every time. The night guard says he locks the room himself.',
-   3, now() - interval '12 days'),
-  ('Old gym',
-   'Lights flicker in a fixed pattern after 9pm, always three short and one long.',
-   4, now() - interval '10 days'),
-  ('Parking basement',
-   'Footsteps with no one there. Reported separately by three different people in one week, which is what makes this one hard to dismiss. Two of them were alone at the time and did not know about the others. This row is deliberately long, because a seed of four words hides every text-wrapping bug you have.',
-   5, now() - interval '8 days'),
-  ('Canteen',
-   'A cold spot near the back door, every morning before seven.',
-   1, now() - interval '7 days'),
-  ('AB Building stairwell',
-   '',
-   2, now() - interval '5 days'),
-  ('Chapel garden',
-   'Someone humming. Stops the moment you turn around.',
-   3, now() - interval '2 days');
+INSERT INTO services (number, title, summary, description, sort_order) VALUES
+  ('01', 'Consolidation Services', 'Combine your orders into one shipment', 'Combine your purchases into one shipment to make receiving your items easier and more organized.', 1),
+  ('02', 'Korea Purchase Assistance', 'We buy items from Korea for you', 'We help you purchase K-pop merchandise and other items from Korean websites and sellers.', 2),
+  ('03', 'Japan Site Purchase Assistance', 'We buy from Japanese shopping sites', 'Get items from Japanese shopping websites even when direct international purchasing is not available.', 3),
+  ('04', 'Thailand Purchase Assistance', 'We buy items from Thailand for you', 'Purchase items from Thailand with assistance from checkout to forwarding.', 4),
+  ('05', 'Mercari Japan Purchase Assistance', 'Mercari Japan purchase assistance', 'Looking for something on Mercari Japan? Send us the listing and we can assist with the purchase.', 5),
+  ('06', 'Bunjang Korea Purchase Assistance', 'Bunjang Korea purchase assistance', 'We assist with purchases from Bunjang Korea so you can access listings from Korean sellers.', 6),
+  ('07', 'Weverse Purchase Assistance', 'Weverse shop purchase assistance', 'Get your favorite official K-pop merchandise from Weverse Shop with our purchase assistance.', 7),
+  ('08', 'Address Rental / Forwarding', 'Korea and Thailand address rental and forwarding', 'Use our available overseas address services for receiving and forwarding your purchases.', 8);
