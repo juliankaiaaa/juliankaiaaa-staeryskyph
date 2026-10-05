@@ -2646,3 +2646,19 @@ img.service-photo {
   left: 22%;
 }
 
+
+/* Hero sticker symbols turn slowly, like the star */
+.hero-sym {
+  animation: star-turn 30s linear infinite;
+}
+
+.hero-sym-asterisk {
+  animation-duration: 40s;
+  animation-direction: reverse;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-sym {
+    animation: none;
+  }
+}
