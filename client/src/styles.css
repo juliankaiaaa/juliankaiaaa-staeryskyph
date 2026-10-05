@@ -3074,3 +3074,8 @@ img.service-photo {
 .service-card:not(.service-card--expanded) .service-actions {
   padding-bottom: var(--space-xs);
 }
+
+/* Expanded card: equal space above and below the details, text stays left */
+.service-card--expanded {
+  align-content: center;
+}
