@@ -101,8 +101,13 @@ export default function InquiryForm({ initialService = '' }) {
 
   return (
     <form className="inquiry-form" onSubmit={handleSubmit} noValidate>
-      <div className="inquiry-progress" aria-hidden="true">
-        <span style={{ width: `${progress}%` }}></span>
+      <div className="inquiry-progress-row">
+        <div className="inquiry-progress" aria-hidden="true">
+          <span style={{ width: `${progress}%` }}></span>
+        </div>
+        <span className="inquiry-progress-text">
+          {filledCount} of {requiredNames.length} required
+        </span>
       </div>
 
       <label className="field">
@@ -209,7 +214,7 @@ export default function InquiryForm({ initialService = '' }) {
         </p>
       )}
 
-      <button type="submit" className="btn" disabled={status === 'sending'}>
+      <button type="submit" className="btn btn--wide" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Send request →'}
       </button>
     </form>

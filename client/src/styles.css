@@ -1852,11 +1852,18 @@ img.service-photo {
 .inquiry-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 22px;
+}
+
+.inquiry-progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
 }
 
 .inquiry-progress {
-  height: 6px;
+  flex: 1;
+  height: 8px;
   overflow: hidden;
   border-radius: var(--radius-pill);
   background: rgba(62, 39, 35, 0.12);
@@ -1870,7 +1877,15 @@ img.service-photo {
   transition: width 0.5s ease;
 }
 
+.inquiry-progress-text {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
 .inquiry-intro {
+  margin-top: -8px;
   font-size: var(--fs-small);
   opacity: 0.8;
 }
@@ -1879,7 +1894,7 @@ img.service-photo {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   font-size: var(--fs-small);
   font-weight: 600;
 }
@@ -1888,9 +1903,10 @@ img.service-photo {
 .field select,
 .field textarea {
   width: 100%;
-  padding: 12px 14px;
-  border: 1.5px solid rgba(62, 39, 35, 0.4);
-  border-radius: var(--radius);
+  min-height: 48px;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(62, 39, 35, 0.35);
+  border-radius: var(--radius-lg);
   background: var(--cream);
   color: var(--brown);
   font: inherit;
@@ -1898,22 +1914,47 @@ img.service-photo {
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.field select {
+  appearance: none;
+  padding-right: 44px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--brown) 50%),
+    linear-gradient(135deg, var(--brown) 50%, transparent 50%);
+  background-position: calc(100% - 20px) 55%, calc(100% - 14px) 55%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.field textarea {
+  min-height: 130px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: var(--brown);
+}
+
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
   outline: none;
   border-color: var(--brown);
-  box-shadow: 0 0 0 3px rgba(168, 201, 139, 0.45);
-}
-
-.field textarea {
-  resize: vertical;
+  box-shadow: 0 0 0 4px rgba(168, 201, 139, 0.45);
 }
 
 .field--invalid input,
 .field--invalid select,
 .field--invalid textarea {
   border-color: var(--red);
+  background: #fbeeee;
+}
+
+.form-row {
+  gap: 22px;
 }
 
 .field-error {
@@ -1927,6 +1968,12 @@ img.service-photo {
   font-size: var(--fs-small);
   font-weight: 400;
   opacity: 0.7;
+}
+
+.btn--wide {
+  width: 100%;
+  min-height: 52px;
+  font-size: var(--fs-label);
 }
 
 .inquiry-stamp {
