@@ -3358,3 +3358,16 @@ img.service-photo {
 .band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
   font-size: clamp(12px, 0.9vw, 14px);
 }
+
+/* Grid cards: tighter inner space and shorter reserved text heights */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  padding-inline: clamp(16px, 1.8vw, 24px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  min-height: 2.4em;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  min-height: 3.6em;
+}
