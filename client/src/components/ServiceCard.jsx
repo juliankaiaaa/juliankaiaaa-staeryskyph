@@ -12,9 +12,13 @@ export default function ServiceCard({
   expanded = false,
   onToggle,
   steps = [],
+  accent = 'cream',
 }) {
   return (
-    <article className={`service-card${expanded ? ' service-card--expanded' : ''}`}>
+    <article
+      className={`service-card${expanded ? ' service-card--expanded' : ''}`}
+      data-accent={expanded ? accent : undefined}
+    >
       {photo ? (
         <img className="service-photo" src={photo} alt={title} />
       ) : (

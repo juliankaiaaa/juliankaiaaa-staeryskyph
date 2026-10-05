@@ -2891,3 +2891,58 @@ img.service-photo {
 .service-card--expanded .service-toggle {
   margin-bottom: 0;
 }
+
+/* Expanded card takes a random palette colour each time it opens */
+.service-card--expanded[data-accent='pink'] {
+  background: linear-gradient(to bottom, #f9dde6, var(--pink));
+}
+
+.service-card--expanded[data-accent='sky'] {
+  background: linear-gradient(to bottom, #e4f1fb, var(--sky));
+}
+
+.service-card--expanded[data-accent='sage'] {
+  background: linear-gradient(to bottom, #e6e9cf, var(--sage));
+}
+
+.service-card--expanded[data-accent='mustard'] {
+  background: linear-gradient(to bottom, #fff2d6, var(--mustard));
+}
+
+.service-card--expanded[data-accent='cream'] {
+  background: linear-gradient(to bottom, #f8f4e6, #f1ead8);
+}
+
+/* Tidy text block: one rhythm from title to buttons */
+.service-card--expanded {
+  row-gap: 0;
+}
+
+.service-card--expanded > h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.service-card--expanded > p {
+  margin-bottom: var(--space-lg);
+}
+
+.service-card--expanded .service-details {
+  margin-bottom: var(--space-lg);
+}
+
+.service-card--expanded .service-steps li {
+  padding-bottom: 2px;
+}
+
+.service-card--expanded .service-toggle,
+.service-card--expanded .service-action {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 1.4em;
+  vertical-align: middle;
+}
+
+.service-card--expanded .service-toggle {
+  margin-right: var(--space-md);
+}

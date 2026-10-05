@@ -32,6 +32,7 @@ const STEPS = [
 /* Services page, same cards as the Home carousel in a full grid */
 export default function Services() {
   const [openNumber, setOpenNumber] = useState(null)
+  const [accent, setAccent] = useState('cream')
   // The static list shows at once and is replaced when the API answers
   const [services, setServices] = useState(SERVICES)
 
@@ -72,7 +73,16 @@ export default function Services() {
                   photo={service.photo}
                   action={{ label: 'Request this service', to: `/request?service=${SLUG_BY_NUMBER[service.number]}` }}
                   expanded={openNumber === service.number}
-                  onToggle={() => setOpenNumber(openNumber === service.number ? null : service.number)}
+                  onToggle={() => {
+                    if (openNumber === service.number) {
+                      setOpenNumber(null)
+                      return
+                    }
+                    const colours = ['pink', 'sky', 'sage', 'mustard', 'cream']
+                    setAccent(colours[Math.floor(Math.random() * colours.length)])
+                    setOpenNumber(service.number)
+                  }}
+                  accent={accent}
                   steps={STEPS.map((step) => step.title)}
                 />
               ))}
