@@ -2301,3 +2301,23 @@ img.service-photo {
     transition: none;
   }
 }
+
+/* Request page left column colours: pink headings, cream body text */
+.request-info > p {
+  color: var(--cream);
+}
+
+.request-info .section-label,
+.request-info h2 {
+  color: var(--pink);
+}
+
+.request-links .text-link {
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.request-links .text-link:hover {
+  background: var(--cream);
+  color: var(--brown);
+}
