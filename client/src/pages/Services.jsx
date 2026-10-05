@@ -52,7 +52,6 @@ export default function Services() {
                   number={service.number}
                   title={service.title}
                   text={service.description}
-                  tone={service.tone}
                   art={service.art}
                   action={{ label: 'Request this service', to: '/request' }}
                 />

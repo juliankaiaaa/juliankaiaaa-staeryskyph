@@ -565,7 +565,7 @@ nav a[aria-current]:hover {
 .services {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   gap: clamp(20px, 2.5vw, 36px);
 
@@ -579,7 +579,8 @@ nav a[aria-current]:hover {
   width: max-content;
   max-width: 100%;
 
-  text-align: center;
+  padding-inline: var(--gutter);
+  text-align: left;
 }
 
 /* Stars beside the heading, sized from the heading */
@@ -609,6 +610,7 @@ nav a[aria-current]:hover {
 
   width: 100%;
   max-width: calc((var(--card-w) + var(--card-gap)) * 3.4 + 48px);
+  margin-inline: auto;
   padding-bottom: 44px;
 }
 
@@ -693,28 +695,13 @@ nav a[aria-current]:hover {
   right: 24px;
 }
 
-/* Service card, art panel on the opposite color */
+/* Service card, a pink art square with the text underneath */
 
 .service-card {
   display: flex;
   flex-direction: column;
 
   text-align: left;
-
-  transform: rotate(var(--tilt, 0deg));
-  transition: transform 0.25s ease;
-}
-
-.service-card:nth-child(odd) {
-  --tilt: -1deg;
-}
-
-.service-card:nth-child(even) {
-  --tilt: 1deg;
-}
-
-.service-card:hover {
-  transform: translateY(-3px);
 }
 
 .service-track > .service-card {
@@ -722,65 +709,50 @@ nav a[aria-current]:hover {
   scroll-snap-align: start;
 }
 
-.service-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.service-panel {
+  display: grid;
+  place-items: center;
 
-  margin-bottom: var(--space-md);
+  aspect-ratio: 1;
+
+  border-radius: var(--radius-lg);
+
+  background: var(--pink);
+  box-shadow: var(--shadow);
 }
 
-.service-arrow {
-  font-size: var(--fs-label);
-  line-height: 1;
+.service-art {
+  width: 40%;
+  max-width: 140px;
+}
+
+.service-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+
+  margin-top: var(--space-md);
 }
 
 .service-card h3 {
   min-height: 2.6em;
-  margin-bottom: var(--space-xs);
 }
 
-.service-card > p {
+.service-card-body > p {
   font-size: var(--fs-small);
   line-height: 1.5;
 }
 
-.service-panel {
-  position: relative;
-
-  display: grid;
-  place-items: center;
-
-  flex: 1;
-  min-height: 150px;
-  margin: var(--space-md) 0;
-
-  border-radius: var(--radius);
-
-  background: var(--brown);
-}
-
-.card--brown .service-panel {
-  background: var(--pink);
-}
-
-.service-art {
-  width: 45%;
-  max-width: 140px;
-}
-
-.service-card > .btn {
+.service-card-body > .btn {
   margin-top: auto;
 }
 
 /* Services page grid and steps */
 
-.grid .service-card {
-  transform: none;
-}
-
-.grid .service-card:hover {
-  transform: translateY(-3px);
+.step .tag {
+  margin-bottom: var(--space-md);
 }
 
 .step .tag {
