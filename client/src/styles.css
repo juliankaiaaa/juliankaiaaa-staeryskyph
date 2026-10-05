@@ -2821,3 +2821,73 @@ img.service-photo {
     aspect-ratio: 5 / 4;
   }
 }
+
+/* Expanded card: cream paper, left-aligned title, details and buttons */
+.service-card--expanded {
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.03) 0 1px, transparent 1px 3px),
+    linear-gradient(to bottom, #f8f4e6, #f1ead8);
+  color: var(--brown);
+  align-items: start;
+}
+
+.service-card--expanded .service-photo {
+  background: var(--pink);
+}
+
+.service-card--expanded h3 {
+  display: block;
+  margin: 0 0 var(--space-sm);
+  font-size: clamp(20px, 2vw, 28px);
+  text-align: left;
+}
+
+.service-card--expanded > p {
+  margin: 0 0 var(--space-md);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.service-card--expanded .service-details {
+  margin: 0 0 var(--space-md);
+}
+
+.service-card--expanded .service-steps {
+  display: grid;
+  gap: 6px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.service-card--expanded .service-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-small);
+}
+
+.service-card--expanded .service-steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--brown);
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 600;
+  flex: none;
+}
+
+.service-card--expanded .service-toggle,
+.service-card--expanded .service-action {
+  margin-top: 0;
+  margin-right: var(--space-sm);
+}
+
+.service-card--expanded .service-toggle {
+  margin-bottom: 0;
+}
