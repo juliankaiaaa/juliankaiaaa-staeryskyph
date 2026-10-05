@@ -2436,3 +2436,40 @@ img.service-photo {
     transition: none;
   }
 }
+
+/* Request form polish: softer dots, refined clip, gentler field borders */
+.request-card {
+  padding: clamp(28px, 3.6vw, 48px);
+}
+
+.request-card::before {
+  opacity: 0.35;
+}
+
+.request-card .clip {
+  width: 64px;
+  height: 40px;
+  top: -20px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  border: 1px solid rgba(62, 39, 35, 0.3);
+  border-radius: 10px;
+  background: #fbf8ef;
+}
+
+.request-card .field input:focus,
+.request-card .field select:focus,
+.request-card .field textarea:focus {
+  border-color: var(--brown);
+  box-shadow: 0 0 0 3px rgba(168, 201, 139, 0.5);
+}
+
+.request-card .btn--wide {
+  background: var(--brown);
+  color: var(--pink);
+  box-shadow: 0 6px 14px rgba(62, 39, 35, 0.3);
+}
