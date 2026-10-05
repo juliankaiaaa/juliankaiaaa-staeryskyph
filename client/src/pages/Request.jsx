@@ -1,11 +1,14 @@
 import { Link, useSearchParams } from 'react-router-dom'
+import { useRef } from 'react'
 import Hero from '../components/Hero.jsx'
+import useTilt from '../hooks/useTilt.js'
 import InquiryForm from '../components/InquiryForm.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 
 /* Request page. ?service=korea opens the form for that service */
 export default function Request() {
   const [searchParams] = useSearchParams()
+  const cardRef = useTilt()
   return (
     <div className="page">
       <main className="content">
@@ -48,7 +51,7 @@ export default function Request() {
               </div>
             </div>
 
-            <div className="request-card">
+            <div ref={cardRef} className="request-card">
               <InquiryForm initialService={searchParams.get('service') ?? ''} />
             </div>
           </div>
