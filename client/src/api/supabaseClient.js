@@ -5,4 +5,9 @@ import { createClient } from '@supabase/supabase-js'
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-export const supabase = createClient(url, anonKey)
+// Demo mode imports this file too, so it must not throw when the keys are unset.
+export const isSupabaseConfigured = Boolean(url && anonKey)
+
+export const supabase = isSupabaseConfigured
+  ? createClient(url, anonKey)
+  : null
