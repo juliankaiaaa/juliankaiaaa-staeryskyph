@@ -1682,20 +1682,19 @@ img.service-photo {
 
 /* Cream letter sliding out of the top of the envelope */
 .cta-inner.sticker::after {
-  content: "";
+  content: "open me";
 
   position: absolute;
-  top: -22px;
-  left: 10%;
-  right: 10%;
-  z-index: -1;
+  bottom: 14px;
+  left: 0;
+  right: 0;
+  z-index: 0;
 
-  height: 58%;
-  border-radius: 4px;
-  background: var(--cream);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
-  -webkit-mask: none;
-  mask: none;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
   pointer-events: none;
 }
 
@@ -1713,26 +1712,44 @@ img.service-photo {
   transition: translate 0.4s ease;
 }
 
-.cta-inner.sticker::after {
-  transition:
-    top 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.5s ease;
-}
+
 
 @media (hover: hover) {
   .cta-inner.sticker:hover {
     translate: 0 -4px;
   }
 
-  .cta-inner.sticker:hover::after {
-    top: -54px;
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.25);
+  .cta-inner.sticker:hover .cta-letter {
+    translate: 0 -40px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cta-inner.sticker,
-  .cta-inner.sticker::after {
+  .cta-letter {
     transition: none;
   }
+}
+
+/* The letter sits inside the envelope and slides up on hover */
+.cta-letter {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+
+  padding: clamp(28px, 3.4vw, 44px) clamp(24px, 3.4vw, 44px);
+
+  border-radius: 4px;
+  background: var(--cream);
+  color: var(--brown);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  transition: translate 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cta-letter .btn {
+  margin-top: var(--space-xs);
 }

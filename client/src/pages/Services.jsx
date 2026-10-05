@@ -88,15 +88,17 @@ export default function Services() {
 
         <section className="band band--brown cta">
           <div ref={ctaRef} className="band-inner cta-inner sticker">
-            <Decor src={brownHeart} className="decor-inline cta-art" />
-
-            <h2>Have something specific in mind?</h2>
-
-            <p>Send us your request and let us see how we can help.</p>
-
-            <Link to="/request" className="btn">
-              Got A Request?
-            </Link>
+            <div className="cta-letter">
+              <Decor src={brownHeart} className="decor-inline cta-art" />
+  
+              <h2>Have something specific in mind?</h2>
+  
+              <p>Send us your request and let us see how we can help.</p>
+  
+              <Link to="/request" className="btn">
+                Got A Request?
+              </Link>
+            </div>
           </div>
         </section>
 

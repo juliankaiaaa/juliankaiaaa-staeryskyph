@@ -126,15 +126,17 @@ export default function About() {
 
         <section className="band band--brown cta">
           <div ref={ctaRef} className="band-inner cta-inner sticker">
-            <Decor src={brownHeart} className="decor-inline cta-art" />
-
-            <h2>Ready to find something?</h2>
-
-            <p>Tell us what you are looking for and we'll take it from there.</p>
-
-            <Link to="/request" className="btn">
-              Send A Request
-            </Link>
+            <div className="cta-letter">
+              <Decor src={brownHeart} className="decor-inline cta-art" />
+  
+              <h2>Ready to find something?</h2>
+  
+              <p>Tell us what you are looking for and we'll take it from there.</p>
+  
+              <Link to="/request" className="btn">
+                Send A Request
+              </Link>
+            </div>
           </div>
         </section>
 
