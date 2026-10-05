@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 /* Tilts an element in 3D toward the cursor. Off for touch and reduced motion */
-export default function useTilt(strength = 8) {
+export default function useTilt(strength = 3) {
   const ref = useRef(null)
 
   useEffect(() => {

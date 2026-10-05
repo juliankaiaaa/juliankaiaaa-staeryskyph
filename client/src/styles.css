@@ -2397,3 +2397,11 @@ img.service-photo {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* Card and its strips share one column, so the strips hang under the card */
+.request-form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
