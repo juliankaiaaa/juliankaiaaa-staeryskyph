@@ -3153,3 +3153,33 @@ img.service-photo {
 .service-card--expanded .service-actions {
   gap: var(--space-sm);
 }
+
+/* One spacing value for every card: title, description and buttons */
+.service-card {
+  --block-gap: var(--space-sm);
+}
+
+.service-card h3 {
+  margin: var(--block-gap) var(--block-gap) 0;
+}
+
+.service-card > p {
+  margin: var(--block-gap) var(--block-gap) 0;
+}
+
+.service-card .service-actions {
+  margin-top: var(--block-gap);
+  padding: 0 var(--block-gap) var(--block-gap);
+}
+
+.service-card--expanded .service-copy {
+  gap: var(--block-gap);
+}
+
+.service-card--expanded .service-copy > h3,
+.service-card--expanded .service-copy > p,
+.service-card--expanded .service-copy > .service-details,
+.service-card--expanded .service-copy > .service-actions {
+  margin: 0;
+  padding: 0;
+}
