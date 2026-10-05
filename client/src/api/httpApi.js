@@ -1,28 +1,35 @@
-// The real client. Every function here talks to the Express API.
+// The live client. Talks straight to Supabase, with access limited by the
+// Row Level Security rules in supabase/schema.sql.
 
-const BASE = import.meta.env.VITE_API_BASE_URL || ''
+import { supabase } from './supabaseClient.js'
 
-async function request(path, options) {
-  const response = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
-    ...options,
-  })
-
-  if (!response.ok) {
-    let message = `${response.status} ${response.statusText}`
-    try {
-      const body = await response.json()
-      if (body?.error) message = body.error
-    } catch {
-      // The body was not JSON, so the status line is all we have.
-    }
-    throw new Error(message)
-  }
-
-  return response.status === 204 ? null : response.json()
+function fail(error) {
+  throw new Error(error?.message || 'Something went wrong. Please try again.')
 }
 
-export const listServices = () => request('/api/services')
+export async function listServices() {
+  const { data, error } = await supabase
+    .from('services')
+    .select('id, number, title, summary, description')
+    .order('sort_order', { ascending: true })
 
-export const createRequest = (input) =>
-  request('/api/requests', { method: 'POST', body: JSON.stringify(input) })
+  if (error) fail(error)
+  return data
+}
+
+export async function createRequest(input) {
+  const { data, error } = await supabase
+    .from('requests')
+    .insert({
+      name: input.name,
+      contact: input.contact,
+      service: input.service,
+      link: input.link || '',
+      details: input.details,
+    })
+    .select()
+    .single()
+
+  if (error) fail(error)
+  return data
+}

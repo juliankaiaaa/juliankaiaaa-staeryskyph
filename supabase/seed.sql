@@ -1,5 +1,5 @@
--- Starter services. Running this twice adds duplicates, so run db:reset to
--- start clean.
+-- Starter services. Run after schema.sql. Clears the table first, so running
+-- it again does not duplicate rows.
 TRUNCATE services RESTART IDENTITY;
 
 INSERT INTO services (number, title, summary, description, sort_order) VALUES
