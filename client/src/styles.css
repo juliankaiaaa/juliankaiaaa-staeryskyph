@@ -1625,37 +1625,3 @@ img.service-photo {
   opacity: 0.85;
   pointer-events: none;
 }
-
-/* Folder PNG on each How it works step, cycling blue, green and pink */
-.step {
-  position: relative;
-  margin-top: 40px;
-}
-
-.step::before {
-  content: "";
-
-  position: absolute;
-  top: -44px;
-  left: -8px;
-  z-index: 1;
-
-  width: 130px;
-  aspect-ratio: 1.3;
-
-  background: url('./assets/images/decorations/blue_folder.png') no-repeat center / contain;
-  filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
-  pointer-events: none;
-}
-
-.step:nth-child(2)::before {
-  background-image: url('./assets/images/decorations/green_folder.png');
-}
-
-.step:nth-child(3)::before {
-  background-image: url('./assets/images/decorations/pink_folder.png');
-}
-
-.step:nth-child(4)::before {
-  background-image: url('./assets/images/decorations/blue_folder.png');
-}
