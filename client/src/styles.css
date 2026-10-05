@@ -9,7 +9,7 @@
   --sky: #b4dde3;
   --mustard: #e7b75a;
   --red: #b5443a;
-  --shadow: 4px 5px 0 rgba(62, 39, 35, 0.45);
+  --shadow: 0 10px 22px rgba(62, 39, 35, 0.22);
 
   --font-main: 'Poppins', sans-serif;
 
@@ -160,6 +160,7 @@ h3 {
 /* Buttons, one shape everywhere */
 
 .btn {
+  box-shadow: 0 4px 10px rgba(62, 39, 35, 0.2);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -835,6 +836,7 @@ nav a[aria-current]:hover {
 }
 
 .service-panel {
+  background-image: linear-gradient(160deg, rgba(255, 250, 240, 0.25), transparent 60%);
   display: grid;
   place-items: center;
 
@@ -1013,7 +1015,7 @@ nav a[aria-current]:hover {
   padding: calc(var(--card-pad) + var(--scallop) * 0.5);
 
   color: var(--brown);
-  filter: drop-shadow(4px 5px 0 rgba(62, 39, 35, 0.45));
+  filter: drop-shadow(0 10px 16px rgba(62, 39, 35, 0.22));
 }
 
 .sticker .btn {
