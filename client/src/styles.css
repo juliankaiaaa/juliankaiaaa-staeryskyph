@@ -553,6 +553,38 @@ nav a[aria-current]:hover {
   background: var(--brown);
 }
 
+/* Washi tape, translucent with torn looking ends, used on photos and cards */
+.polaroid::before,
+.service-card::before {
+  content: "";
+
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  z-index: 2;
+
+  width: 72px;
+  height: 22px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0 2px,
+      transparent 2px 7px
+    ),
+    rgba(244, 238, 230, 0.8);
+  clip-path: polygon(
+    0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%,
+    0 100%, 3% 75%, 0 50%, 3% 25%
+  );
+  pointer-events: none;
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.service-card:nth-child(even)::before {
+  transform: translateX(-50%) rotate(5deg);
+}
+
 .star-about {
   --size: clamp(32px, 3.2vw, 48px);
   --tilt: -10deg;
@@ -707,6 +739,8 @@ nav a[aria-current]:hover {
 /* Service card, a polaroid style frame with the art square and text inside */
 
 .service-card {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 
