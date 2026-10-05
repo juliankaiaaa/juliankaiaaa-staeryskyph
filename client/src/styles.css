@@ -3380,3 +3380,14 @@ img.service-photo {
 .band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
   font-size: clamp(11px, 0.8vw, 13px);
 }
+
+/* Grid cards: button sits a small fixed distance under the text, no reserved gap */
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-actions {
+  margin-top: var(--space-md);
+  padding-top: 0;
+}
