@@ -1776,3 +1776,17 @@ img.service-photo {
   margin-top: var(--space-xs);
 }
 
+/* Letter slides down into the envelope, dips slightly, then settles */
+@keyframes letter-in {
+  0% {
+    translate: 0 95px;
+  }
+
+  60% {
+    translate: 0 150px;
+  }
+
+  100% {
+    translate: 0 110px;
+  }
+}
