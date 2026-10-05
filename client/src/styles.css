@@ -769,14 +769,27 @@ nav a[aria-current]:hover {
 
   border-radius: 4px;
 
-  background: var(--pink);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.12) 0 1px,
+      transparent 1px 4px
+    ),
+    var(--pink);
   color: var(--brown);
   text-align: left;
-  box-shadow: 6px 7px 0 rgba(62, 39, 35, 0.45);
+
+  /* Two offset sheets under the frame, a cream layer and a shadow */
+  box-shadow:
+    6px 7px 0 var(--cream),
+    7px 8px 0 rgba(62, 39, 35, 0.4);
 
   transform: rotate(var(--tilt, 0deg));
-  transition: transform 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
+
 
 .service-card:nth-child(odd) {
   --tilt: -0.8deg;
@@ -787,7 +800,10 @@ nav a[aria-current]:hover {
 }
 
 .service-card:hover {
-  transform: rotate(0deg) translateY(-3px);
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow:
+    8px 9px 0 var(--cream),
+    9px 10px 0 rgba(62, 39, 35, 0.4);
 }
 
 .service-card .btn {
