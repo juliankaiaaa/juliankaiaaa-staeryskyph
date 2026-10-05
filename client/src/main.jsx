@@ -12,6 +12,7 @@ import App from './App.jsx'
 import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
 import Request from './pages/Request.jsx'
+import Admin from './pages/Admin.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 
 import './styles.css'
@@ -58,6 +59,7 @@ function AnimatedRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/request" element={<Request />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
