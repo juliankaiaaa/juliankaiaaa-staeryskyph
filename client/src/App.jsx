@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from './components/Hero.jsx'
 import AboutSection from './components/AboutSection.jsx'
@@ -8,6 +9,7 @@ import Decor from './components/Decor.jsx'
 import { NAV_LINKS } from './components/Navbar.jsx'
 import useActiveSection from './hooks/useActiveSection.js'
 import { SERVICES } from './data/services.js'
+import { listServices } from './api'
 import pinkStar from './assets/images/decorations/pink_star.png'
 import pinkAsterisk from './assets/images/decorations/pink_asterisk.png'
 
@@ -15,6 +17,13 @@ const SECTION_IDS = NAV_LINKS.map((link) => link.id)
 
 /* Home, the cover page */
 export default function App() {
+  // The static list shows at once and is replaced when the API answers
+  const [services, setServices] = useState(SERVICES)
+
+  useEffect(() => {
+    listServices().then(setServices).catch(() => {})
+  }, [])
+
   const active = useActiveSection(SECTION_IDS)
 
   return (
@@ -53,7 +62,7 @@ export default function App() {
           </div>
 
           <ServiceCarousel>
-            {SERVICES.map((service) => (
+            {services.map((service) => (
               <ServiceCard
                 key={service.number}
                 number={service.number}

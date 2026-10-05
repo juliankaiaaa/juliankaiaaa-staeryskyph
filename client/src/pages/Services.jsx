@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from '../components/Hero.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
@@ -6,6 +6,7 @@ import ServiceCard from '../components/ServiceCard.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
 import { SERVICES } from '../data/services.js'
+import { listServices } from '../api'
 import brownHeart from '../assets/images/decorations/brown_heart.png'
 
 const STEPS = [
@@ -29,6 +30,13 @@ const STEPS = [
 
 /* Services page, same cards as the Home carousel in a full grid */
 export default function Services() {
+  // The static list shows at once and is replaced when the API answers
+  const [services, setServices] = useState(SERVICES)
+
+  useEffect(() => {
+    listServices().then(setServices).catch(() => {})
+  }, [])
+
   const ctaRef = useRef(null)
 
   useScallopFit(ctaRef, '--scallop')
@@ -52,7 +60,7 @@ export default function Services() {
             </div>
 
             <div className="grid grid--4">
-              {SERVICES.map((service) => (
+              {services.map((service) => (
                 <ServiceCard
                   key={service.number}
                   number={service.number}
