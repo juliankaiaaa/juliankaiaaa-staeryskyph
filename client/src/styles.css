@@ -1718,7 +1718,7 @@ img.service-photo {
 
 @media (hover: hover) {
   .cta-inner.sticker:not(:hover) .cta-letter {
-    animation: letter-in 2.4s ease-in-out;
+    animation: letter-in 2.4s ease-in-out forwards;
   }
 
   .cta-inner.sticker:hover {
@@ -1748,7 +1748,7 @@ img.service-photo {
   z-index: 1;
   min-height: 300px;
   justify-content: center;
-  translate: 0 110px;
+  translate: 0 170px;
   z-index: 1;
 
   display: flex;
@@ -1787,6 +1787,6 @@ img.service-photo {
   }
 
   100% {
-    translate: 0 110px;
+    translate: 0 170px;
   }
 }
