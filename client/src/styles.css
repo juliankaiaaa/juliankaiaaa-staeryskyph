@@ -1412,3 +1412,41 @@ img.service-photo {
 .service-number {
   transition: transform 0.3s ease;
 }
+
+/* Mission and vision cards, a little more room and some paper details */
+.band--brown .grid--2 > .card {
+  padding: clamp(28px, 3.2vw, 44px);
+}
+
+.band--brown .grid--2 > .card h2 {
+  margin-bottom: var(--space-md);
+}
+
+.band--brown .grid--2 > .card > p {
+  max-width: 28em;
+}
+
+.band--brown .grid--2 > .card::after {
+  content: "";
+
+  position: absolute;
+  top: -10px;
+  left: 50%;
+
+  width: 88px;
+  height: 22px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.3) 0 2px,
+      transparent 2px 7px
+    ),
+    rgba(216, 235, 249, 0.92);
+  transform: translateX(-50%) rotate(-3deg);
+  pointer-events: none;
+}
+
+.band--brown .grid--2 > .card--brown {
+  background: linear-gradient(160deg, #4a322c 0%, var(--brown) 70%);
+}
