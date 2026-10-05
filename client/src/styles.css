@@ -2390,3 +2390,17 @@ img.service-photo {
   background: var(--sky);
   box-shadow: none;
 }
+
+/* Request form card matches the shared card style used on the other pages */
+.request-card {
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--pink);
+  box-shadow: var(--shadow);
+  transform: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.request-card:hover {
+  box-shadow: 0 16px 30px rgba(62, 39, 35, 0.3);
+}
