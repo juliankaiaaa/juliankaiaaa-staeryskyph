@@ -69,7 +69,7 @@ export default function Services() {
                 <ServiceCard
                   key={service.number}
                   title={service.title}
-                  text={service.description}
+                  text={openNumber === service.number ? service.description : service.summary}
                   photo={service.photo}
                   action={{ label: 'Request this service', to: `/request?service=${SLUG_BY_NUMBER[service.number]}` }}
                   expanded={openNumber === service.number}
