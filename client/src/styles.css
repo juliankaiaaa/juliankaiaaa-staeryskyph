@@ -1794,3 +1794,36 @@ img.service-photo {
     scale: 1;
   }
 }
+
+/* Stronger hover on How it works steps: lift, tilt, deeper shadow, tab and badge react */
+.step {
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.step::before {
+  transition:
+    top 0.4s ease,
+    width 0.4s ease;
+}
+
+.step .tag {
+  transition: transform 0.4s ease;
+}
+
+@media (hover: hover) {
+  .step:hover {
+    transform: translateY(-8px) rotate(-1.2deg);
+    box-shadow: 0 22px 36px rgba(62, 39, 35, 0.32);
+  }
+
+  .step:hover::before {
+    top: -30px;
+    width: 58%;
+  }
+
+  .step:hover .tag {
+    transform: scale(1.12);
+  }
+}
