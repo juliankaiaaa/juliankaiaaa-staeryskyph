@@ -2211,3 +2211,34 @@ img.service-photo {
 .request-info > p {
   max-width: 34em;
 }
+
+/* Request form, inspired by stacked paper notes with dot markers */
+.request-card {
+  position: relative;
+  padding-left: clamp(52px, 6vw, 72px);
+  background:
+    linear-gradient(170deg, rgba(255, 250, 240, 0.45), transparent 42%),
+    var(--pink);
+  box-shadow:
+    14px 14px 0 var(--mustard),
+    0 24px 40px rgba(0, 0, 0, 0.3);
+}
+
+.request-card::before {
+  content: "";
+
+  position: absolute;
+  top: clamp(28px, 3.4vw, 44px);
+  bottom: clamp(28px, 3.4vw, 44px);
+  left: clamp(18px, 2.2vw, 26px);
+  width: 12px;
+
+  background: radial-gradient(circle, var(--brown) 0 4.5px, transparent 5px) center top / 12px 34px repeat-y;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.request-info h2 {
+  padding-bottom: var(--space-md);
+  border-bottom: 1.5px solid rgba(244, 201, 214, 0.6);
+}
