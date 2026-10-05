@@ -1,130 +1,186 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import Hero from '../components/Hero.jsx'
-import useScallopFit from '../hooks/useScallopFit.js'
-import AboutSection from '../components/AboutSection.jsx'
-import SiteFooter from '../components/SiteFooter.jsx'
-import Decor from '../components/Decor.jsx'
-import pinkHeart from '../assets/images/decorations/pink_heart.png'
+import { useScallopFit } from '../App'
+import './pages.css'
 
-/* About page, same cover and about layout as Home */
 export default function About() {
-  const ctaRef = useRef(null)
+  const panelRef = useRef(null)
+  const imageRef = useRef(null)
 
-  useScallopFit(ctaRef, '--scallop')
+  useScallopFit(panelRef, '--scallop')
+  useScallopFit(imageRef, '--scallop-lg')
 
   return (
-    <div className="page">
-      <main className="content">
+    <div className="inner-page about-page">
+      <main>
+        <section className="hero">
+          <div className="pink-panel" ref={panelRef}></div>
 
-        <Hero
-          active="about"
-          variant="page"
-          kicker="GET TO KNOW US"
-          title="About Staery Sky PH"
-          intro="Making overseas shopping feel a little closer, easier, and more accessible for K-pop fans."
-        />
+          <nav aria-label="Main">
+            <Link to="/">Home</Link>
+            <Link to="/about" aria-current="page">About</Link>
+            <Link to="/services">Services</Link>
+            <Link to="/request">Connect</Link>
+          </nav>
 
-        <AboutSection label="WHO WE ARE" title="Bringing your finds closer to home.">
-          <p>
-            Staery Sky PH is a purchase assistance service created to help
-            K-pop fans access items from overseas shops and marketplaces.
-          </p>
+          <div className="hero-content">
+            <span className="star star-hero" aria-hidden="true"></span>
 
-          <p>
-            Whether you found something on Mercari Japan, Bunjang Korea,
-            Weverse, or another overseas store, we help make the purchasing
-            and forwarding process easier to navigate.
-          </p>
+            <p className="page-kicker">GET TO KNOW US</p>
 
-          <p>
-            Our goal is simple: help you get the things you love from
-            wherever they are to wherever you are.
-          </p>
-        </AboutSection>
+            <h1>About Staery Sky PH</h1>
 
-        <section className="band band--brown">
-          <div className="band-inner grid grid--2">
-            <article className="card card--pink">
-              <span className="section-label">OUR MISSION</span>
+            <p className="page-intro">
+              Making overseas shopping feel a little closer, easier, and
+              more accessible for K-pop fans.
+            </p>
+          </div>
 
-              <h2>Make overseas shopping easier.</h2>
+          <span className="heart hero-blob" aria-hidden="true"></span>
+        </section>
 
+        <section className="about-story">
+          <div className="about-story-image about-image" ref={imageRef}>
+            <div className="fake-polaroid">
+              <div className="fake-photo">
+                <span>SS</span>
+              </div>
+
+              <p>from here, there, everywhere</p>
+            </div>
+
+            <span className="floating-star">✦</span>
+            <span className="floating-heart">♡</span>
+          </div>
+
+          <div className="about-story-content">
+            <span className="section-label">WHO WE ARE</span>
+
+            <h2>Bringing your finds closer to home.</h2>
+
+            <p>
+              Staery Sky PH is a purchase assistance service created to
+              help K-pop fans access items from overseas shops and
+              marketplaces.
+            </p>
+
+            <p>
+              Whether you found something on Mercari Japan, Bunjang
+              Korea, Weverse, or another overseas store, we help make
+              the purchasing and forwarding process easier to navigate.
+            </p>
+
+            <p>
+              Our goal is simple: help you get the things you love from
+              wherever they are to wherever you are.
+            </p>
+          </div>
+        </section>
+
+        <section className="mission-vision">
+          <article className="mv-card mission-card">
+            <span className="mv-label">OUR MISSION</span>
+
+            <h2>Make overseas shopping easier.</h2>
+
+            <p>
+              To provide accessible and organized purchase assistance
+              services for fans who want to shop from overseas
+              platforms.
+            </p>
+          </article>
+
+          <article className="mv-card vision-card">
+            <span className="mv-label">OUR VISION</span>
+
+            <h2>More finds, fewer barriers.</h2>
+
+            <p>
+              To become a trusted bridge between fans in the Philippines
+              and the merchandise they love from around the world.
+            </p>
+          </article>
+        </section>
+
+        <section className="why-section">
+          <div className="why-heading">
+            <span className="section-label">WHY CHOOSE US?</span>
+
+            <h2>A little more care behind every order.</h2>
+          </div>
+
+          <div className="why-grid">
+            <article>
+              <span>01</span>
+              <h3>Organized</h3>
               <p>
-                To provide accessible and organized purchase assistance
-                services for fans who want to shop from overseas platforms.
+                Orders, payments, shipping details, and updates are
+                organized so you can easily keep track of your purchase.
               </p>
             </article>
 
-            <article className="card card--brown">
-              <span className="section-label">OUR VISION</span>
-
-              <h2>More finds, fewer barriers.</h2>
-
+            <article>
+              <span>02</span>
+              <h3>Accessible</h3>
               <p>
-                To become a trusted bridge between fans in the Philippines
-                and the merchandise they love from around the world.
+                We help bridge the gap between you and overseas shops
+                that may otherwise be difficult to access.
+              </p>
+            </article>
+
+            <article>
+              <span>03</span>
+              <h3>Fan-focused</h3>
+              <p>
+                Built with collectors and K-pop fans in mind, from
+                individual finds to larger merchandise orders.
               </p>
             </article>
           </div>
         </section>
 
-        <section className="band band--pink">
-          <div className="band-inner">
-            <div className="band-head">
-              <span className="section-label">WHY CHOOSE US?</span>
+        <section className="page-cta">
+          <span className="page-cta-star">♡</span>
 
-              <h2>A little more care behind every order.</h2>
-            </div>
+          <h2>Ready to find something?</h2>
 
-            <div className="grid grid--3">
-              <article className="card card--brown">
-                <span className="tag">01</span>
-                <h3>Organized</h3>
-                <p>
-                  Orders, payments, shipping details, and updates are
-                  organized so you can easily keep track of your purchase.
-                </p>
-              </article>
+          <p>
+            Tell us what you are looking for and we'll take it from there.
+          </p>
 
-              <article className="card card--brown">
-                <span className="tag">02</span>
-                <h3>Accessible</h3>
-                <p>
-                  We help bridge the gap between you and overseas shops that
-                  may otherwise be difficult to access.
-                </p>
-              </article>
-
-              <article className="card card--brown">
-                <span className="tag">03</span>
-                <h3>Fan-focused</h3>
-                <p>
-                  Built with collectors and K-pop fans in mind, from
-                  individual finds to larger merchandise orders.
-                </p>
-              </article>
-            </div>
-          </div>
+          <Link to="/request" className="primary-button">
+            Send A Request
+          </Link>
         </section>
-
-        <section className="band band--brown cta">
-          <div ref={ctaRef} className="band-inner cta-inner sticker">
-            <Decor src={pinkHeart} className="decor-inline cta-art" />
-
-            <h2>Ready to find something?</h2>
-
-            <p>Tell us what you are looking for and we'll take it from there.</p>
-
-            <Link to="/request" className="btn">
-              Send A Request
-            </Link>
-          </div>
-        </section>
-
       </main>
 
-      <SiteFooter />
+      <footer>
+        <div>
+          <h3>Hours</h3>
+          <p>Monday-Friday</p>
+          <p>10:00 AM-10:00 PM</p>
+          <br />
+          <p>Saturday-Sunday</p>
+          <p>11:00 AM-9:00 PM</p>
+        </div>
+
+        <div>
+          <h3>Location</h3>
+          <p>Pampanga, Philippines</p>
+        </div>
+
+        <div>
+          <h3>Links</h3>
+          <p><Link to="/about">About</Link></p>
+          <p><a href="#">X / Twitter</a></p>
+          <p><a href="#">Facebook</a></p>
+          <p><a href="#">Instagram</a></p>
+        </div>
+
+        <span className="star star-outline footer-mark" aria-hidden="true"></span>
+
+        <div className="copyright">© 2026 Staery Sky PH</div>
+      </footer>
     </div>
   )
 }

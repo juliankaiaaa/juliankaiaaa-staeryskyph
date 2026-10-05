@@ -1,21 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* Brown and pink are the foundation, the other three are small accents */
+/* Tokens */
+
 :root {
-  --brown: #3e2723;
-  --pink: #f4c9d6;
+  /* Color */
+  --brown: #4e3228;
+  --espresso: #3d2b27;
+  --espresso-deep: #33231f;
+  --pink: #f4c2d0;
+  --sky: #a9d6dc;
+  --sage: #a8c98b;
+  --ink: #3b2923;
+  --white: #ffffff;
   --cream: #f4eee6;
-  --sage: #b5d3a0;
-  --sky: #b4dde3;
-  --mustard: #e7b75a;
-  --red: #b5443a;
-  --shadow: 4px 5px 0 rgba(62, 39, 35, 0.45);
+  --cream-deep: #e6dccd;
+  --muted: #d9cfcb;
+  --line: rgba(255, 255, 255, 0.2);
+
+  /* Paper details */
+  --tape-cream: rgba(244, 238, 230, 0.8);
+  --tape-sky: rgba(169, 214, 220, 0.82);
+  --tape-pink: rgba(244, 194, 208, 0.85);
+  --paper-shadow: 3px 4px 0 rgba(0, 0, 0, 0.2);
+  --edge: var(--ink);
+  --torn: polygon(0.0% 3%, 14.3% 0%, 28.6% 3%, 42.9% 3%, 57.1% 0%, 71.4% 0%, 85.7% 2%, 100.0% 2%, 99% 20.0%, 98% 40.0%, 99% 60.0%, 99% 80.0%, 100.0% 98%, 85.7% 100%, 71.4% 97%, 57.1% 99%, 42.9% 98%, 28.6% 100%, 14.3% 100%, 0.0% 97%, 2% 80.0%, 1% 60.0%, 1% 40.0%, 1% 20.0%);
 
   --font-main: 'Poppins', sans-serif;
 
-  /* Type scale, capped so text never grows to fill the screen */
+  /* Type scale, fixed caps so text never grows to fill the screen */
   --fs-display: clamp(36px, 8vw, 112px);
-  --fs-page-title: clamp(32px, 6vw, 72px);
   --fs-subtitle: clamp(13px, 1.9vw, 26px);
   --fs-h2: clamp(24px, 3vw, 42px);
   --fs-label: clamp(14px, 1.1vw, 16px);
@@ -26,24 +39,20 @@
   --lh-tight: 1.1;
   --lh-body: 1.6;
 
-  /* Spacing and layout */
+  /* Spacing */
   --gutter: clamp(24px, 8vw, 120px);
   --section-y: clamp(48px, 6vw, 96px);
-  --content-max: 1180px;
   --panel-inset: clamp(16px, 3vw, 44px);
   --nav-inset: clamp(28px, 8.5vw, 125px);
-  --card-pad: clamp(22px, 2.6vw, 32px);
-  --grid-gap: clamp(20px, 3vw, 32px);
-  --section-height: max(560px, 100svh);
-
   --space-xs: 4px;
   --space-sm: 10px;
   --space-md: 16px;
-  --space-lg: 24px;
-
   --radius: 8px;
   --radius-lg: 12px;
   --radius-pill: 999px;
+
+  /* Every major section fits the browser height */
+  --section-height: max(560px, 100svh);
 
   /* Scallop sizes */
   --scallop: clamp(26px, 3.4vw, 52px);
@@ -51,10 +60,7 @@
 
   /* Polka dots, one seamless half drop tile */
   --dot-tile: 48px;
-  --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23f4c9d6'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Ccircle cx='36' cy='36' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
-
-  /* Torn paper edge used by the scrap and the footer */
-  --torn: polygon(0 3%, 14% 0, 29% 3%, 43% 3%, 57% 0, 71% 0, 86% 2%, 100% 2%, 99% 20%, 98% 40%, 99% 60%, 99% 80%, 100% 98%, 86% 100%, 71% 97%, 57% 99%, 43% 98%, 29% 100%, 14% 100%, 0 97%, 2% 80%, 1% 60%, 1% 40%, 1% 20%);
+  --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23f4eee6'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Ccircle cx='36' cy='36' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Base */
@@ -65,11 +71,13 @@
   box-sizing: border-box;
 }
 
+/* Full width shell for every page, clears starter template layout */
 html,
 body,
 #root,
 .page {
   width: 100%;
+  max-width: none;
   margin: 0;
   padding: 0;
 }
@@ -85,278 +93,182 @@ html {
 }
 
 body {
+  display: block;
   min-height: 100vh;
 
-  background: var(--brown);
-  color: var(--pink);
+  background: var(--espresso);
+  color: var(--ink);
 
   font-family: var(--font-main);
   font-size: var(--fs-body);
   line-height: var(--lh-body);
+  text-align: left;
 }
 
-a {
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-}
-
-:is(a, button, input, select, textarea):focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
 
-/* Typography, one style per level on every page */
+/* Scrapbook parts */
 
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 600;
-  line-height: var(--lh-tight);
-  text-wrap: balance;
-}
-
-h1 {
-  font-size: var(--fs-display);
-  letter-spacing: -0.02em;
-}
-
-h2 {
-  font-size: var(--fs-h2);
-}
-
-h3 {
-  font-size: var(--fs-label);
-}
-
-.section-label {
-  display: block;
-  margin-bottom: 14px;
-
-  font-size: var(--fs-small);
-  font-weight: 600;
-  letter-spacing: 0.12em;
-}
-
-.text-link {
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.text-link:hover {
-  opacity: 0.7;
-}
-
-/* Buttons, one shape everywhere */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
-
-  padding: 0.6em 1.6em;
-
-  border: 0;
-  border-radius: var(--radius-pill);
-
-  background: var(--brown);
-  color: var(--pink);
-
-  font: inherit;
-  font-size: var(--fs-small);
-  font-weight: 500;
-  text-decoration: none;
-
-  cursor: pointer;
-
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.btn:hover {
-  opacity: 0.85;
-  transform: translateY(-1px);
-}
-
-/* Tags, the small outlined numbers and labels */
-
-.tag {
-  display: inline-block;
-  padding: 0.15em 0.75em;
-
-  border: 1px solid currentColor;
-  border-radius: var(--radius-pill);
-
-  font-size: var(--fs-small);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-}
-
-/* Bands and cards, shared by every page */
-
-.band {
-  padding-block: var(--section-y);
-  padding-inline: var(--gutter);
-}
-
-.band--brown {
-  background: var(--brown);
-  color: var(--pink);
-}
-
-.band--pink {
-  position: relative;
-
-  background: var(--pink);
-  color: var(--brown);
-}
-
-/* Torn paper edge on the top of each pink band */
-.band--pink::before {
+/* Washi tape, translucent with a faint stripe and torn ends */
+.service-card::after,
+.polaroid::before,
+.pink-panel::before,
+.pink-panel::after,
+.about::before {
   content: "";
 
   position: absolute;
-  inset: -11px 0 auto;
-  height: 12px;
+  left: 50%;
+  top: -10px;
 
-  background: var(--pink);
-  clip-path: polygon(0 100%, 0 55%, 3% 45%, 6% 50%, 9% 30%, 13% 20%, 17% 35%, 21% 35%, 25% 45%, 29% 20%, 33% 65%, 38% 20%, 42% 35%, 46% 30%, 50% 30%, 54% 35%, 58% 65%, 63% 35%, 67% 30%, 71% 20%, 75% 35%, 79% 65%, 83% 20%, 88% 30%, 92% 20%, 96% 65%, 100% 50%, 100% 100%);
+  width: 64px;
+  height: 20px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0 2px,
+      transparent 2px 7px
+    ),
+    var(--tape-color, var(--tape-cream));
+  clip-path: polygon(
+    0 0, 100% 0, 98% 25%, 100% 50%, 98% 75%, 100% 100%,
+    0 100%, 2% 75%, 0 50%, 2% 25%
+  );
+  pointer-events: none;
+  transform: translateX(-50%) rotate(var(--tape-tilt, -3deg));
+}
+
+/* Paper scrap with a torn outline */
+.paper-scrap,
+.hero::after {
+  content: "";
+
+  background: var(--scrap-color, var(--cream));
+  clip-path: var(--torn);
   pointer-events: none;
 }
 
-.band-inner {
-  max-width: var(--content-max);
-  margin-inline: auto;
-}
-
-.band-head {
-  max-width: 40em;
-  margin-bottom: clamp(32px, 4vw, 56px);
-}
-
-/* Buttons on a brown surface flip to pink */
-.band--brown .btn,
-.card--brown .btn {
-  background: var(--pink);
-  color: var(--brown);
-}
-
-/* Cards on pink keep a brown button, even inside a brown band */
-.card--pink .btn {
-  background: var(--brown);
-  color: var(--pink);
-}
-
-.card {
-  position: relative;
-
-  padding: var(--card-pad);
-
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow);
-}
-
-.card--pink {
-  background: var(--pink);
-  color: var(--brown);
-}
-
-.card--brown {
-  border: 1.5px solid var(--pink);
-  background: var(--brown);
-  color: var(--pink);
-}
-
-.card .section-label {
-  margin-bottom: var(--space-lg);
-}
-
-.grid {
-  display: grid;
-  gap: var(--grid-gap);
-}
-
-.grid--2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid--4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-/* Sticker art, drawn from the decorations folder */
-
-.decor {
+/*
+  Sticker shapes built from plain CSS.
+  The wrapper carries a thin die cut outline and a paper shadow, and the
+  shape itself is drawn by the element or its pseudo elements.
+*/
+.star,
+.heart,
+.blob {
   position: absolute;
 
-  display: block;
   width: var(--size, 28px);
-  height: auto;
 
-  filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
+  filter:
+    drop-shadow(1px 0 0 var(--edge, transparent))
+    drop-shadow(-1px 0 0 var(--edge, transparent))
+    drop-shadow(0 1px 0 var(--edge, transparent))
+    drop-shadow(0 -1px 0 var(--edge, transparent))
+    drop-shadow(2px 3px 0 rgba(40, 22, 16, 0.25));
   pointer-events: none;
   transform: rotate(var(--tilt, 0deg));
 }
 
-/* Art placed inside the flow of a card or section, not on the page edge */
-.decor-inline {
-  position: relative;
-  margin-inline: auto;
+/* Five point star */
+.star {
+  aspect-ratio: 1;
 }
 
-/* Hero, the cover page */
+.star::before,
+.star::after {
+  content: "";
 
-.hero {
-  position: relative;
-  isolation: isolate;
+  position: absolute;
+  inset: 0;
 
-  display: grid;
-  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  background: var(--fill, var(--pink));
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+}
 
-  min-height: var(--section-height);
-  padding: var(--panel-inset);
+/* Outlined star, the inner star cuts a hole in the fill */
+.star-outline::after {
+  inset: 24% 24% 22%;
 
+  background: var(--hole, var(--espresso));
+}
+
+/* Heart from two rotated lobes */
+.heart {
+  height: calc(var(--size, 28px) * 0.9);
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+
+  width: 50%;
+  height: 88%;
+
+  border-radius: 999px 999px 0 0;
+
+  background: var(--fill, var(--pink));
+}
+
+.heart::before {
+  left: 50%;
+
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart::after {
+  left: 0;
+
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/* Soft abstract blob */
+.blob {
+  aspect-ratio: 1.15;
+
+  border-radius: 58% 42% 55% 45% / 48% 58% 42% 52%;
+
+  background: var(--fill, var(--sky));
+}
+
+/* Polka dots appear only on the hero and the About image */
+
+.hero,
+.about-image {
   background:
     var(--dots) 0 0 / var(--dot-tile) var(--dot-tile),
     var(--brown);
-}
-
-.hero > * {
-  grid-area: 1 / 1;
 }
 
 /*
   Shared scalloped shape.
   The body sits half a scallop inside the edge and rows of half circles
   form the border. A small script counts how many scallops fit along each
-  side and sets --cols and --rows, so every tile fits exactly.
+  side and sets --cols and --rows, so every tile fits exactly and the
+  corners stay clean in any browser. The defaults below only apply until
+  the script runs.
 */
 .pink-panel,
-.about-image,
-.sticker {
+.about-image {
   --cols: 24;
   --rows: 12;
 }
 
 .pink-panel,
-.about-image::before,
-.sticker {
+.about-image::before {
   --bump: radial-gradient(
     ellipse closest-side,
     var(--pink) calc(100% - 1px),
@@ -375,15 +287,63 @@ h3 {
     var(--bump) right top / var(--tile) repeat-y;
 }
 
+/* Hero, the cover page */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+
+  min-height: var(--section-height);
+  padding: var(--panel-inset);
+}
+
+/* Paper scrap peeking out from behind the panel */
+.hero::after {
+  --scrap-color: var(--cream-deep);
+
+  position: absolute;
+  right: calc(var(--panel-inset) * 0.3);
+  bottom: calc(var(--panel-inset) * 0.2);
+  z-index: -1;
+
+  width: clamp(120px, 13vw, 190px);
+  height: clamp(80px, 8.5vw, 124px);
+
+  transform: rotate(3deg);
+}
+
+/* Panel, nav and text share one grid cell and stack in order */
+.hero > * {
+  grid-area: 1 / 1;
+}
+
+/* Offset shadow makes the panel read as a sheet of paper */
 .pink-panel {
   position: relative;
   z-index: 0;
+  filter: drop-shadow(4px 5px 0 rgba(40, 22, 16, 0.3));
 }
 
-/* Navigation, inside the hero panel */
+/* Tape holding two corners of the panel */
+.pink-panel::before {
+  --tape-tilt: -38deg;
+
+  top: calc(var(--scallop) * 0.15);
+  left: calc(var(--scallop) * 0.55);
+}
+
+.pink-panel::after {
+  --tape-tilt: 38deg;
+
+  top: calc(var(--scallop) * 0.15);
+  left: auto;
+  right: calc(var(--scallop) * -0.45);
+}
 
 nav {
-  position: relative;
   z-index: 1;
   align-self: start;
 
@@ -393,11 +353,11 @@ nav {
   gap: var(--space-sm);
 
   padding: clamp(24px, 3.6vw, 56px) var(--nav-inset) 0;
-
-  color: var(--brown);
 }
 
 nav a {
+  color: var(--ink);
+
   font-size: var(--fs-nav);
   font-weight: 500;
 
@@ -416,7 +376,7 @@ nav a:hover {
   opacity: 0.6;
 }
 
-/* The current page or section keeps the underline */
+/* The current section or page keeps the underline */
 nav a[aria-current] {
   text-decoration-color: currentColor;
 }
@@ -432,44 +392,39 @@ nav a[aria-current]:hover {
 
   padding: 0 var(--scallop);
 
-  color: var(--brown);
   text-align: center;
 }
 
-.hero--page h1 {
-  font-size: var(--fs-page-title);
-}
+.hero-content h1 {
+  margin: 0;
 
-.page-kicker {
-  margin: 0 0 var(--space-sm);
-
-  font-size: var(--fs-small);
+  font-size: var(--fs-display);
   font-weight: 600;
-  letter-spacing: 0.12em;
+  line-height: 1;
+  letter-spacing: -0.02em;
 }
 
-.hero-intro {
-  max-width: 34em;
-  margin: 0.75em auto 0;
+.hero-content p {
+  margin: 0.5em 0 0;
 
   font-size: var(--fs-subtitle);
   line-height: 1.3;
 }
 
-/* Stickers on the hero */
-
-/* Sits just above the top right of the title, clear of the letters */
+/* Paper star beside the title */
 .star-hero {
-  --size: clamp(24px, 3.4vw, 44px);
+  --fill: var(--sage);
+  --size: calc(var(--fs-display) * 0.3);
   --tilt: 14deg;
 
-  top: calc(var(--size) * -1.3);
-  right: calc(var(--size) * -0.6);
+  top: calc(var(--fs-display) * -0.14);
+  right: calc(var(--scallop) - 0.6em);
 }
 
-/* Paper clip clipped onto the bottom left corner of the hero panel */
-.hero-clip {
-  --size: clamp(48px, 5vw, 76px);
+/* Small sticker blob inside the panel corner */
+.hero-blob {
+  --fill: var(--sky);
+  --size: clamp(36px, 4vw, 60px);
   --tilt: -8deg;
 
   position: relative;
@@ -479,7 +434,19 @@ nav a[aria-current]:hover {
   margin: 0 0 calc(var(--scallop) + var(--space-md)) var(--nav-inset);
 }
 
-/* About, pink text beside the scalloped image */
+/* Section headings share one style */
+
+.about-text h2,
+.services-heading h2 {
+  margin: 0;
+
+  font-size: var(--fs-h2);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+}
+
+/* About, an about the shop page */
 
 .about {
   position: relative;
@@ -490,6 +457,16 @@ nav a[aria-current]:hover {
   min-height: var(--section-height);
 }
 
+/* Tape over the seam between the hero and this page */
+.about::before {
+  top: -13px;
+  z-index: 2;
+
+  width: 120px;
+  height: 26px;
+}
+
+/* Text block stays the same size and centers in wide columns */
 .about-text {
   display: flex;
   flex-direction: column;
@@ -500,70 +477,92 @@ nav a[aria-current]:hover {
   padding: var(--section-y) max(var(--gutter), calc((50vw - 34em) / 2));
 
   background: var(--pink);
-  color: var(--brown);
 }
 
-.about-text > h2 {
-  max-width: 12em;
+.about-text h2 {
+  max-width: 10em;
 }
 
-.about-text > p {
+.about-text p {
   max-width: 34em;
+  margin: 0;
 }
 
-.about-text .btn {
-  margin-top: var(--space-xs);
+.about-text button {
+  padding: 0.6em 1.6em;
+
+  border: 0;
+  border-radius: var(--radius-pill);
+
+  background: var(--espresso);
+  color: var(--white);
+
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
-/* Dotted side, the scalloped shape fills the padded area */
+.about-text button:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+/* The scalloped shape fills the padded area of the image side */
 .about-image {
-  position: relative;
-
   display: grid;
   padding: clamp(24px, 3.5vw, 52px) clamp(24px, 6.5vw, 96px);
-
-  background:
-    var(--dots) 0 0 / var(--dot-tile) var(--dot-tile),
-    var(--brown);
-}
-
-.about-image > * {
-  grid-area: 1 / 1;
 }
 
 .about-image::before {
-  content: "";
+  --scallop: var(--scallop-lg);
 
+  content: "";
   grid-area: 1 / 1;
+  filter: drop-shadow(4px 5px 0 rgba(0, 0, 0, 0.22));
 }
 
-/* Brown scrap peeking out from behind the photo frame */
+/* Paper scrap layered behind the photo frame */
 .paper-scrap {
+  --scrap-color: var(--sage);
+
+  grid-area: 1 / 1;
   place-self: center;
 
   width: 52%;
   max-width: 290px;
   aspect-ratio: 1;
 
-  background: var(--brown);
-  clip-path: var(--torn);
   transform: translate(8%, 6%) rotate(-5deg);
 }
 
-/* Photo frame on top of the scalloped shape */
+/* Photo frame layered on the scalloped shape */
 .polaroid {
   position: relative;
+  grid-area: 1 / 1;
   place-self: center;
 
   width: 50%;
   max-width: 280px;
+  margin: 0;
   padding: var(--space-sm) var(--space-sm) calc(var(--space-sm) * 3.2);
 
   border-radius: 3px;
 
-  background: var(--pink);
-  box-shadow: var(--shadow);
+  background: var(--cream);
+  box-shadow: var(--paper-shadow);
+
   transform: rotate(2deg);
+}
+
+.polaroid::before {
+  --tape-color: var(--tape-sky);
+  --tape-tilt: -4deg;
 }
 
 .polaroid-photo {
@@ -571,42 +570,13 @@ nav a[aria-current]:hover {
 
   border-radius: 2px;
 
-  background: var(--brown);
+  background: var(--cream-deep);
+  object-fit: cover;
 }
 
-/* Washi tape, translucent with torn looking ends, used on photos and cards */
-.polaroid::before,
-.service-card::before {
-  content: "";
-
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  z-index: 2;
-
-  width: 72px;
-  height: 22px;
-
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.25) 0 2px,
-      transparent 2px 7px
-    ),
-    rgba(244, 238, 230, 0.8);
-  clip-path: polygon(
-    0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%,
-    0 100%, 3% 75%, 0 50%, 3% 25%
-  );
-  pointer-events: none;
-  transform: translateX(-50%) rotate(-4deg);
-}
-
-.service-card:nth-child(even)::before {
-  transform: translateX(-50%) rotate(5deg);
-}
-
+/* Star and heart stickers on the photo frame */
 .star-about {
+  --fill: var(--cream);
   --size: clamp(32px, 3.2vw, 48px);
   --tilt: -10deg;
 
@@ -615,6 +585,7 @@ nav a[aria-current]:hover {
 }
 
 .heart-about {
+  --fill: var(--sky);
   --size: clamp(22px, 2.2vw, 32px);
   --tilt: 12deg;
 
@@ -622,31 +593,33 @@ nav a[aria-current]:hover {
   right: -0.9em;
 }
 
-/* Services on Home, plain brown with no pattern */
+/* Services, plain dark brown with no pattern */
 
 .services {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   gap: clamp(20px, 2.5vw, 36px);
 
   min-height: var(--section-height);
   padding: var(--section-y) 0;
+
+  background: var(--espresso);
+  color: var(--white);
 }
 
 .services-heading {
   position: relative;
-
   width: max-content;
   max-width: 100%;
 
-  padding-inline: var(--gutter);
-  text-align: left;
+  text-align: center;
 }
 
-/* Stars beside the heading, sized from the heading */
+/* Paper stars beside the heading, no outline on the dark background */
 .star-top {
+  --edge: transparent;
   --size: calc(var(--fs-h2) * 0.7);
   --tilt: 12deg;
 
@@ -655,14 +628,16 @@ nav a[aria-current]:hover {
 }
 
 .star-bottom {
+  --edge: transparent;
   --size: calc(var(--fs-h2) * 0.5);
   --tilt: -8deg;
+  --hole: var(--espresso);
 
   bottom: 0;
   left: calc(var(--fs-h2) * -0.8);
 }
 
-/* Carousel, three cards and a peek at the next one */
+/* Carousel */
 
 .services-carousel {
   --card-w: clamp(230px, 18vw, 280px);
@@ -670,10 +645,10 @@ nav a[aria-current]:hover {
 
   position: relative;
 
+  /* Room for three cards and a peek at the next one */
   width: 100%;
-  max-width: calc((var(--card-w) + var(--card-gap)) * 3.4 + 48px);
-  margin-inline: auto;
   padding-bottom: 44px;
+  max-width: calc((var(--card-w) + var(--card-gap)) * 3.4 + 48px);
 }
 
 /* Soft edge that hints the row continues */
@@ -684,11 +659,13 @@ nav a[aria-current]:hover {
   inset: 0 0 0 auto;
   width: 24px;
 
-  background: linear-gradient(to right, transparent, var(--brown));
+  background: linear-gradient(to right, transparent, var(--espresso));
   pointer-events: none;
 }
 
-.service-track {
+.services-grid {
+  counter-reset: service;
+
   display: flex;
   gap: var(--card-gap);
 
@@ -703,16 +680,16 @@ nav a[aria-current]:hover {
   scrollbar-width: none;
 }
 
-.service-track::-webkit-scrollbar {
+.services-grid::-webkit-scrollbar {
   display: none;
 }
 
 /* Auto margins center the row and drop away once it overflows */
-.service-track > :first-child {
+.service-card:first-child {
   margin-left: auto;
 }
 
-.service-track > :last-child {
+.service-card:last-child {
   margin-right: auto;
 }
 
@@ -730,7 +707,7 @@ nav a[aria-current]:hover {
   border: 1px solid var(--pink);
   border-radius: 50%;
 
-  background: var(--brown);
+  background: var(--espresso);
   color: var(--pink);
 
   font: inherit;
@@ -746,9 +723,10 @@ nav a[aria-current]:hover {
 
 .carousel-arrow:hover {
   background: var(--pink);
-  color: var(--brown);
+  color: var(--espresso);
 }
 
+/* Controls sit together under the cards */
 .carousel-arrow-prev {
   right: calc(24px + 36px + var(--space-sm));
 }
@@ -757,394 +735,215 @@ nav a[aria-current]:hover {
   right: 24px;
 }
 
-/* Service card, a polaroid style frame with the art square and text inside */
-
+/* Scrapbook card, photo on top and a colored panel below */
 .service-card {
+  counter-increment: service;
+
   position: relative;
+  flex: 0 0 var(--card-w);
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
-  padding: 12px 12px 20px;
+  padding-bottom: var(--space-md);
 
-  border-radius: 4px;
+  border-radius: var(--radius-lg);
 
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255, 255, 255, 0.12) 0 1px,
-      transparent 1px 4px
-    ),
-    var(--pink);
-  color: var(--brown);
-  text-align: left;
+  background: var(--card, var(--pink));
+  color: var(--ink);
+  text-align: center;
 
-  /* Two offset sheets under the frame, a cream layer and a shadow */
-  box-shadow:
-    6px 7px 0 var(--cream),
-    7px 8px 0 rgba(62, 39, 35, 0.4);
-
+  box-shadow: 4px 5px 0 rgba(0, 0, 0, 0.25);
+  scroll-snap-align: start;
   transform: rotate(var(--tilt, 0deg));
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+
+  transition: transform 0.25s ease;
 }
 
-
 .service-card:nth-child(odd) {
-  --tilt: -0.8deg;
+  --tilt: -1deg;
 }
 
 .service-card:nth-child(even) {
-  --tilt: 0.7deg;
+  --tilt: 1deg;
+}
+
+.service-card:nth-child(3n + 1) {
+  --tape-color: var(--tape-sky);
+}
+
+.service-card:nth-child(3n + 2) {
+  --card: var(--sky);
+  --tape-color: var(--tape-pink);
+  --tape-tilt: 2deg;
+}
+
+.service-card:nth-child(3n) {
+  --card: var(--sage);
+  --tape-color: var(--tape-cream);
+  --tape-tilt: -5deg;
 }
 
 .service-card:hover {
-  transform: rotate(0deg) translateY(-4px);
-  box-shadow:
-    8px 9px 0 var(--cream),
-    9px 10px 0 rgba(62, 39, 35, 0.4);
+  transform: rotate(0deg) translateY(-3px);
 }
 
-.service-card .btn {
-  background: var(--brown);
-  color: var(--pink);
+/* Card number */
+.service-card::before {
+  content: counter(service, decimal-leading-zero);
+
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1;
+
+  padding: 0.1em 0.7em;
+
+  border-radius: var(--radius-pill);
+
+  background: var(--espresso);
+  color: var(--cream);
+
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.08em;
 }
 
-.service-card .tag {
-  border-color: var(--brown);
-  background: var(--mustard);
-  color: var(--brown);
-}
-
-/* The About and Services call to action is a sticker on the brown band */
-.cta-inner.sticker {
-  max-width: 640px;
-  box-shadow: none;
-  filter: drop-shadow(4px 5px 0 rgba(181, 68, 58, 0.6));
-}
-
-.service-track > .service-card {
-  flex: 0 0 var(--card-w);
-  scroll-snap-align: start;
-}
-
-.service-panel {
-  display: grid;
-  place-items: center;
-
-  aspect-ratio: 1;
-
-  border-radius: 2px;
-
-  background: var(--sky);
-}
-
-/* Art panels rotate through the accent colors inside the pink frame */
-.service-card:nth-child(4n + 2) .service-panel {
-  background: var(--sage);
-}
-
-.service-card:nth-child(4n + 3) .service-panel {
-  background: var(--cream);
-}
-
-.service-art {
-  width: 40%;
-  max-width: 140px;
-}
-
-/* Real photos fill the square, and gently zoom on hover */
+/* Stitched edge inside the photo area */
 .service-photo {
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 5 / 4;
+  margin-bottom: var(--space-sm);
 
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+
+  background: var(--cream);
+  outline: 1.5px dashed rgba(59, 41, 35, 0.22);
+  outline-offset: -8px;
   object-fit: cover;
-  transition: transform 0.4s ease;
 }
 
-.service-card:hover .service-photo {
-  transform: scale(1.04);
-}
-
-/* Small sticker on the top corner of each card */
-.service-sticker {
-  --size: 40px;
-  --tilt: 14deg;
-
-  position: absolute;
-  top: -14px;
-  right: -12px;
-  z-index: 2;
-}
-
-.service-card-body {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-sm);
-
-  margin-top: var(--space-md);
+.service-card h3,
+.service-card p {
+  padding-inline: var(--space-md);
 }
 
 .service-card h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 2.6em;
+  margin: 0;
+
+  font-size: var(--fs-label);
+  font-weight: 600;
+  line-height: 1.3;
 }
 
-.service-card-body > p {
+.service-card p {
+  flex: 1;
+  margin: var(--space-xs) 0 0;
+
   font-size: var(--fs-small);
   line-height: 1.5;
 }
 
-.service-card-body > .btn {
-  margin-top: auto;
-}
+.service-action {
+  margin-top: var(--space-md);
+  padding: 0.6em 1.6em;
 
-/* Services page grid and steps */
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
 
-.step .tag {
-  margin-bottom: var(--space-md);
-}
-
-.step .tag {
-  margin-bottom: var(--space-md);
-}
-
-.step h3 {
-  margin-bottom: var(--space-sm);
-}
-
-.step > p {
-  line-height: 1.65;
-}
-
-/* Mission, vision, why cards */
-
-.card > h2 {
-  margin-bottom: var(--space-md);
-}
-
-.card > p {
-  max-width: 30em;
-}
-
-.card .tag {
-  margin-bottom: var(--space-md);
-}
-
-/* Call to action bands */
-
-.cta {
-  text-align: center;
-}
-
-.cta-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-md);
-}
-
-.cta-inner > p {
-  max-width: 34em;
-}
-
-.cta-art {
-  width: 44px;
-  margin-bottom: var(--space-sm);
-}
-
-/* Request page */
-
-.request-layout {
-  display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
-  gap: clamp(40px, 6vw, 90px);
-  align-items: start;
-}
-
-.request-info > h2 {
-  margin-bottom: var(--space-md);
-}
-
-.request-info > p {
-  max-width: 34em;
-}
-
-.request-note {
-  display: flex;
-  gap: var(--space-md);
-  align-items: flex-start;
-
-  margin-top: var(--space-lg);
-  padding: 18px 20px;
-}
-
-.note-art {
-  flex: none;
-  width: 24px;
-  margin: 2px 0 0;
-}
-
-.request-links {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  margin-top: var(--space-lg);
-}
-
-/* Wavy edged sticker, the same scallop edge as the hero panel */
-.sticker {
-  position: relative;
-
-  padding: calc(var(--card-pad) + var(--scallop) * 0.5);
-
-  color: var(--brown);
-  filter: drop-shadow(4px 5px 0 rgba(62, 39, 35, 0.45));
-}
-
-.sticker .btn {
-  background: var(--brown);
-  color: var(--pink);
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.form label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
 
   font-size: var(--fs-small);
-  font-weight: 600;
+  font-weight: 500;
+
+  box-shadow: 2px 2px 0 rgba(59, 41, 35, 0.35);
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.form :is(input, select, textarea) {
-  width: 100%;
-  padding: 12px 14px;
-
-  border: 1.5px solid var(--brown);
-  border-radius: var(--radius);
-
-  background: transparent;
-  color: var(--brown);
-
-  font: inherit;
-  font-weight: 400;
+.service-action:hover {
+  box-shadow: 1px 1px 0 rgba(59, 41, 35, 0.35);
+  transform: translate(1px, 1px);
 }
 
-.form select option {
-  background: var(--pink);
-  color: var(--brown);
-}
+/* Footer, the back page */
 
-.form textarea {
-  resize: vertical;
-}
-
-.form ::placeholder {
-  color: var(--brown);
-  opacity: 0.55;
-}
-
-.form-success {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
-
-  min-height: 360px;
-
-  text-align: center;
-}
-
-.form-success > p {
-  max-width: 30em;
-}
-
-.success-art {
-  width: 56px;
-}
-
-/* Footer, pink close with a torn top edge */
-
-.site-footer {
+footer {
   position: relative;
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: start;
+  align-items: center;
   gap: var(--space-md) clamp(24px, 4vw, 60px);
 
   padding: max(32px, 3.5vw) var(--gutter) clamp(20px, 2vw, 32px);
 
-  background: var(--pink);
-  color: var(--brown);
+  background: var(--espresso-deep);
+  color: var(--muted);
   font-size: var(--fs-small);
   line-height: 1.7;
 }
 
-.site-footer::before {
+/* Torn paper edge overlapping the page above */
+footer::before {
   content: "";
 
   position: absolute;
   inset: -11px 0 auto;
   height: 12px;
 
-  background: var(--pink);
-  clip-path: polygon(0 100%, 0 55%, 3% 45%, 6% 50%, 9% 30%, 13% 20%, 17% 35%, 21% 35%, 25% 45%, 29% 20%, 33% 65%, 38% 20%, 42% 35%, 46% 30%, 50% 30%, 54% 35%, 58% 65%, 63% 35%, 67% 30%, 71% 20%, 75% 35%, 79% 65%, 83% 20%, 88% 30%, 92% 20%, 96% 65%, 100% 50%, 100% 100%);
-  pointer-events: none;
+  background: var(--espresso-deep);
+  clip-path: polygon(0 100%, 0 55%, 2.08% 45%, 4.17% 50%, 6.25% 30%, 8.33% 20%, 10.42% 35%, 12.5% 35%, 14.58% 45%, 16.67% 20%, 18.75% 65%, 20.83% 20%, 22.92% 35%, 25.0% 30%, 27.08% 30%, 29.17% 35%, 31.25% 65%, 33.33% 35%, 35.42% 30%, 37.5% 20%, 39.58% 35%, 41.67% 65%, 43.75% 20%, 45.83% 30%, 47.92% 20%, 50.0% 65%, 52.08% 20%, 54.17% 50%, 56.25% 80%, 58.33% 30%, 60.42% 50%, 62.5% 35%, 64.58% 80%, 66.67% 50%, 68.75% 35%, 70.83% 65%, 72.92% 45%, 75.0% 35%, 77.08% 35%, 79.17% 20%, 81.25% 65%, 83.33% 70%, 85.42% 30%, 87.5% 45%, 89.58% 70%, 91.67% 70%, 93.75% 45%, 95.83% 80%, 97.92% 65%, 100% 50%, 100% 100%);
 }
 
-.site-footer h3 {
-  margin-bottom: var(--space-xs);
+footer h3 {
+  margin: 0 0 var(--space-xs);
+
+  color: var(--white);
+
   font-size: var(--fs-label);
   font-weight: 600;
   line-height: var(--lh-tight);
 }
 
-.site-footer p {
+footer p {
   margin: 0;
 }
 
-.site-footer p + p {
-  margin-top: var(--space-xs);
-}
-
-.site-footer a {
+footer a {
+  color: inherit;
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-.site-footer a:hover {
-  text-decoration: underline;
+footer a:hover {
+  color: var(--white);
 }
 
-.site-footer > :nth-child(2) {
+footer > :nth-child(2) {
   text-align: center;
 }
 
-.site-footer > :nth-child(3) {
+footer > :nth-child(3) {
   text-align: right;
 }
 
+/* Small outlined star above the copyright line */
 .footer-mark {
+  --edge: transparent;
   --size: 22px;
   --tilt: 8deg;
+  --hole: var(--espresso-deep);
 
   position: relative;
 
@@ -1157,25 +956,12 @@ nav a[aria-current]:hover {
 
   padding-top: var(--space-md);
 
-  border-top: 1px dashed rgba(62, 39, 35, 0.35);
+  border-top: 1px dashed var(--line);
 
   text-align: center;
 }
 
-/* Tablet and mobile */
-
-@media (max-width: 1000px) {
-  .grid--4 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 900px) {
-  .grid--3,
-  .request-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
+/* Mobile */
 
 @media (max-width: 700px) {
   .about,
@@ -1184,7 +970,7 @@ nav a[aria-current]:hover {
   }
 
   .about {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .about-text {
@@ -1195,27 +981,19 @@ nav a[aria-current]:hover {
     min-height: 360px;
   }
 
-  .grid--2 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .services-carousel {
     --card-w: 240px;
   }
 
-  .form-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .site-footer {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  footer {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
     row-gap: 28px;
   }
 
-  .site-footer > :nth-child(2) {
+  footer > :nth-child(2) {
     grid-column: 1 / -1;
     order: 1;
-    text-align: left;
   }
 
   .footer-mark {
@@ -1224,11 +1002,5 @@ nav a[aria-current]:hover {
 
   .copyright {
     order: 3;
-  }
-}
-
-@media (max-width: 600px) {
-  .grid--4 {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
