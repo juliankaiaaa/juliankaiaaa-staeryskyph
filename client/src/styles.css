@@ -171,8 +171,12 @@ h3 {
   border: 0;
   border-radius: var(--radius-pill);
 
-  background: var(--brown);
-  color: var(--pink);
+  --btn-bg: var(--brown);
+  --btn-hover: #523630;
+  --btn-text: var(--cream);
+
+  background: var(--btn-bg);
+  color: var(--btn-text);
 
   font: inherit;
   font-size: var(--fs-small);
@@ -182,13 +186,20 @@ h3 {
   cursor: pointer;
 
   transition:
-    opacity 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
     transform 0.2s ease;
 }
 
 .btn:hover {
-  opacity: 0.85;
+  background: var(--btn-hover);
+  box-shadow: 0 6px 14px rgba(62, 39, 35, 0.25);
   transform: translateY(-1px);
+}
+
+.btn:active {
+  box-shadow: 0 2px 5px rgba(62, 39, 35, 0.2);
+  transform: translateY(0);
 }
 
 /* Tags, the small outlined numbers and labels */
@@ -249,17 +260,20 @@ h3 {
   margin-bottom: clamp(32px, 4vw, 56px);
 }
 
-/* Buttons on a brown surface flip to pink */
+/* Buttons on a brown surface flip to soft butter yellow with brown text */
 .band--brown .btn,
 .card--brown .btn {
-  background: var(--pink);
-  color: var(--brown);
+  --btn-bg: var(--mustard);
+  --btn-hover: #fff0cf;
+  --btn-text: var(--brown);
 }
 
-/* Cards on pink keep a brown button, even inside a brown band */
-.card--pink .btn {
-  background: var(--brown);
-  color: var(--pink);
+/* Pink surfaces keep the brown button, even inside a brown band */
+.card--pink .btn,
+.sticker .btn {
+  --btn-bg: var(--brown);
+  --btn-hover: #523630;
+  --btn-text: var(--cream);
 }
 
 .card {
@@ -649,8 +663,8 @@ nav a[aria-current]:hover {
   width: max-content;
   max-width: 100%;
 
-  padding-inline: var(--gutter);
-  text-align: left;
+  align-self: center;
+  text-align: center;
 }
 
 /* Stars beside the heading, sized from the heading */
@@ -926,6 +940,11 @@ img.service-photo {
     transform 0.2s ease;
 }
 
+.service-action:active {
+  box-shadow: none;
+  transform: translate(2px, 3px);
+}
+
 .service-action:hover {
   box-shadow: 1px 1px 3px rgba(62, 39, 35, 0.18);
   transform: translate(1px, 1px);
@@ -1036,11 +1055,6 @@ img.service-photo {
 
   color: var(--brown);
   filter: drop-shadow(0 10px 16px rgba(62, 39, 35, 0.22));
-}
-
-.sticker .btn {
-  background: var(--brown);
-  color: var(--pink);
 }
 
 .form {
@@ -1262,5 +1276,24 @@ img.service-photo {
 @media (max-width: 600px) {
   .grid--4 {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Page transition, a soft fade and rise when the route changes */
+
+.page-transition {
+  animation: page-enter 0.32s ease-out backwards;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition {
+    animation: none;
   }
 }
