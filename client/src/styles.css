@@ -1722,7 +1722,7 @@ img.service-photo {
   }
 
   .cta-inner.sticker:hover .cta-letter {
-    translate: 0 -4px;
+    translate: 0 95px;
     rotate: -3deg;
     z-index: 4;
     transition-duration: 1s;
@@ -1744,7 +1744,7 @@ img.service-photo {
   z-index: 1;
   min-height: 300px;
   justify-content: center;
-  translate: 0 90px;
+  translate: 0 150px;
   z-index: 1;
 
   display: flex;
