@@ -3277,3 +3277,12 @@ img.service-photo {
   hyphens: auto;
   overflow-wrap: anywhere;
 }
+
+/* Small card descriptions wrap at a narrower measure so they break onto two lines */
+.service-card:not(.service-card--expanded) > p {
+  max-width: 22ch;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
