@@ -704,13 +704,44 @@ nav a[aria-current]:hover {
   right: 24px;
 }
 
-/* Service card, a pink art square with the text underneath */
+/* Service card, a polaroid style frame with the art square and text inside */
 
 .service-card {
   display: flex;
   flex-direction: column;
 
+  padding: 12px 12px 20px;
+
+  border-radius: 4px;
+
+  background: var(--pink);
+  color: var(--brown);
   text-align: left;
+  box-shadow: 6px 7px 0 rgba(62, 39, 35, 0.45);
+
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.25s ease;
+}
+
+.service-card:nth-child(odd) {
+  --tilt: -0.8deg;
+}
+
+.service-card:nth-child(even) {
+  --tilt: 0.7deg;
+}
+
+.service-card:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.service-card .btn {
+  background: var(--brown);
+  color: var(--pink);
+}
+
+.service-card .tag {
+  border-color: var(--brown);
 }
 
 .service-track > .service-card {
@@ -724,22 +755,17 @@ nav a[aria-current]:hover {
 
   aspect-ratio: 1;
 
-  border-radius: var(--radius-lg);
+  border-radius: 2px;
 
-  background: var(--pink);
-  box-shadow: var(--shadow);
-}
-
-/* Accent panels rotate through the palette, pink is the default */
-.service-card:nth-child(4n + 2) .service-panel {
   background: var(--sky);
 }
 
-.service-card:nth-child(4n + 3) .service-panel {
+/* Art panels rotate through the accent colors inside the pink frame */
+.service-card:nth-child(4n + 2) .service-panel {
   background: var(--sage);
 }
 
-.service-card:nth-child(4n + 4) .service-panel {
+.service-card:nth-child(4n + 3) .service-panel {
   background: var(--cream);
 }
 
