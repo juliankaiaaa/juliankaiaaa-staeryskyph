@@ -2983,3 +2983,32 @@ img.service-photo {
   padding: 0 1em;
   font-size: var(--fs-small);
 }
+
+/* Small service cards: tighter sizes across the card */
+.service-card:not(.service-card--expanded) .service-photo {
+  aspect-ratio: 6 / 5;
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(14px, 1.2vw, 17px);
+  min-height: 2.4em;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  font-size: clamp(12px, 0.95vw, 14px);
+  line-height: 1.45;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  gap: 6px;
+  padding-inline: var(--space-sm);
+  padding-bottom: var(--space-xs);
+}
+
+.service-card:not(.service-card--expanded) .service-actions .service-toggle,
+.service-card:not(.service-card--expanded) .service-actions .service-action {
+  max-width: 180px;
+  height: 32px;
+  padding: 0 0.9em;
+  font-size: 12px;
+}
