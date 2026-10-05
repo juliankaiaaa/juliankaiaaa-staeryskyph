@@ -1728,6 +1728,7 @@ img.service-photo {
   .cta-inner.sticker:hover .cta-letter {
     translate: 0 95px;
     rotate: -3deg;
+    scale: 1.06;
     z-index: 4;
     transition-duration: 1s;
     transition-timing-function: ease-out;
@@ -1773,7 +1774,8 @@ img.service-photo {
     inset 0 0 40px rgba(120, 90, 60, 0.1);
   transition:
     translate 2.4s ease-in-out,
-    rotate 2.4s ease-in-out;
+    rotate 2.4s ease-in-out,
+    scale 2.4s ease-in-out;
 }
 
 .cta-letter .btn {
@@ -1784,9 +1786,11 @@ img.service-photo {
 @keyframes letter-in {
   0% {
     translate: 0 95px;
+    scale: 1.06;
   }
 
   100% {
     translate: 0 130px;
+    scale: 1;
   }
 }
