@@ -1625,3 +1625,26 @@ img.service-photo {
   opacity: 0.85;
   pointer-events: none;
 }
+
+/* Folder tab on each How it works step, drawn in CSS */
+.step {
+  position: relative;
+  margin-top: 22px;
+  isolation: isolate;
+}
+
+.step::before {
+  content: "";
+
+  position: absolute;
+  top: -22px;
+  left: 0;
+  z-index: -1;
+
+  width: 46%;
+  height: 26px;
+
+  border-radius: 10px 10px 0 0;
+  background: var(--sky);
+  box-shadow: 0 -2px 0 rgba(62, 39, 35, 0.08);
+}
