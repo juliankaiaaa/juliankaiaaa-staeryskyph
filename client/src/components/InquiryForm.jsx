@@ -1,16 +1,21 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { createInquiry } from '../api'
 import { SERVICE_FORMS, validateInquiry } from '../data/inquiryForms.js'
 
 const EMPTY_VALUES = { name: '', email: '', message: '' }
 
 // One form for every service. The fields change with the service chosen.
+const makeRefCode = () =>
+  'SSPH-' + Math.random().toString(36).slice(2, 6).toUpperCase()
+
 export default function InquiryForm({ initialService = '' }) {
   const [service, setService] = useState(SERVICE_FORMS[initialService] ? initialService : '')
   const [values, setValues] = useState(EMPTY_VALUES)
   const [touched, setTouched] = useState({})
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle')
+  const [refCode, setRefCode] = useState('')
   const [serverError, setServerError] = useState('')
 
   const form = SERVICE_FORMS[service]
@@ -64,6 +69,7 @@ export default function InquiryForm({ initialService = '' }) {
 
     setStatus('sending')
     setServerError('')
+    const reference = makeRefCode()
 
     try {
       await createInquiry({
@@ -71,26 +77,14 @@ export default function InquiryForm({ initialService = '' }) {
         email: values.email.trim(),
         message: values.message.trim(),
         service: form ? form.label : 'General inquiry',
-        details,
+        details: { ...details, reference },
       })
+      setRefCode(reference)
       setStatus('sent')
     } catch (error) {
       setServerError(error.message)
       setStatus('error')
     }
-  }
-
-  if (status === 'sent') {
-    return (
-      <div className="inquiry-stamp" role="status">
-        <span className="inquiry-stamp-mark" aria-hidden="true">✓</span>
-        <h2>Request received!</h2>
-        <p>Thank you. We will check the details and get back to you by email.</p>
-        <button type="button" className="btn" onClick={reset}>
-          Send another request
-        </button>
-      </div>
-    )
   }
 
   const fieldError = (name) =>
@@ -99,8 +93,18 @@ export default function InquiryForm({ initialService = '' }) {
   const fieldClass = (name) =>
     touched[name] && errors[name] ? 'field field--invalid' : 'field'
 
+  const sent = status === 'sent'
+
   return (
+    <div className="request-stage">
+      <div className="request-card">
+        <span className="request-tape" aria-hidden="true"></span>
     <form className="inquiry-form" onSubmit={handleSubmit} noValidate>
+      <header className="inquiry-head">
+        <h2>{form ? form.label : 'General question'}</h2>
+        <p>{form ? form.intro : 'Tell us what you are looking for and we will reply by email with a quote.'}</p>
+      </header>
+
       <div className="inquiry-progress-row">
         <div className="inquiry-progress" aria-hidden="true">
           <span style={{ width: `${progress}%` }}></span>
@@ -121,8 +125,6 @@ export default function InquiryForm({ initialService = '' }) {
           ))}
         </select>
       </label>
-
-      {form && <p className="inquiry-intro">{form.intro}</p>}
 
       <div className="form-row">
         <label className={fieldClass('name')}>
@@ -214,9 +216,34 @@ export default function InquiryForm({ initialService = '' }) {
         </p>
       )}
 
-      <button type="submit" className="btn btn--wide" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending…' : 'Send request →'}
-      </button>
+      <div className="inquiry-buttons">
+        <button type="button" className="inquiry-cancel" onClick={reset}>Cancel</button>
+        <button type="submit" className="inquiry-send" disabled={status === 'sending' || sent}>
+          {status === 'sending' ? 'Sending…' : 'Send inquiry'}
+        </button>
+      </div>
     </form>
+      </div>
+
+      {sent && (
+        <div className="receipt" role="status">
+          <span className="receipt-tape" aria-hidden="true"></span>
+          <div className="receipt-body">
+            <p className="receipt-label">Inquiry received</p>
+            <div className="receipt-code">{refCode}</div>
+            <p className="receipt-text">
+              Keep this reference code. We will reply to your email with a quote.
+            </p>
+          </div>
+          <div className="receipt-band">
+            <Link className="receipt-btn" to="/services">Back to services</Link>
+            <button type="button" className="receipt-again" onClick={reset}>Send another request</button>
+          </div>
+        </div>
+      )}
+
+      <svg className="stage-star stage-star-pink" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z" /></svg>
+      <svg className="stage-star stage-star-blue" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z" /></svg>
+    </div>
   )
 }

@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* tokens */
+:root {
+  --brown: #3e2723;
+  --pink: #f4c9d6;
+  --cream: #f4f1e2;
+  --sage: #d7d4b1;
+  --sky: #d8ebf9;
+  --mustard: #fce6b7;
+  --sage-soft: #d6e0bf;
+  --lavender: #e3dcf1;
+  --peach: #fbd9c3;
+  --dusty-blue: #c3d5e6;
+  --butter: #fbeaa8;
+  --red: #b5443a;
+  --shadow: 0 10px 22px rgba(62, 39, 35, 0.22);
+
+  --font-main: 'Poppins', sans-serif;
+
+  --fs-display: clamp(36px, 8vw, 112px);
+  --fs-page-title: clamp(32px, 6vw, 72px);
+  --fs-subtitle: clamp(13px, 1.9vw, 26px);
+  --fs-h2: clamp(24px, 3vw, 42px);
+  --fs-label: clamp(14px, 1.1vw, 16px);
+  --fs-body: clamp(15px, 1.05vw, 16px);
+  --fs-nav: clamp(12px, 1vw, 15px);
+  --fs-small: clamp(12px, 0.8vw, 13px);
+  --fs-button: clamp(14px, 1.05vw, 16px);
+
+  --lh-tight: 1.1;
+  --lh-body: 1.6;
+
+  --gutter: clamp(24px, 8vw, 120px);
+  --section-y: clamp(48px, 6vw, 96px);
+  --content-max: 1180px;
+  --panel-inset: clamp(16px, 3vw, 44px);
+  --nav-inset: clamp(28px, 8.5vw, 125px);
+  --card-pad: clamp(22px, 2.6vw, 32px);
+  --grid-gap: clamp(20px, 3vw, 32px);
+  --section-height: max(560px, 100svh);
+
+  --space-xs: 4px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  --scallop: clamp(26px, 3.4vw, 52px);
+  --scallop-lg: clamp(34px, 5.6vw, 84px);
+
+  --dot-tile: 48px;
+  --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg fill='%23f4f1e2'%3E%3Ccircle cx='12' cy='12' r='4.5'/%3E%3Ccircle cx='36' cy='36' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
+
+  --torn: polygon(0 3%, 14% 0, 29% 3%, 43% 3%, 57% 0, 71% 0, 86% 2%, 100% 2%, 99% 20%, 98% 40%, 99% 60%, 99% 80%, 100% 98%, 86% 100%, 71% 97%, 57% 99%, 43% 98%, 29% 100%, 14% 100%, 0 97%, 2% 80%, 1% 60%, 1% 40%, 1% 20%);
+}
+
+/* base */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.page-transition {
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+
+  background: var(--brown);
+  color: var(--pink);
+
+  font-family: var(--font-main);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:is(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+/* typography */
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-display);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-label);
+}
+
+.section-label {
+  display: block;
+  margin-bottom: 14px;
+
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.text-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.text-link:hover {
+  opacity: 0.7;
+}
+
+/* buttons */
+
+.btn {
+  box-shadow: 0 4px 10px rgba(62, 39, 35, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+
+  padding: 0.6em 1.6em;
+
+  border: 0;
+  border-radius: var(--radius-pill);
+
+  --btn-bg: var(--brown);
+  --btn-hover: #523630;
+  --btn-text: var(--cream);
+
+  background: var(--btn-bg);
+  color: var(--btn-text);
+
+  font: inherit;
+  font-size: var(--fs-button);
+  font-weight: 500;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn:hover {
+  background: var(--btn-hover);
+  box-shadow: 0 6px 14px rgba(62, 39, 35, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  box-shadow: 0 2px 5px rgba(62, 39, 35, 0.2);
+  transform: translateY(0);
+}
+
+/* tags */
+
+.tag {
+  display: inline-block;
+  padding: 0.15em 0.75em;
+
+  border: 1px solid currentColor;
+  border-radius: var(--radius-pill);
+
+  font-size: var(--fs-small);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* bands and cards */
+
+.band {
+  padding-block: var(--section-y);
+  padding-inline: var(--gutter);
+}
+
+.band--brown {
+  background: var(--brown);
+  color: var(--pink);
+}
+
+.band--pink {
+  position: relative;
+
+  background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.28), transparent 60%),
+    var(--pink);
+  color: var(--brown);
+}
+
+.band--pink::before {
+  content: "";
+
+  position: absolute;
+  inset: -14px 0 auto;
+  height: 15px;
+
+  background: var(--cream);
+  -webkit-mask: radial-gradient(circle at 50% 100%, #000 13px, transparent 14px) 0 0 / 28px 15px repeat-x;
+          mask: radial-gradient(circle at 50% 100%, #000 13px, transparent 14px) 0 0 / 28px 15px repeat-x;
+  pointer-events: none;
+}
+
+.band-inner {
+  max-width: var(--content-max);
+  margin-inline: auto;
+}
+
+.band-head {
+  max-width: 40em;
+  margin-bottom: clamp(32px, 4vw, 56px);
+}
+
+.band--brown .btn,
+.card--brown .btn {
+  --btn-bg: var(--mustard);
+  --btn-hover: #fff0cf;
+  --btn-text: var(--brown);
+}
+
+.card--pink .btn,
+.sticker .btn {
+  --btn-bg: var(--brown);
+  --btn-hover: #523630;
+  --btn-text: var(--cream);
+}
+
+.card {
+  position: relative;
+
+  padding: var(--card-pad);
+
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.card--pink {
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.card--brown {
+  border: 1.5px solid var(--pink);
+  background: var(--brown);
+  color: var(--pink);
+}
+
+.card .section-label {
+  margin-bottom: var(--space-lg);
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* stickers */
+
+.decor {
+  position: absolute;
+
+  display: block;
+  width: var(--size, 28px);
+  height: auto;
+
+  filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
+  pointer-events: none;
+  transform: rotate(var(--tilt, 0deg));
+}
+
+.decor-inline {
+  position: relative;
+  margin-inline: auto;
+}
+

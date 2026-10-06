@@ -5,10 +5,8 @@ import useScallopFit from '../hooks/useScallopFit.js'
 import AboutSection from '../components/AboutSection.jsx'
 import SiteFooter from '../components/SiteFooter.jsx'
 import Decor from '../components/Decor.jsx'
-import brownHeart from '../assets/images/decorations/brown_heart.png'
-import pinkStar from '../assets/images/decorations/pink_star.png'
-import pinkOctagram from '../assets/images/decorations/pink_octagram.png'
-import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
+import brownStar from '../assets/decorations/brown_star.png'
+import pinkStar from '../assets/decorations/pink_star.png'
 
 /* About page, same cover and about layout as Home */
 export default function About() {
@@ -48,9 +46,6 @@ export default function About() {
 
         <section className="band band--brown mv-band">
           <Decor src={pinkStar} className="mv-deco mv-deco-star" />
-          <Decor src={brownAsterisk} className="mv-deco mv-deco-asterisk" />
-          <Decor src={pinkOctagram} className="mv-deco mv-deco-octagram" />
-          <span className="mv-scrap" aria-hidden="true"></span>
 
           <div className="band-inner grid grid--2">
             <article className="card card--pink">
@@ -127,7 +122,7 @@ export default function About() {
         <section className="band band--brown cta">
           <div ref={ctaRef} className="band-inner cta-inner sticker">
             <div className="cta-letter">
-              <Decor src={brownHeart} className="decor-inline cta-art" />
+              <Decor src={brownStar} className="decor-inline cta-art" />
   
               <h2>Ready to find something?</h2>
   

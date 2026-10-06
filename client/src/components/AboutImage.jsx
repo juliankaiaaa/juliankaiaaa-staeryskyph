@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import useScallopFit from '../hooks/useScallopFit.js'
+import logo from '../assets/brand/ssph-logo.png'
 
 /* Scalloped dotted side with a photo frame on top, used by Home and About */
 export default function AboutImage() {
@@ -12,7 +13,9 @@ export default function AboutImage() {
       <span className="paper-scrap" aria-hidden="true"></span>
 
       <div className="polaroid">
-        <div className="polaroid-photo"></div>
+        <div className="polaroid-photo">
+          <img src={logo} alt="Staery Sky PH logo" />
+        </div>
       </div>
     </div>
   )

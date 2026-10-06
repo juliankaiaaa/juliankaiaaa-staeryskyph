@@ -1,0 +1,161 @@
+/* service grid */
+.band--brown .grid--4 {
+  gap: clamp(24px, 2.6vw, 40px);
+  align-items: stretch;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) {
+  transform: none;
+  height: 100%;
+  margin-top: 0;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded):hover {
+  transform: translateY(-4px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-photo {
+  aspect-ratio: 4 / 3;
+  flex: none;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  min-height: 2.5em;
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.25;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
+  min-height: 3.2em;
+  font-size: clamp(13px, 1vw, 15px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > h3,
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
+  width: auto;
+  max-width: none;
+  margin-left: clamp(22px, 2.2vw, 32px);
+  margin-right: clamp(22px, 2.2vw, 32px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > p {
+  text-wrap: balance;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: stretch;
+  padding-inline: clamp(24px, 2.6vw, 36px);
+  text-align: center;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy > h3,
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy > p {
+  margin-left: 0;
+  margin-right: 0;
+  padding-inline: 0;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  font-size: clamp(12px, 0.9vw, 14px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  padding-inline: clamp(16px, 1.8vw, 24px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  min-height: 2.4em;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  min-height: 3.6em;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(18px, 1.6vw, 22px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  font-size: clamp(11px, 0.8vw, 13px);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-actions {
+  margin-top: var(--space-md);
+  padding-top: 0;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  display: none;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) {
+  padding-bottom: var(--space-md);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-photo {
+  aspect-ratio: 16 / 10;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  gap: var(--space-xs);
+  padding-top: var(--space-xs);
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(16px, 1.35vw, 19px);
+  min-height: 2.5em;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) > .service-copy > p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.band--brown .grid--4 > .service-card:not(.service-card--expanded) .service-copy {
+  padding-inline: clamp(var(--space-lg), 2.2vw, 32px);
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(16px, 1.35vw, 19px);
+}
+
+.service-card:not(.service-card--expanded) > p {
+  font-size: clamp(14px, 1.05vw, 16px);
+}
+
+
+/* home carousel cards: the text sits in .service-copy, so target it there */
+.services-carousel .service-card:not(.service-card--expanded) .service-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+  padding: var(--space-md) clamp(24px, 2.6vw, 36px) var(--space-md);
+  text-align: center;
+}
+
+.services-carousel .service-card:not(.service-card--expanded) .service-copy > h3 {
+  margin: 0;
+  min-height: 0;
+  padding: 0;
+}
+
+.services-carousel .service-card:not(.service-card--expanded) .service-copy > p {
+  margin: var(--space-sm) 0 0;
+  min-height: 0;
+  padding: 0;
+}

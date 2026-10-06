@@ -1,0 +1,376 @@
+/* request info */
+
+.request-links {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.request-links .text-link {
+  margin-top: 0;
+  padding: 0.55em 1.2em;
+  border: 1.5px solid var(--pink);
+  border-radius: var(--radius-pill);
+  color: var(--pink);
+  text-decoration: none;
+  font-size: var(--fs-small);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.request-links .text-link:hover {
+  background: var(--pink);
+  color: var(--brown);
+  opacity: 1;
+}
+
+/* request form */
+.request-card {
+  padding: clamp(26px, 3.4vw, 44px);
+  border: 2px solid var(--brown);
+  border-radius: 18px;
+  background: var(--pink);
+  color: var(--brown);
+  box-shadow: 10px 10px 0 var(--sage);
+}
+
+.request-card .inquiry-progress {
+  background: rgba(62, 39, 35, 0.18);
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  border-width: 2px;
+  border-color: var(--brown);
+}
+
+.request-card {
+  box-shadow: 12px 12px 0 var(--mustard);
+}
+
+.request-card .field {
+  font-size: var(--fs-label);
+  gap: 10px;
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  min-height: 52px;
+  font-size: max(16px, var(--fs-body));
+}
+
+.request-card .field textarea {
+  min-height: 150px;
+}
+
+.request-card .inquiry-form {
+  gap: 26px;
+}
+
+.request-card .inquiry-progress-text {
+  font-size: var(--fs-label);
+}
+
+.request-card {
+  position: relative;
+  padding-left: clamp(52px, 6vw, 72px);
+  background:
+    linear-gradient(170deg, rgba(255, 250, 240, 0.45), transparent 42%),
+    var(--pink);
+  box-shadow:
+    14px 14px 0 var(--mustard),
+    0 24px 40px rgba(0, 0, 0, 0.3);
+}
+
+.request-card::before {
+  content: "";
+
+  position: absolute;
+  top: clamp(28px, 3.4vw, 44px);
+  bottom: clamp(28px, 3.4vw, 44px);
+  left: clamp(18px, 2.2vw, 26px);
+  width: 12px;
+
+  background: radial-gradient(circle, var(--brown) 0 4.5px, transparent 5px) center top / 12px 34px repeat-y;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.request-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --shine-x: 50%;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  box-shadow:
+    18px 22px 0 var(--mustard),
+    0 30px 50px rgba(0, 0, 0, 0.45);
+}
+
+.request-card::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  border-radius: inherit;
+  background: var(--cream);
+  transform: translate3d(14px, 16px, -28px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.request-card::before {
+  transform: translateZ(10px);
+}
+
+.request-card > .inquiry-form {
+  position: relative;
+  transform: translateZ(24px);
+}
+
+.request-card {
+  background:
+    linear-gradient(
+      115deg,
+      transparent calc(var(--shine-x) - 22%),
+      rgba(255, 250, 240, 0.55) var(--shine-x),
+      transparent calc(var(--shine-x) + 22%)
+    ),
+    linear-gradient(170deg, rgba(255, 250, 240, 0.45), transparent 42%),
+    var(--pink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .request-card {
+    transform: none;
+    transition: none;
+  }
+}
+
+.request-links .text-link {
+  border-color: var(--cream);
+  color: var(--cream);
+}
+
+.request-links .text-link:hover {
+  background: var(--cream);
+  color: var(--brown);
+}
+
+.request-card::after {
+  display: none;
+}
+
+.request-card::before {
+  top: clamp(28px, 3.4vw, 44px);
+  bottom: clamp(28px, 3.4vw, 44px);
+  left: clamp(18px, 2.2vw, 26px);
+  width: 12px;
+  background: radial-gradient(circle, var(--brown) 0 4.5px, transparent 5px) center top / 12px 34px repeat-y;
+}
+
+.request-card .inquiry-form::after {
+  content: "";
+  display: block;
+  height: 14px;
+  margin-top: 10px;
+  background: radial-gradient(circle, var(--pink) 0 5px, transparent 5.5px) center / 14px 14px repeat-x;
+  opacity: 0.9;
+}
+
+.step::before {
+  border-radius: 8px 8px 0 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.035) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.6), transparent 45%),
+    linear-gradient(to bottom, #f7f2e4, #efe6d2);
+  box-shadow: inset 0 0 14px rgba(120, 90, 60, 0.12), 0 -2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.step::before {
+  background: var(--sky);
+  box-shadow: none;
+}
+
+.request-card {
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--pink);
+  box-shadow: var(--shadow);
+  transform: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.request-card:hover {
+  box-shadow: 0 16px 30px rgba(62, 39, 35, 0.3);
+}
+
+.request-card {
+  color: var(--brown);
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.03) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(120, 90, 60, 0.02) 0 1px, transparent 1px 4px),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.6), transparent 45%),
+    linear-gradient(to bottom, #f7f2e4, #efe6d2),
+    var(--cream);
+  box-shadow:
+    0 10px 22px rgba(0, 0, 0, 0.2),
+    inset 0 0 40px rgba(120, 90, 60, 0.1);
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition:
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.5s ease;
+}
+
+.request-card:hover {
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.28),
+    inset 0 0 40px rgba(120, 90, 60, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .request-card {
+    transform: none;
+    transition: none;
+  }
+}
+
+.request-card {
+  padding: clamp(28px, 3.6vw, 48px);
+  padding-left: clamp(44px, 4vw, 48px);
+}
+
+.request-card::before {
+  opacity: 0.35;
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  border: 1px solid rgba(62, 39, 35, 0.3);
+  border-radius: 10px;
+  background: #fbf8ef;
+}
+
+.request-card .field input:focus,
+.request-card .field select:focus,
+.request-card .field textarea:focus {
+  border-color: var(--brown);
+  box-shadow: 0 0 0 3px rgba(168, 201, 139, 0.5);
+}
+
+.request-card {
+  background:
+    linear-gradient(to bottom, #f8f4e6, #f1ead8),
+    var(--cream);
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.22),
+    inset 0 0 30px rgba(120, 90, 60, 0.06);
+}
+
+.request-card .inquiry-form::after {
+  display: none;
+}
+
+.request-card .field input,
+.request-card .field select,
+.request-card .field textarea {
+  background: #fffdf6;
+}
+
+.request-card .field-error {
+  margin-top: -2px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(181, 68, 58, 0.1);
+  color: #9a3b32;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  align-self: flex-start;
+}
+
+
+/* request card: dashed paper frame, tape, and the received card */
+.request-tape {
+  position: absolute;
+  top: -12px;
+  right: 22%;
+  z-index: 3;
+  width: 96px;
+  height: 26px;
+  background:
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0 2px, transparent 2px 7px),
+    rgba(244, 201, 214, 0.9);
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+
+.request-card .inquiry-form {
+  padding: clamp(18px, 2.4vw, 28px);
+  border: 1.5px dashed rgba(62, 39, 35, 0.3);
+  border-radius: 12px;
+}
+
+/* form header and buttons */
+.inquiry-head {
+  text-align: center;
+}
+
+.inquiry-head h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.2;
+}
+
+.inquiry-head p {
+  margin: var(--space-xs) 0 0;
+  font-size: var(--fs-small);
+}
+
+.inquiry-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.inquiry-cancel,
+.inquiry-send {
+  padding: 0.7em 1.8em;
+  border: 0;
+  border-radius: var(--radius-pill);
+  color: var(--brown);
+  font: inherit;
+  font-size: var(--fs-button);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(62, 39, 35, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.inquiry-cancel {
+  background: #efe9d8;
+}
+
+.inquiry-send {
+  background: var(--pink);
+  box-shadow: 0 4px 0 #d9a3b6, 0 8px 14px rgba(62, 39, 35, 0.18);
+}
+
+.inquiry-send:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .inquiry-cancel:hover,
+  .inquiry-send:not(:disabled):hover {
+    transform: translateY(-2px);
+  }
+}

@@ -8,7 +8,8 @@ import Decor from '../components/Decor.jsx'
 import { SERVICES } from '../data/services.js'
 import { SLUG_BY_NUMBER } from '../data/inquiryForms.js'
 import { listServices } from '../api'
-import brownHeart from '../assets/images/decorations/brown_heart.png'
+import { withPhotos } from '../data/services.js'
+import brownStar from '../assets/decorations/brown_star.png'
 
 const STEPS = [
   {
@@ -37,7 +38,7 @@ export default function Services() {
   const [services, setServices] = useState(SERVICES)
 
   useEffect(() => {
-    listServices().then(setServices).catch(() => {})
+    listServices().then((rows) => setServices(withPhotos(rows))).catch(() => {})
   }, [])
 
   const ctaRef = useRef(null)
@@ -113,7 +114,7 @@ export default function Services() {
         <section className="band band--brown cta">
           <div ref={ctaRef} className="band-inner cta-inner sticker">
             <div className="cta-letter">
-              <Decor src={brownHeart} className="decor-inline cta-art" />
+              <Decor src={brownStar} className="decor-inline cta-art" />
   
               <h2>Have something specific in mind?</h2>
   

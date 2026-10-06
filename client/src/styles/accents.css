@@ -1,0 +1,16 @@
+/* accents */
+
+.grid--3 > .card--brown:nth-child(1) .tag {
+  border-color: var(--sage-soft);
+  color: var(--sage-soft);
+}
+
+.grid--3 > .card--brown:nth-child(2) .tag {
+  border-color: var(--lavender);
+  color: var(--lavender);
+}
+
+.grid--3 > .card--brown:nth-child(3) .tag {
+  border-color: var(--peach);
+  color: var(--peach);
+}

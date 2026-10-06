@@ -45,14 +45,21 @@ export default function Admin() {
       </>
     )
   } else {
-    content = (
-      <>
-        <div className="admin-toolbar">
-          <h2>Inquiries</h2>
-          <button type="button" className="btn" onClick={logout}>Sign out</button>
+    content = null
+  }
+
+  if (admin && session) {
+    return (
+      <div className="admin-shell">
+        <aside className="admin-side">
+          <p className="admin-brand">Staery Sky PH</p>
+          <span className="admin-nav is-active">Inquiries</span>
+          <button type="button" className="admin-logout" onClick={logout}>Log out</button>
+        </aside>
+        <div className="admin-main">
+          <AdminInquiries />
         </div>
-        <AdminInquiries />
-      </>
+      </div>
     )
   }
 

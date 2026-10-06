@@ -1,0 +1,483 @@
+/* expanded service card */
+.service-card--expanded {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) 1.2fr;
+  align-items: start;
+  column-gap: clamp(20px, 3vw, 40px);
+  padding: 16px 16px 24px;
+  transform: none;
+}
+
+.service-card--expanded .service-photo {
+  grid-row: 1 / span 5;
+  margin-bottom: 0;
+  aspect-ratio: 1;
+  border-radius: 12px;
+}
+
+.service-card--expanded h3 {
+  margin-top: var(--space-sm);
+  min-height: 0;
+  text-align: left;
+  padding-inline: 0;
+}
+
+.service-card--expanded > p {
+  text-align: left;
+  padding-inline: 0;
+}
+
+.service-card--expanded .service-details,
+.service-card--expanded .service-action {
+  justify-self: start;
+}
+
+.service-details {
+  width: 100%;
+  margin-top: var(--space-sm);
+  padding-inline: 0;
+  text-align: left;
+}
+
+.service-steps {
+  margin: 0;
+  padding-left: 1.3em;
+  font-size: var(--fs-small);
+  line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+  .service-card--expanded {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card--expanded .service-photo {
+    grid-row: auto;
+    aspect-ratio: 5 / 4;
+  }
+}
+
+.service-card--expanded {
+  background:
+    repeating-linear-gradient(0deg, rgba(120, 90, 60, 0.03) 0 1px, transparent 1px 3px),
+    linear-gradient(to bottom, #f8f4e6, #f1ead8);
+  color: var(--brown);
+  align-items: start;
+}
+
+.service-card--expanded .service-photo {
+  background: var(--pink);
+}
+
+.service-card--expanded h3 {
+  display: block;
+  margin: 0 0 var(--space-sm);
+  font-size: clamp(20px, 2vw, 28px);
+  text-align: left;
+}
+
+.service-card--expanded > p {
+  margin: 0 0 var(--space-md);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+}
+
+.service-card--expanded .service-details {
+  margin: 0 0 var(--space-md);
+}
+
+.service-card--expanded .service-steps {
+  display: grid;
+  gap: 6px;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.service-card--expanded .service-steps li {
+  counter-increment: step;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-small);
+}
+
+.service-card--expanded .service-steps li::before {
+  content: counter(step);
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--brown);
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 600;
+  flex: none;
+}
+
+.service-card--expanded .service-action {
+  margin-top: 0;
+  margin-right: var(--space-sm);
+}
+
+.service-card--expanded {
+  row-gap: 0;
+}
+
+.service-card--expanded > h3 {
+  margin-bottom: var(--space-sm);
+}
+
+.service-card--expanded > p {
+  margin-bottom: var(--space-lg);
+}
+
+.service-card--expanded .service-details {
+  margin-bottom: var(--space-lg);
+}
+
+.service-card--expanded .service-steps li {
+  padding-bottom: 2px;
+}
+
+.service-card--expanded .service-action {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 1.4em;
+  vertical-align: middle;
+}
+
+.service-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.service-actions .service-action {
+  margin: 0;
+  height: 40px;
+  padding: 0 1.4em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+  padding-inline: var(--space-md);
+}
+
+.service-card:not(.service-card--expanded) .service-actions .service-action {
+  width: 100%;
+  max-width: 220px;
+  height: 38px;
+  padding: 0 1em;
+  font-size: var(--fs-small);
+}
+
+.service-card:not(.service-card--expanded) .service-photo {
+  aspect-ratio: 6 / 5;
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  font-size: clamp(14px, 1.2vw, 17px);
+  min-height: 2.4em;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  font-size: clamp(12px, 0.95vw, 14px);
+  line-height: 1.45;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  gap: 6px;
+  padding-inline: var(--space-sm);
+  padding-bottom: var(--space-xs);
+}
+
+.service-card:not(.service-card--expanded) .service-actions .service-action {
+  max-width: 180px;
+  height: 32px;
+  padding: 0 0.9em;
+  font-size: 12px;
+}
+
+.service-card--clickable {
+  cursor: pointer;
+}
+
+.service-card--clickable:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.service-card--expanded[data-accent='pink'] .service-photo { background: var(--pink); }
+.service-card--expanded[data-accent='sky'] .service-photo { background: var(--sky); }
+.service-card--expanded[data-accent='sage'] .service-photo { background: var(--sage); }
+.service-card--expanded[data-accent='mustard'] .service-photo { background: var(--mustard); }
+.service-card--expanded[data-accent='cream'] .service-photo { background: var(--cream-deep); }
+
+.service-card--expanded > p {
+  max-width: 62ch;
+  margin: 0 0 var(--space-lg);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  max-width: 26ch;
+  margin: var(--space-xs) auto var(--space-md);
+  line-height: 1.55;
+  text-wrap: balance;
+}
+
+.service-card:not(.service-card--expanded) {
+  --card-gap: var(--space-sm);
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  min-height: 2.4em;
+  margin: var(--space-sm) var(--space-sm) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  min-height: 4.65em;
+  max-width: none;
+  margin: 0 var(--space-md) var(--space-md);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  margin-top: 0;
+  padding-bottom: var(--space-sm);
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  min-height: 2.2em;
+  margin: var(--space-xs) var(--space-sm) 0;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  min-height: 3.1em;
+  margin: 0 var(--space-sm) var(--space-xs);
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  padding-bottom: var(--space-xs);
+}
+
+.service-card--expanded {
+  align-content: center;
+}
+
+.service-card--expanded {
+  align-content: start;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.service-card--expanded .service-photo {
+  aspect-ratio: 4 / 3;
+  align-self: center;
+}
+
+.service-card--expanded .service-actions {
+  padding-bottom: 0;
+}
+
+.service-copy {
+  display: contents;
+}
+
+.service-card--expanded .service-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.service-card--expanded .service-copy > * {
+  width: 100%;
+}
+
+.service-card--expanded .service-copy {
+  text-align: left;
+}
+
+.service-card--expanded .service-copy > p {
+  margin: 0 0 var(--space-md);
+  max-width: 62ch;
+  font-size: var(--fs-body);
+  line-height: 1.7;
+}
+
+.service-card--expanded .service-copy {
+  gap: var(--space-md);
+}
+
+.service-card--expanded .service-copy > h3,
+.service-card--expanded .service-copy > p,
+.service-card--expanded .service-copy > .service-details,
+.service-card--expanded .service-copy > .service-actions {
+  margin: 0;
+}
+
+.service-card--expanded .service-copy > h3 {
+  margin-bottom: 0;
+}
+
+.service-card--expanded .service-details {
+  padding: 0;
+}
+
+.service-card--expanded .service-steps {
+  gap: 8px;
+}
+
+.service-card--expanded .service-actions {
+  gap: var(--space-sm);
+}
+
+.service-card {
+  --block-gap: var(--space-sm);
+}
+
+.service-card h3 {
+  margin: var(--block-gap) var(--block-gap) 0;
+}
+
+.service-card > p {
+  margin: var(--block-gap) var(--block-gap) 0;
+}
+
+.service-card .service-actions {
+  margin-top: var(--block-gap);
+  padding: 0 var(--block-gap) var(--block-gap);
+}
+
+.service-card--expanded .service-copy {
+  gap: var(--block-gap);
+}
+
+.service-card--expanded .service-copy > h3,
+.service-card--expanded .service-copy > p,
+.service-card--expanded .service-copy > .service-details,
+.service-card--expanded .service-copy > .service-actions {
+  margin: 0;
+  padding: 0;
+}
+
+.service-card:not(.service-card--expanded) {
+  --block-gap: var(--space-md);
+}
+
+.service-card:not(.service-card--expanded) h3,
+.service-card:not(.service-card--expanded) > p {
+  padding-inline: var(--space-md);
+  margin-inline: 0;
+  min-height: 0;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  margin-top: var(--space-sm);
+  margin-bottom: 0;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  padding: var(--space-md) var(--space-md) var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.service-card:not(.service-card--expanded) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card:not(.service-card--expanded) .service-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.service-card:not(.service-card--expanded) h3 {
+  min-height: 2.6em;
+  margin: var(--space-xs) var(--space-lg) 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  min-height: 4.8em;
+  margin: var(--space-sm) var(--space-lg) 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  margin-top: auto;
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+}
+
+.service-card:not(.service-card--expanded) {
+  --card-inset: clamp(18px, 1.8vw, 24px);
+}
+
+.service-card:not(.service-card--expanded) h3,
+.service-card:not(.service-card--expanded) > p {
+  margin-left: var(--card-inset);
+  margin-right: var(--card-inset);
+}
+
+.service-card:not(.service-card--expanded) .service-actions {
+  padding-left: var(--card-inset);
+  padding-right: var(--card-inset);
+}
+
+.service-card:not(.service-card--expanded) > p {
+  display: block;
+  text-align: center;
+  padding-inline: 0;
+  overflow-wrap: break-word;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  width: calc(100% - 2 * var(--card-inset));
+  max-width: calc(100% - 2 * var(--card-inset));
+  margin-left: auto;
+  margin-right: auto;
+  hyphens: auto;
+  overflow-wrap: anywhere;
+}
+
+.service-card:not(.service-card--expanded) > p {
+  max-width: 22ch;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+

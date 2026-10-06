@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Hero from './components/Hero.jsx'
 import AboutSection from './components/AboutSection.jsx'
@@ -10,8 +10,9 @@ import { NAV_LINKS } from './components/Navbar.jsx'
 import useActiveSection from './hooks/useActiveSection.js'
 import { SERVICES } from './data/services.js'
 import { listServices } from './api'
-import pinkStar from './assets/images/decorations/pink_star.png'
-import pinkAsterisk from './assets/images/decorations/pink_asterisk.png'
+import { withPhotos } from './data/services.js'
+import pinkStar from './assets/decorations/pink_star.png'
+import pinkAsterisk from './assets/decorations/pink_asterisk.png'
 
 const SECTION_IDS = NAV_LINKS.map((link) => link.id)
 
@@ -21,7 +22,7 @@ export default function App() {
   const [services, setServices] = useState(SERVICES)
 
   useEffect(() => {
-    listServices().then(setServices).catch(() => {})
+    listServices().then((rows) => setServices(withPhotos(rows))).catch(() => {})
   }, [])
 
   const active = useActiveSection(SECTION_IDS)
