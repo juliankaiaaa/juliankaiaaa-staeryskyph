@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Decor from './Decor.jsx'
-import brownHeart from '../assets/images/decorations/brown_heart.png'
+import brownStar from '../assets/decorations/brown_star.png'
 
 const IDLE_MS = 10 * 60 * 1000
 const ACTIVITY = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart']
@@ -37,7 +37,7 @@ export default function IdlePopup() {
         aria-labelledby="idle-title"
         onClick={(event) => event.stopPropagation()}
       >
-        <Decor src={brownHeart} className="decor-inline idle-heart" />
+        <Decor src={brownStar} className="decor-inline idle-star" />
 
         <h2 id="idle-title">Have something specific in mind?</h2>
         <p>Send us your request and let us see how we can help.</p>

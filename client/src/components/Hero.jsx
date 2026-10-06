@@ -2,10 +2,7 @@ import { useRef } from 'react'
 import Navbar from './Navbar.jsx'
 import Decor from './Decor.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
-import brownStar from '../assets/images/decorations/brown_star.png'
-import brownHeart from '../assets/images/decorations/brown_heart.png'
-import brownAsterisk from '../assets/images/decorations/brown_asterisk.png'
-import brownOctagram from '../assets/images/decorations/brown_octagram.png'
+import brownStar from '../assets/decorations/brown_star.png'
 
 /* The cover shared by every page. variant "page" uses the smaller inner title */
 export default function Hero({ id, active, kicker, title, intro, variant }) {
@@ -17,9 +14,13 @@ export default function Hero({ id, active, kicker, title, intro, variant }) {
     <section id={id} className={variant === 'page' ? 'hero hero--page' : 'hero'}>
       <div className="pink-panel" ref={panelRef}></div>
 
-      <Decor src={brownHeart} className="hero-sym hero-sym-heart" />
-      <Decor src={brownAsterisk} className="hero-sym hero-sym-asterisk" />
-      <Decor src={brownOctagram} className="hero-sym hero-sym-octagram" />
+      <Decor src={brownStar} className="hero-sym hero-sym-star-left" />
+      <Decor src={brownStar} className="hero-sym hero-sym-star-mid" />
+      <Decor src={brownStar} className="hero-sym hero-sym-star-low" />
+      <Decor src={brownStar} className="hero-sym hero-sym-star-high" />
+      <Decor src={brownStar} className="hero-sym hero-sym-travel hero-sym-travel-1" />
+      <Decor src={brownStar} className="hero-sym hero-sym-travel hero-sym-travel-2" />
+      <Decor src={brownStar} className="hero-sym hero-sym-travel hero-sym-travel-3" />
 
       <Navbar active={active} />
 
@@ -32,6 +33,7 @@ export default function Hero({ id, active, kicker, title, intro, variant }) {
 
         {intro && <p className="hero-intro">{intro}</p>}
       </div>
+
     </section>
   )
 }

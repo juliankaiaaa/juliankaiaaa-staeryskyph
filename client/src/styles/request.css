@@ -1,0 +1,69 @@
+/* request */
+
+.request-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: var(--space-lg);
+}
+
+/* sticker */
+.sticker {
+  position: relative;
+
+  padding: calc(var(--card-pad) + var(--scallop) * 0.5);
+
+  color: var(--brown);
+  filter: drop-shadow(0 10px 16px rgba(62, 39, 35, 0.22));
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  font-size: var(--fs-small);
+  font-weight: 600;
+}
+
+.form :is(input, select, textarea) {
+  width: 100%;
+  padding: 12px 14px;
+
+  border: 1.5px solid var(--brown);
+  border-radius: var(--radius);
+
+  background: transparent;
+  color: var(--brown);
+
+  font: inherit;
+  font-weight: 400;
+}
+
+.form select option {
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.form ::placeholder {
+  color: var(--brown);
+  opacity: 0.55;
+}
+

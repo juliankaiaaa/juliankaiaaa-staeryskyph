@@ -1,9 +1,5 @@
 import { Link } from 'react-router-dom'
 
-/*
-  One service card. When onToggle is given, the card can expand to show its
-  details and steps. Without it, the card is the plain version used on Home.
-*/
 export default function ServiceCard({
   title,
   text,
@@ -29,7 +25,7 @@ export default function ServiceCard({
       aria-expanded={onToggle ? expanded : undefined}
     >
       {photo ? (
-        <img className="service-photo" src={photo} alt={title} />
+        <img className="service-photo" src={photo} alt="" loading="lazy" decoding="async" />
       ) : (
         <div className="service-photo" aria-hidden="true"></div>
       )}

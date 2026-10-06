@@ -1,0 +1,256 @@
+/* about */
+
+.about {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  min-height: var(--section-height);
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-md);
+
+  padding: var(--section-y) max(var(--gutter), calc((50vw - 34em) / 2));
+
+  background: var(--pink);
+  color: var(--brown);
+}
+
+.about-text > h2 {
+  max-width: 12em;
+}
+
+.about-text > p {
+  max-width: 34em;
+}
+
+.about-text .btn {
+  margin-top: var(--space-xs);
+}
+
+.about-image {
+  position: relative;
+
+  display: grid;
+  padding: clamp(24px, 3.5vw, 52px) clamp(24px, 6.5vw, 96px);
+
+  background:
+    var(--dots) 0 0 / var(--dot-tile) var(--dot-tile),
+    var(--brown);
+}
+
+.about-image > * {
+  grid-area: 1 / 1;
+}
+
+.about-image::before {
+  content: "";
+
+  grid-area: 1 / 1;
+}
+
+.paper-scrap {
+  place-self: center;
+
+  width: 46%;
+  max-width: 250px;
+  aspect-ratio: 1;
+
+  background: var(--cream);
+  clip-path: var(--torn);
+  transform: translate(6%, 5%) rotate(-4deg);
+}
+
+.polaroid {
+  position: relative;
+  place-self: center;
+
+  width: 62%;
+  max-width: 380px;
+  padding: calc(var(--space-sm) * 1.2) calc(var(--space-sm) * 1.2) calc(var(--space-sm) * 4);
+
+  border-radius: 3px;
+
+  background: var(--cream);
+  box-shadow: var(--shadow);
+  transform: rotate(2deg);
+}
+
+.polaroid-photo {
+  aspect-ratio: 1;
+
+  border-radius: 2px;
+
+  background: var(--brown);
+}
+
+/* washi tape */
+.polaroid::before,
+.service-card::after {
+  content: "";
+
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  z-index: 2;
+
+  width: 72px;
+  height: 22px;
+
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.25) 0 2px,
+      transparent 2px 7px
+    ),
+    rgba(244, 238, 230, 0.8);
+  clip-path: polygon(
+    0 0, 100% 0, 97% 25%, 100% 50%, 97% 75%, 100% 100%,
+    0 100%, 3% 75%, 0 50%, 3% 25%
+  );
+  pointer-events: none;
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.service-card:nth-child(even)::after {
+  transform: translateX(-50%) rotate(5deg);
+}
+
+/* home services */
+
+.services {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 40px);
+
+  padding: clamp(56px, 7vw, 104px) 0;
+}
+
+.services-heading {
+  position: relative;
+
+  width: max-content;
+  max-width: 100%;
+
+  align-self: center;
+  text-align: center;
+}
+
+/* stars */
+.star-top {
+  --size: calc(var(--fs-h2) * 0.7);
+  --tilt: 12deg;
+
+  top: calc(var(--fs-h2) * -0.4);
+  right: calc(var(--fs-h2) * -1);
+}
+
+.star-bottom {
+  --size: calc(var(--fs-h2) * 0.5);
+  --tilt: -8deg;
+
+  bottom: 0;
+  left: calc(var(--fs-h2) * -0.8);
+}
+
+/* carousel */
+
+.services-carousel {
+  --card-w: clamp(260px, 21vw, 330px);
+  --card-gap: clamp(20px, 2.5vw, 36px);
+
+  position: relative;
+
+  width: 100%;
+  max-width: calc((var(--card-w) + var(--card-gap)) * 3.4 + 48px + 120px);
+  margin-inline: auto;
+  padding-inline: 60px;
+  padding-bottom: 44px;
+}
+
+.service-track {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 32px, #000 calc(100% - 32px), transparent 100%);
+
+  display: flex;
+  gap: var(--card-gap);
+
+  width: 100%;
+  padding: 24px 24px 32px;
+
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 24px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.service-track::-webkit-scrollbar {
+  display: none;
+}
+
+.service-track > :first-child {
+  margin-left: auto;
+}
+
+.service-track > :last-child {
+  margin-right: auto;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: calc(50% - 21px);
+  z-index: 4;
+
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+
+  border: 1px solid rgba(244, 241, 226, 0.5);
+  border-radius: 50%;
+
+  background: rgba(244, 241, 226, 0.78);
+  color: var(--brown);
+
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(252, 230, 183, 0.92);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+
+.carousel-arrow:active {
+  transform: translateY(0);
+}
+
+.carousel-arrow-prev {
+  left: 6px;
+}
+
+.carousel-arrow-next {
+  right: 6px;
+}
+
