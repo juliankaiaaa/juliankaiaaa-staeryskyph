@@ -58,12 +58,6 @@
   }
 }
 
-/* nothing keeps moving once the page has settled */
-
-.stage-star {
-  animation: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .reveal-item {
     opacity: 1;

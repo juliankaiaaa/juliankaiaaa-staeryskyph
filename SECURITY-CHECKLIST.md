@@ -1,78 +1,49 @@
 # Security checklist
 
-## Secrets and credentials
+The site is a static React build served by GitHub Pages. Data is stored in Supabase, protected by Row Level Security. There is no custom server.
 
-| # | Check | Yes / No / N/A | Evidence |
+Last reviewed against the code on the `design-consistency` branch.
+
+## Secrets and configuration
+
+| # | Check | Status | Evidence |
 | --- | --- | --- | --- |
-| 1 | `.env` is gitignored and is not in the repository | Yes | `.gitignore` includes `.env` and `.env.*`, while `.env.example` files are allowed to be committed. |
-| 2 | `.env.example` files contain placeholder values only | Yes | `client/.env.example` contains placeholder values only. The real `client/.env` is git-ignored. |
-| 3 | No real password, API key, token, or database credential is hardcoded in the source code | Yes | Project files were checked for passwords, secrets, API keys, and database connection strings. Only placeholder/example values were found. |
-| 4 | Git history was checked for exposed credentials | Yes | Git history was searched for passwords, secrets, API keys, and database connection strings. No real credentials were found. |
-| 5 | Any credential that was ever committed has been rotated | N/A | No real production credential was found in the repository or Git history. |
-| 6 | Production credentials are stored only in environment settings | N/A | The backend is still under development and does not have production credentials yet. |
-
-## GitHub Actions
-
-| # | Check | Yes / No / N/A | Evidence |
-| --- | --- | --- | --- |
-| 7 | No secret value is written directly in the workflow file | Yes | `.github/workflows/deploy-pages.yml` does not contain passwords, API keys, or database credentials. |
-| 8 | Secrets are stored using GitHub Actions secrets when needed | N/A | The current workflow only builds and deploys the frontend. No private backend secrets are required by the workflow. |
-| 9 | Workflow logs do not intentionally print secrets | Yes | The workflow does not echo passwords, API keys, or other private credentials. |
-| 10 | Uploaded build artifacts do not contain `.env` or private key files | Yes | The workflow uploads `client/dist`, which contains the built frontend files. |
-| 11 | Third-party GitHub Actions are pinned to commit SHAs | Yes | `actions/checkout`, `actions/setup-node`, `actions/upload-pages-artifact`, and `actions/deploy-pages` are pinned to specific commit SHAs instead of version tags. |
-| 12 | GitHub secret scanning and push protection are enabled | Yes | Secret scanning and push protection are enabled in the repository's GitHub security settings. |
+| 1 | `.env` files are git-ignored | Yes | `.gitignore` ignores `.env` and `.env.*`, and allows `.env.example`. |
+| 2 | `.env.example` contains placeholders only | Yes | `client/.env.example` has `<value>` placeholders. |
+| 3 | No keys or passwords are hardcoded in source | Yes | Supabase values are read from `import.meta.env` in `client/src/api/supabaseClient.js`. |
+| 4 | The anon key was never committed | Yes | A search of the git history for the anon key found no matches. |
+| 5 | The database password and `service_role` key are not used in the browser | Yes | Only `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are used. |
 
 ## Database
 
-| # | Check | Yes / No / N/A | Evidence |
+| # | Check | Status | Evidence |
 | --- | --- | --- | --- |
-| 13 | Database queries use parameters instead of string concatenation | Yes | All reads and writes go through the Supabase client, which sends values as parameters. |
-| 14 | The database is not publicly exposed to the internet | Yes | The database is hosted by Supabase and reached only through its API, with Row Level Security enabled on every table (`supabase/schema.sql`). |
-| 15 | The application uses only the permissions it needs | Yes | The browser uses the public anon key. Row Level Security limits visitors to sending inquiries and reading visible services and approved guestbook entries. |
-| 16 | Sample data does not contain real people's personal information | Yes | The seed data contains only the service descriptions in `supabase/seed.sql`. |
-| 17 | Debug, seed, or reset routes are not publicly exposed | Yes | There are no custom server routes. Schema and seed scripts run only in the Supabase SQL Editor. |
+| 6 | Row Level Security is enabled on every table | Yes | `supabase/schema.sql` enables RLS on `admins`, `inquiries`, `guestbook`, `services` and `portfolio_items`. |
+| 7 | Visitors can only send inquiries and read visible services | Yes | Policies "Anyone can send an inquiry" and "Anyone reads visible services". |
+| 8 | Only admins can read or change inquiries | Yes | Policy "Admins manage inquiries", based on the `admins` table. |
+| 9 | Input length and values are limited in the database | Yes | `CHECK` constraints on `inquiries` (name, email, message, status, notes, service, details). |
 
-## Access control
+## Frontend
 
-| # | Check | Yes / No / N/A | Evidence |
+| # | Check | Status | Evidence |
 | --- | --- | --- | --- |
-| 18 | The application has an appropriate access layer when required | Yes | The backend includes Basic Authentication for API routes while the API is being developed. |
-| 19 | Supabase or Firebase security rules are enabled when applicable | N/A | The current project does not use Supabase or Firebase for its backend. |
-| 20 | Admin sign-in uses a managed authentication service | Yes | Admins sign in with Supabase Auth email and password. Only accounts listed in the `admins` table can read or change inquiries. |
-| 21 | Protected API routes use the authentication layer | Yes | The `/api` routes are placed behind the Basic Authentication middleware. |
-| 22 | Keys and credentials are not hardcoded in source files | Yes | Supabase keys are read from `client/.env`, which is git-ignored. The anon key is public by design, and Row Level Security protects the data. |
+| 10 | User text is rendered without raw HTML | Yes | No `dangerouslySetInnerHTML` in `client/src`. |
+| 11 | Error messages do not expose database internals | Yes | Visitors see a message from `createInquiry`. Full errors are logged to the console only. |
+| 12 | Admin sign-in uses Supabase Auth | Yes | `client/src/api/adminApi.js` and `client/src/components/AdminLogin.jsx`. |
 
-## Input and output
+## Deployment
 
-| # | Check | Yes / No / N/A | Evidence |
+| # | Check | Status | Evidence |
 | --- | --- | --- | --- |
-| 23 | User input is validated on the server | Yes | The database enforces length and value limits with CHECK constraints in `supabase/schema.sql`, and the forms validate the same rules before sending. |
-| 24 | User-supplied text is safely rendered | Yes | The React frontend uses normal JSX rendering and does not use `dangerouslySetInnerHTML`. |
-| 25 | Error responses do not expose sensitive server information | Yes | Visitors see plain messages. Detailed database errors are logged to the browser console only. |
-| 26 | CORS is restricted to allowed origins | Yes | The backend uses the `CORS_ORIGINS` environment variable instead of allowing every origin by default. |
+| 13 | Third-party actions are pinned to commit SHAs | Yes | `.github/workflows/deploy-pages.yml`. |
+| 14 | The workflow contains no secret values | Yes | Values come from repository variables (`vars.*`). |
+| 15 | The uploaded artifact is `client/dist` only | Yes | The `upload-pages-artifact` step uses `client/dist`. |
+| 16 | GitHub secret scanning and push protection are on | To confirm | Check **Settings > Code security**. This cannot be verified from the repository. |
 
-## Repository and privacy
+## Privacy
 
-| # | Check | Yes / No / N/A | Evidence |
+| # | Check | Status | Evidence |
 | --- | --- | --- | --- |
-| 27 | No student number, personal email, phone number, or home address is stored in project files | Yes | Project files were checked for personal information and no such information is intentionally included in the website source. |
-| 28 | No customer or other person's personal data is stored in the repository | Yes | No customer records, addresses, phone numbers, or private customer information are included in the repository. |
-| 29 | Dependencies are installed through npm and `node_modules` is ignored | Yes | The project uses `npm install` for dependencies, and `node_modules/` is included in `.gitignore`. |
-| 30 | Images, fonts, and other assets are properly owned, licensed, or used appropriately | Yes | The website uses project design assets such as the brown polka-dot background and pink curved design asset. Fonts and other external assets should continue to be checked before final deployment. |
-| 31 | Repository visibility is intentional | Yes | The repository is public because the project uses GitHub Pages for the frontend deployment. |
-
-## Anything I found and fixed
-
-During the security review, I checked the project for exposed credentials, environment files, Git history issues, and GitHub Actions configuration.
-
-I also updated the project so that:
-
-- `.env` files are ignored by Git.
-- Example environment files contain placeholder values only.
-- API authentication uses environment variables.
-- The backend uses a separate application database user.
-- GitHub Actions are pinned to commit SHAs.
-- The frontend build does not include private environment files or credentials.
-- GitHub secret scanning and push protection are enabled.
-
-Re-check the database and access rules after any change to `supabase/schema.sql`.
+| 17 | Seed data contains no personal information | Yes | `supabase/seed.sql` and `client/src/api/seed.json` contain service descriptions only. |
+| 18 | Images and fonts are from known sources | Partly | Logo and decorations are project artwork. Service photos must be licensed for use. Fonts come from Google Fonts. |
+| 19 | Repository visibility is intentional | To confirm | GitHub Pages needs a public repository on a free account. |

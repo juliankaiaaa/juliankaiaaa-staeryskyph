@@ -48,8 +48,9 @@ export default function App() {
           }
         >
           <p>
-            Staery Sky PH is a purchase assistance service for K-pop fans,
-            helping you get items from Japan, Korea, and other places.
+            Staery Sky PH is a fan-owned shop established in 2019, now
+            offering Japan and Korea pasabuy, proxy buying, international
+            shipping, and package consolidation.
           </p>
         </AboutSection>
 

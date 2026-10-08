@@ -34,7 +34,7 @@ const STEPS = [
 export default function Services() {
   const [openNumber, setOpenNumber] = useState(null)
   const [accent, setAccent] = useState('cream')
-  // The static list shows at once and is replaced when the API answers
+  // The static list shows immediately and is replaced when the API responds
   const [services, setServices] = useState(SERVICES)
 
   useEffect(() => {

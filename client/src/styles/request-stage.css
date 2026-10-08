@@ -1,7 +1,7 @@
 /* request stage */
 
 .request-band {
-  background: #34231f;
+  background: var(--paper-ink);
 }
 
 .request-wrap {
@@ -54,7 +54,7 @@
   padding: clamp(18px, 2.4vw, 30px);
 
   border-radius: 18px;
-  background: #f3eedd;
+  background: var(--paper-cream);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
   transform: rotate(-0.6deg);
 }
@@ -72,7 +72,7 @@
   width: 96px;
   height: 28px;
   margin-left: -48px;
-  background: repeating-linear-gradient(45deg, #c5d9ea 0 6px, #d6e5f1 6px 12px);
+  background: repeating-linear-gradient(45deg, var(--paper-blue) 0 6px, #d6e5f1 6px 12px);
   opacity: 0.95;
   transform: rotate(-3deg);
 }
@@ -82,7 +82,7 @@
   flex-direction: column;
   gap: 16px;
   padding: clamp(18px, 2.6vw, 28px) clamp(16px, 2.8vw, 30px);
-  border: 1.5px dashed #cfc6ad;
+  border: 1.5px dashed var(--paper-border);
   border-radius: 12px;
   transform: none;
 }
@@ -99,13 +99,13 @@
 
 .request-stage .inquiry-head p {
   margin: 4px 0 0;
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 14px;
 }
 
 .request-stage .field {
   gap: 6px;
-  color: #34231f;
+  color: var(--paper-ink);
   font-size: 13px;
   font-weight: 500;
 }
@@ -115,10 +115,10 @@
 .request-stage .field textarea {
   min-height: 0;
   padding: 11px 14px;
-  border: 1.5px solid #cfc6ad;
+  border: 1.5px solid var(--paper-border);
   border-radius: 10px;
-  background: #fbf8ee;
-  color: #34231f;
+  background: var(--paper-cream-light);
+  color: var(--paper-ink);
   font-size: max(16px, 14px);
   font-weight: 400;
 }
@@ -127,21 +127,21 @@
 .request-stage .inquiry-send {
   min-height: 48px;
   padding: 14px 28px;
-  color: #34231f;
+  color: var(--paper-ink);
   font-size: 15px;
   font-weight: 600;
 }
 
 .request-stage .inquiry-cancel {
-  background: #f3eedd;
+  background: var(--paper-cream);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
   font-size: 14px;
   font-weight: 500;
 }
 
 .request-stage .inquiry-send {
-  background: #ecb8c6;
-  box-shadow: 0 3px 0 #c98fa1;
+  background: var(--paper-pink);
+  box-shadow: 0 3px 0 var(--paper-pink-shadow);
 }
 
 /* receipt */
@@ -153,9 +153,9 @@
 
   overflow: hidden;
   border-radius: 18px;
-  background: #f3eedd;
+  background: var(--paper-cream);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-  color: #34231f;
+  color: var(--paper-ink);
   text-align: center;
   transform: rotate(1.6deg);
 }
@@ -167,7 +167,7 @@
   z-index: 1;
   width: 90px;
   height: 28px;
-  background: repeating-linear-gradient(45deg, #ecb8c6 0 6px, #f3cdd8 6px 12px);
+  background: repeating-linear-gradient(45deg, var(--paper-pink) 0 6px, #f3cdd8 6px 12px);
   transform: rotate(4deg);
 }
 
@@ -180,7 +180,7 @@
 
 .receipt-label {
   margin: 0;
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.08em;
@@ -189,7 +189,7 @@
 
 .receipt-code {
   padding: 18px 10px;
-  border: 2px dashed #34231f;
+  border: 2px dashed var(--paper-ink);
   border-radius: 12px;
   font-size: clamp(24px, 2.6vw, 30px);
   font-weight: 600;
@@ -198,7 +198,7 @@
 
 .receipt-text {
   margin: 0;
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 14px;
 }
 
@@ -208,7 +208,7 @@
   align-items: center;
   gap: 10px;
   padding: 20px 30px 26px;
-  background: #c5c4a0;
+  background: var(--paper-sage);
 }
 
 .receipt-btn {
@@ -217,9 +217,9 @@
   align-items: center;
   padding: 0 28px;
   border-radius: 999px;
-  background: #f3eedd;
+  background: var(--paper-cream);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-  color: #34231f;
+  color: var(--paper-ink);
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -229,7 +229,7 @@
   padding: 0;
   border: 0;
   background: none;
-  color: #34231f;
+  color: var(--paper-ink);
   font: inherit;
   font-size: 13px;
   text-decoration: underline;
@@ -247,7 +247,7 @@
   top: -6px;
   right: 3%;
   width: 46px;
-  fill: #ecb8c6;
+  fill: var(--paper-pink);
   transform: rotate(14deg);
 }
 
@@ -255,7 +255,7 @@
   bottom: -4px;
   left: 2%;
   width: 34px;
-  fill: #c5d9ea;
+  fill: var(--paper-blue);
   transform: rotate(-12deg);
 }
 
@@ -354,7 +354,7 @@
 .request-stage .field input:focus,
 .request-stage .field select:focus,
 .request-stage .field textarea:focus {
-  border-color: #34231f;
+  border-color: var(--paper-ink);
   background: #fff;
   box-shadow: 0 0 0 3px rgba(236, 184, 198, 0.6);
 }
@@ -367,12 +367,12 @@
 
 @media (hover: hover) {
   .request-stage .inquiry-send:not(:disabled):hover {
-    box-shadow: 0 5px 0 #c98fa1;
+    box-shadow: 0 5px 0 var(--paper-pink-shadow);
     transform: translateY(-2px);
   }
 
   .request-stage .inquiry-send:not(:disabled):active {
-    box-shadow: 0 1px 0 #c98fa1;
+    box-shadow: 0 1px 0 var(--paper-pink-shadow);
     transform: translateY(2px);
   }
 

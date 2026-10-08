@@ -1,12 +1,9 @@
 const photoFiles = import.meta.glob('../assets/services/*.{png,jpg,jpeg,webp}', { eager: true, import: 'default' })
 
-/* Finds the image whose file name starts with the key, e.g. mercari.png for "mercari" */
+/* Matches a service key to assets/services/<key>_photo.<ext> */
 const photoFor = (key) => {
-  const names = Object.keys(photoFiles).map((p) => [p, p.split('/').pop()])
-  const hit = key.includes('.')
-    ? names.find(([, name]) => name === key)
-    : names.find(([, name]) => name.split('.')[0] === key) ?? names.find(([, name]) => name.startsWith(key))
-  return hit ? photoFiles[hit[0]] : null
+  const path = Object.keys(photoFiles).find((p) => p.split('/').pop().startsWith(`${key}_photo.`))
+  return path ? photoFiles[path] : null
 }
 
 export const SERVICES = [
@@ -32,7 +29,7 @@ export const SERVICES = [
     summary: 'Purchase items from Thailand with help from checkout all the way to forwarding to your door.',
     description:
       'Purchase items from Thailand with assistance from checkout to forwarding.\n\nWe help you buy from Thai shops and marketplaces, handle the checkout, and make sure your item reaches you safely, from the first payment to the final delivery.',
-    photo: photoFor('thai'),
+    photo: photoFor('thailand'),
   },
   {
     number: '07',
@@ -64,7 +61,7 @@ export const SERVICES = [
     summary: 'Use our overseas address services in Korea or Thailand to receive and forward your purchases.',
     description:
       'Use our available overseas address services for receiving and forwarding your purchases.\n\nIf a shop will not deliver to the Philippines, we can receive your package at an address in Korea or Thailand and forward it to you. You send us the details, and we handle the rest.',
-    photo: photoFor('address-rental.png'),
+    photo: photoFor('address'),
   },
   {
     number: '01',
@@ -76,7 +73,7 @@ export const SERVICES = [
   },
 ]
 
-/* Adds the local photo to rows from the API, which only stores text */
+/* Adds local photos to API rows, which store text only */
 export function withPhotos(rows) {
   const photos = Object.fromEntries(SERVICES.map((s) => [s.number, s.photo]))
   return rows.map((row) => ({ ...row, photo: photos[row.number] ?? null }))

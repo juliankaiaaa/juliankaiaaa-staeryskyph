@@ -137,7 +137,7 @@ nav a[aria-current]:hover {
 }
 
 
-/* hero panels: gradient panel with a torn-paper edge on every page */
+/* hero panel */
 .hero .pink-panel {
   background:
     radial-gradient(ellipse 70% 60% at 30% 15%, rgba(255, 246, 250, 0.7), transparent 70%),

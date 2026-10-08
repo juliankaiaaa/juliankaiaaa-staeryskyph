@@ -4,7 +4,7 @@ import { listInquiries, updateInquiry } from '../api/adminApi.js'
 const STATUSES = ['New', 'Replied', 'Closed']
 const FILTERS = ['All', ...STATUSES]
 
-/* The form stores its reference code in details. Older rows fall back to the id */
+/* Rows without a reference code show a short id instead */
 export const referenceOf = (inquiry) =>
   inquiry.details?.reference || `SSPH-${String(inquiry.id).slice(0, 4).toUpperCase()}`
 

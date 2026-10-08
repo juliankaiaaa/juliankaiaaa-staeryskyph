@@ -145,8 +145,8 @@
   display: grid;
   grid-template-columns: 240px minmax(0, 1fr);
   min-height: 100vh;
-  background: #fbf8ee;
-  color: #34231f;
+  background: var(--paper-cream-light);
+  color: var(--paper-ink);
 }
 
 .admin-side {
@@ -158,8 +158,8 @@
   gap: 8px;
   height: 100vh;
   padding: 28px 18px;
-  background: #34231f;
-  color: #f3eedd;
+  background: var(--paper-ink);
+  color: var(--paper-cream);
 }
 
 .admin-brand {
@@ -177,7 +177,7 @@
   border: 0;
   border-radius: 10px;
   background: none;
-  color: #f3eedd;
+  color: var(--paper-cream);
   font: inherit;
   font-size: 14px;
   font-weight: 500;
@@ -185,8 +185,8 @@
 }
 
 .admin-nav.is-active {
-  background: #ecb8c6;
-  color: #34231f;
+  background: var(--paper-pink);
+  color: var(--paper-ink);
 }
 
 .admin-logout {
@@ -219,10 +219,10 @@
 .admin-chip {
   min-height: 40px;
   padding: 8px 16px;
-  border: 1.5px solid #cfc6ad;
+  border: 1.5px solid var(--paper-border);
   border-radius: 999px;
-  background: #f3eedd;
-  color: #34231f;
+  background: var(--paper-cream);
+  color: var(--paper-ink);
   font: inherit;
   font-size: 13px;
   font-weight: 500;
@@ -230,9 +230,9 @@
 }
 
 .admin-chip.is-active {
-  border-color: #34231f;
-  background: #34231f;
-  color: #f3eedd;
+  border-color: var(--paper-ink);
+  background: var(--paper-ink);
+  color: var(--paper-cream);
 }
 
 .admin-export:disabled {
@@ -259,10 +259,10 @@
   flex: 0 1 300px;
   min-width: 0;
   padding: 10px 14px;
-  border: 1.5px solid #cfc6ad;
+  border: 1.5px solid var(--paper-border);
   border-radius: 10px;
-  background: #f3eedd;
-  color: #34231f;
+  background: var(--paper-cream);
+  color: var(--paper-ink);
   font: inherit;
   font-size: max(16px, 14px);
 }
@@ -270,7 +270,7 @@
 .admin-table {
   overflow: hidden;
   border-radius: 14px;
-  background: #f3eedd;
+  background: var(--paper-cream);
   box-shadow: 0 4px 14px rgba(52, 35, 31, 0.12);
 }
 
@@ -282,7 +282,7 @@
   width: 100%;
   padding: 16px 20px;
   border: 0;
-  border-bottom: 1px solid #e3dcc5;
+  border-bottom: 1px solid var(--paper-row-border);
   background: none;
   color: inherit;
   font: inherit;
@@ -300,7 +300,7 @@ button.admin-row:hover {
 
 .admin-row--head {
   background: #ebe4cc;
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -309,7 +309,7 @@ button.admin-row:hover {
 
 .admin-row small {
   display: block;
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 13px;
   overflow-wrap: anywhere;
 }
@@ -322,22 +322,22 @@ button.admin-row:hover {
   display: inline-block;
   padding: 5px 12px;
   border-radius: 999px;
-  color: #34231f;
+  color: var(--paper-ink);
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
 }
 
 .admin-pill--new {
-  background: #ecb8c6;
+  background: var(--paper-pink);
 }
 
 .admin-pill--replied {
-  background: #c5d9ea;
+  background: var(--paper-blue);
 }
 
 .admin-pill--closed {
-  background: #c5c4a0;
+  background: var(--paper-sage);
 }
 
 .admin-detail {
@@ -345,14 +345,14 @@ button.admin-row:hover {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 28px;
   padding: 20px 20px 22px;
-  border-bottom: 1px solid #e3dcc5;
-  border-left: 4px solid #ecb8c6;
-  background: #fbf8ee;
+  border-bottom: 1px solid var(--paper-row-border);
+  border-left: 4px solid var(--paper-pink);
+  background: var(--paper-cream-light);
 }
 
 .admin-answers h4 {
   margin: 0 0 8px;
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 13px;
   font-weight: 600;
 }
@@ -371,17 +371,17 @@ button.admin-row:hover {
 }
 
 .admin-detail .field {
-  color: #5b463f;
+  color: var(--paper-ink-soft);
   font-size: 13px;
   font-weight: 600;
 }
 
 .admin-detail .field select,
 .admin-detail .field textarea {
-  border: 1.5px solid #cfc6ad;
+  border: 1.5px solid var(--paper-border);
   border-radius: 10px;
-  background: #f3eedd;
-  color: #34231f;
+  background: var(--paper-cream);
+  color: var(--paper-ink);
   font-size: max(16px, 14px);
   font-weight: 400;
 }

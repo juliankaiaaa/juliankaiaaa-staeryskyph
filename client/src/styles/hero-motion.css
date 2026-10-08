@@ -56,12 +56,6 @@
   filter: drop-shadow(2px 3px 0 rgba(62, 39, 35, 0.25));
 }
 
-.hero-sym-star-right {
-  --size: clamp(30px, 3.2vw, 48px);
-  --tilt: 12deg;
-  bottom: 18%;
-  right: 16%;
-}
 
 .hero-sym-star-mid {
   --size: clamp(26px, 2.8vw, 40px);

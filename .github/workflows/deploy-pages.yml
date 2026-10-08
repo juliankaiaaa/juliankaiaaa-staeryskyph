@@ -1,23 +1,11 @@
 name: Deploy client to GitHub Pages
 
-# Builds the React client and publishes it to GitHub Pages on every push to
-# main, so the link in your README is always your latest commit.
+# Builds the client and publishes it to GitHub Pages on every push to main.
 #
-# TURN PAGES ON ONCE, BY HAND, or this runs green and publishes nothing:
-#   Settings > Pages > Build and deployment > Source: GitHub Actions
-#
-# CONFIG. Everything passed in below ends up inside the built JavaScript, which
-# anyone can download and read. That is fine for the Supabase URL and its anon
-# key, because Row Level Security is what protects the data. It is why they are
-# repository VARIABLES rather than secrets:
-#
-#   Settings > Secrets and variables > Actions > Variables
-#     VITE_USE_MOCK_API        "false" for the live Supabase site. Anything else,
-#                              including leaving it unset, keeps the demo on.
-#     VITE_SUPABASE_URL        your Supabase Project URL
-#     VITE_SUPABASE_ANON_KEY   your Supabase anon public key
-#
-# Never put the database password or the service_role key in a VITE_ variable.
+# Requires Settings > Pages > Build and deployment > Source: GitHub Actions.
+# The VITE_* values are repository variables (Settings > Secrets and variables >
+# Actions > Variables), not secrets, because they are compiled into the public
+# JavaScript. Never put the database password or service_role key in them.
 
 on:
   push:
@@ -45,9 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
-      # A fresh copy of the template already has a client, but you may well
-      # restructure. Skip quietly rather than failing, so your repository is not
-      # red before you have written anything.
+      # Skip quietly when there is no client to build.
       - id: check
         env:
           IS_PRIVATE: ${{ github.event.repository.private }}
@@ -58,8 +44,7 @@ jobs:
             echo "ready=false" >> "$GITHUB_OUTPUT"
             echo "::notice::No client/package.json, so there is nothing to build yet."
           fi
-          # GitHub Pages only publishes PUBLIC repositories on a free account.
-          # Say so loudly rather than failing later with a confusing 404.
+          # GitHub Pages only publishes public repositories on a free account.
           if [ "$IS_PRIVATE" = "true" ]; then
             echo "::warning::This repository is private, so GitHub Pages cannot publish it and the deploy step will be skipped. Make it public (Settings > General > Danger Zone > Change visibility) to get your live link."
           fi
@@ -79,17 +64,12 @@ jobs:
         if: steps.check.outputs.ready == 'true'
         working-directory: client
         env:
-          # On a project page the site is served from username.github.io/<repo>/,
-          # so assets need that prefix or every one of them 404s and you get a
-          # blank white page. Reading the name from the event means this keeps
-          # working if you rename the repository.
+          # Project pages are served from username.github.io/<repo>/, so assets need this prefix.
           VITE_BASE_PATH: /${{ github.event.repository.name }}/
           VITE_USE_MOCK_API: ${{ vars.VITE_USE_MOCK_API }}
           VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
-        # npm run build also copies index.html to 404.html. GitHub Pages serves
-        # 404.html for any path it cannot find, which is how a single-page app
-        # survives someone refreshing on a nested route.
+        # npm run build copies index.html to 404.html for direct links to missing paths.
         run: npm run build
 
       - if: steps.check.outputs.ready == 'true'
@@ -99,7 +79,7 @@ jobs:
 
   deploy:
     needs: build
-    # Skipped, not failed, when there is nothing to build or the repo is private.
+    # Skipped, not failed, when there is nothing to build or the repository is private.
     if: needs.build.outputs.ready == 'true' && github.event.repository.private == false
     runs-on: ubuntu-latest
     environment:

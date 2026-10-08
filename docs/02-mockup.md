@@ -1,24 +1,30 @@
 # Mockup
 
-Your prelim wireframes are finished and are not being redone. The mockup is what
-the app will actually look like: the wireframes painted in, with your real
-colours, type, spacing and content.
+Full-page mockups of the built site, covering the Home, About, Services, and
+Contact (request) pages at desktop width. These show the site as it actually
+looks, with real content and the finished Staery Sky PH scrapbook design,
+not placeholder text.
 
-**This is submitted as images or a PDF.** A written description of a picture
-scores in the lowest band, because the thing being asked for is the picture.
+The images live in [mockup/](mockup/).
 
-Put the exported images in `assets/` and link them here, so the repository
-carries them too.
+## Home
 
-## What it should show
+![Home page mockup](mockup/SSPH_Home-Page.png)
 
-- Every screen in your revised proposal, and no screens that are not in it
-- Real content, not "Lorem ipsum" and not "Title here"
-- The empty state of at least one screen, because that is the one people forget
-- What it looks like on a phone
+## About
+
+![About page mockup](mockup/SSPH_About-Page.png)
+
+## Services
+
+![Services page mockup](mockup/SSPH_Services-Page.png)
+
+## Contact (request)
+
+![Contact page mockup](mockup/SSPH_Contact-Page.png)
 
 ## Honest note
 
-Anything in the mockup that is not in the built app by the end needs a sentence
-in your journal explaining what happened. That is a normal part of building
-something, and saying so reads far better than quietly shipping less.
+These mockups match the site as built. If anything here is changed or
+removed before submission, note what happened in the weekly report rather
+than updating this file silently.

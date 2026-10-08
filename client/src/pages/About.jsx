@@ -23,13 +23,18 @@ export default function About() {
           variant="page"
           kicker="GET TO KNOW US"
           title="About Staery Sky PH"
-          intro="Making overseas shopping feel a little closer, easier, and more accessible for K-pop fans."
+          intro="A fan-owned shop since 2019, now offering Japan and Korea pasabuy, proxy buying, and shipping."
         />
 
         <AboutSection label="WHO WE ARE" title="Bringing your finds closer to home.">
           <p>
-            Staery Sky PH is a purchase assistance service created to help
-            K-pop fans access items from overseas shops and marketplaces.
+            Staery Sky PH is a fan-owned shop established in 2019,
+            originally catering to fanmade merchandise and collectibles. It
+            has since expanded to offer Japan and Korea pasabuy, proxy
+            buying, international shipping, package consolidation, and
+            other related services. This website serves as a central
+            platform for showcasing the shop's services and making
+            customer requests more convenient.
           </p>
 
           <p>

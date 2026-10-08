@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import useScallopFit from '../hooks/useScallopFit.js'
-import logo from '../assets/brand/ssph-logo.png'
+import logo from '../assets/brand/ssph_logo.png'
 
-/* Scalloped dotted side with a photo frame on top, used by Home and About */
+/* Scalloped side with a polaroid, used on Home and About */
 export default function AboutImage() {
   const imageRef = useRef(null)
 

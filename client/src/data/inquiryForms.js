@@ -1,5 +1,4 @@
-// One entry per service. Each field becomes an input in InquiryForm, and its
-// answer is stored in the inquiry's details column under the field's name.
+// One entry per service. Each field becomes an input, stored in the inquiry's details under its name.
 
 export const SERVICE_FORMS = {
   consolidation: {
@@ -85,7 +84,7 @@ export const SERVICE_FORMS = {
   },
 }
 
-// The service cards number themselves 01 to 08. This maps each card to its form.
+// Maps each service number (01 to 08) to its form.
 export const SLUG_BY_NUMBER = {
   '01': 'consolidation',
   '02': 'korea',
