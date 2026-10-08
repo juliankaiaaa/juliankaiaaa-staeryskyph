@@ -7,46 +7,113 @@ Start it in week 1 and keep it up as you go. The commit history of this file is
 part of the evidence: a file written all at once the night before the deadline
 looks exactly like what it is.
 
+Claude (via Claude Code) was the main tool used for building and editing the
+project, and is what the commit history and entries below reflect.
+
+**Note on the timeline:** some AI-assisted changes were not committed and
+pushed right away. I sometimes made changes and forgot to commit them
+until later. Because of this, the git history doesn't perfectly line up
+with when each change actually happened. The commit history is still a
+real record of the work, just not always on the same day the work was
+done.
+
 ## 1. How I used AI
 
-At least six entries. One per real use. Every entry needs a commit link.
+### 2026-09-23 - GitHub Pages deployment setup
 
-### YYYY-MM-DD - short title
+- **Tool:** Claude (Claude Code)
+- **What I asked for:** Help setting up the GitHub Actions deployment workflow correctly, including the action versions.
+- **What it gave back:** A fix for the pinned SHA in `deploy-pages.yml` that was causing the workflow to fail.
+- **What I kept, what I changed, and why:** I kept the fix because it solved the deployment problem. More deployment issues were fixed the following week.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/6a4b5d8
 
-- **Tool:**
-- **What I asked for:**
-- **What it gave back:**
-- **What I kept, what I changed, and why:**
-- **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
+### 2026-10-05 - Frontend components and page structure
+
+- **Tool:** Claude (Claude Code)
+- **What I asked for:** Help creating shared React components such as the Navbar, Hero, ServiceCard, and footer, instead of repeating the same code on every page.
+- **What it gave back:** The shared components in `client/src/components/` and common color and spacing values.
+- **What I kept, what I changed, and why:** I kept the component structure but changed some layouts and content as the design developed.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/294c0e3
+
+### 2026-10-05 - Supabase backend setup
+
+- **Tool:** Claude (Claude Code)
+- **What I asked for:** Help creating a backend for the request form and an admin page for managing submissions without having to run my own server.
+- **What it gave back:** The Supabase schema in `supabase/schema.sql`, Row Level Security policies, and the admin sign-in and inquiry management page.
+- **What I kept, what I changed, and why:** I kept Supabase because it could handle the backend without needing my own server. I also removed the earlier Express server because it was no longer needed.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/4f5cfb8
+
+### 2026-10-05 - Service inquiry forms
+
+- **Tool:** Claude (Claude Code)
+- **What I asked for:** Help creating a request form where the fields change depending on the selected service, with validation and a progress indicator.
+- **What it gave back:** `InquiryForm.jsx` and the field definitions in `data/inquiryForms.js`.
+- **What I kept, what I changed, and why:** I kept the basic structure but changed the wording, service list, order, and styling several times to match what I wanted.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb7ecf7
+
+### 2026-10-05 - Service card design and ordering
+
+- **Tool:** Claude (Claude Code)
+- **What I asked for:** Help with the size, spacing, and order of the service cards.
+- **What it gave back:** Different versions of the card sizes and spacing, as well as the sorting using `sort_order`.
+- **What I kept, what I changed, and why:** I rejected several versions before choosing the current card layout. I kept the final spacing and order because they matched the design I wanted.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/63273a9
+
+### 2026-10-05 - Animations and interaction
+
+- **Tool:** Claude (Claude Code)
+- **What I asked for:** Help adding a hero entrance animation, moving and blinking stars, and scroll animations for the content sections.
+- **What it gave back:** The star animations and `hooks/useScrollReveal.js`.
+- **What I kept, what I changed, and why:** I asked for several changes, such as adding more stars, making them move slower, and making them fully disappear when off-screen.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/b6bb42a
 
 ## 2. Where the AI got it wrong
 
-Three cases. Be specific. If you write that the AI was never wrong, this section
-scores zero.
+### Case 1 - Design ideas that did not work
 
-### Case 1 - short title
+- **What it gave me:** Several design attempts, including CSS-made hero symbols, scrapbook decorations, and different spacing for the expanded service card.
+- **What was wrong with it:** The designs did not match what I wanted after I saw them on the actual website. Some spacing changes also came back after I had already reverted them.
+- **What I did instead:** I reverted the changes and asked for a different design.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/e358b6f
 
-- **What it gave me:**
-- **What was wrong with it:**
-- **What I did instead:**
-- **Commit:** https://github.com/YOUR-USERNAME/YOUR-REPO/commit/SHA
+### Case 2 - CSS animation was not working
+
+- **What it gave me:** Star animations that looked correct in the code but did not move in the browser.
+- **What was wrong with it:** A later stylesheet, `motion.css`, had an `animation: none` rule that stopped the animations.
+- **What I did instead:** I found and removed the conflicting rules, then checked the animations in the browser to make sure they worked.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb6a10a
+
+### Case 3 - Service card design needed revisions
+
+- **What it gave me:** Different versions of the service card spacing and layout.
+- **What was wrong with it:** Some versions did not match the look and spacing I wanted.
+- **What I did instead:** I reviewed the versions, rejected the ones I did not like, and asked for changes until I was satisfied with the final layout.
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/46a715f
 
 ## 3. Who wrote what
 
-At least a fifth of this project is code you wrote yourself. Name it, and explain
-it in your own words.
+In short: I handled the main ideas, the content, the design decisions, the
+revisions, and the review and testing. AI assisted with implementation:
+writing the actual code, troubleshooting bugs, and turning some of my
+design ideas into working CSS and React.
 
-> Group projects: give each member their own heading below, and use your GitHub
-> handle as the heading. You are graded on your own section.
+### What I handled
 
-### Written by me
+- **File:** Website content, overall design direction, service list and
+  order, and every design revision
+- **Commit:** Multiple commits throughout the project
+- **What it does and why it is built this way:** I decided the website
+  content, the services offered, the overall design and scrapbook style,
+  the colors, the layouts, and how each section should look. I reviewed
+  every change AI made, tested it in the browser, and decided what to
+  keep, change, or reject.
 
-- **File:**
-- **Commit:**
-- **What it does and why it is built this way:**
+### What AI helped implement
 
-### The AI-written part I understand best
-
-- **File:**
-- **Commit:**
-- **What it does and why we kept it:**
+- **File:** `client/src/components/`, `supabase/schema.sql`, `data/inquiryForms.js`
+- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/294c0e3
+- **What it does and why we kept it:** These parts organize the website
+  into reusable components, handle the inquiry form, and connect the
+  project to Supabase. AI wrote the code for these based on what I asked
+  for. I kept them because they work and make the project easier to
+  manage.

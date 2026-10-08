@@ -3,7 +3,7 @@
 Staery Sky PH is a fan-owned shop, established in 2019, that helps Filipino
 fans get merchandise and finds from overseas that would otherwise be hard to
 reach. What started as fanmade merchandise and collectibles has grown into
-purchase assistance across Japan, Korea, and Thailand — along with
+purchase assistance across Japan, Korea, and Thailand, along with
 international shipping and package consolidation, so multiple orders can
 arrive as one shipment.
 
@@ -12,6 +12,10 @@ Staery Sky PH, browse what it offers, and send a request for something
 they're looking for.
 
 **Live site:** https://juliankaiaaa.github.io/juliankaiaaa-staeryskyph/
+
+## Screenshot
+
+![Staery Sky PH home page](docs/home-screenshot.png)
 
 ## What's on the site
 
@@ -28,8 +32,8 @@ they're looking for.
   in to review incoming requests, search and filter them, leave notes, and
   export them to a spreadsheet.
 
-The whole site follows a scrapbook-style look — paper textures, washi tape,
-hand-drawn stars — to match the shop's own brand.
+The whole site follows a scrapbook-style look, with paper textures, washi
+tape, and hand-drawn stars, to match the shop's own brand.
 
 ### A look at it
 
@@ -40,13 +44,13 @@ notes in [docs/02-mockup.md](docs/02-mockup.md).
 
 The site is a single-page React app. Service information and submitted
 requests are stored in Supabase (a hosted Postgres database with built-in
-auth), which the browser talks to directly — there's no separate backend
+auth), which the browser talks to directly. There's no separate backend
 server to run.
 
 It also has a built-in **demo mode**, which runs the entire site in the
 browser with sample data and no database connection at all. This is what
 the live site and local development use by default, so you can explore
-everything — including submitting a request — without any setup.
+everything, including submitting a request, without any setup.
 
 ---
 
@@ -70,7 +74,7 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/`. No environment variables are required — the
+Open `http://localhost:5173/`. No environment variables are required. The
 site starts in demo mode by default, using the sample data in `src/data/`,
 until `VITE_USE_MOCK_API` and the Supabase variables are set (see
 [Configuration](#configuration)).
@@ -222,7 +226,7 @@ The current services and their keys:
 | 08 | Address Rental / Forwarding | `address` |
 
 The display order is set by `sort_order` in the database. For live mode,
-the order must also be updated in the database — changing the seed files
+the order must also be updated in the database. Changing the seed files
 alone does not reorder the live site.
 
 To add or change a service: edit the entry in `client/src/data/services.js`,
@@ -243,7 +247,7 @@ under a new key, and add the mapping in `SLUG_BY_NUMBER`. Then re-run
 
 ### Design system
 
-The shared tokens live in `client/src/styles/base.css` (colours, type scale,
+The shared tokens live in `client/src/styles/base.css` (colors, type scale,
 spacing, radii, shadows) and `client/src/styles/system.css` (surfaces,
 shadows, card and hero rules, typography overrides and motion).
 
@@ -283,7 +287,7 @@ Conventions:
 - **Hero stars:** the stars on the home hero drift and blink. Three of them
   vanish and reappear as they move.
 - **Hover:** cards lift and their photos zoom slightly. Buttons and
-  navigation items change colour or position.
+  navigation items change color or position.
 - **Reduced motion:** all of the above are turned off when the visitor's
   system requests reduced motion.
 
@@ -375,7 +379,7 @@ page.
 | --- | --- |
 | [docs/](docs/README.md) | Course documents and weekly reports |
 | [docs/02-mockup.md](docs/02-mockup.md) | Mockups of the Home, About, Services, and Contact pages |
-| [AI-USAGE.md](AI-USAGE.md) | Record of AI assistance |
+| [AI-USAGE.md](AI-USAGE.md) | Record of AI assistance (mainly Claude, via Claude Code; ChatGPT was also used for general help) |
 | [SECURITY-CHECKLIST.md](SECURITY-CHECKLIST.md) | Security review |
 
 ## License

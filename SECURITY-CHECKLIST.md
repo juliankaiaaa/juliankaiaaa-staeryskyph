@@ -2,7 +2,7 @@
 
 The site is a static React build served by GitHub Pages. Data is stored in Supabase, protected by Row Level Security. There is no custom server.
 
-Last reviewed against the code on the `design-consistency` branch.
+Last reviewed against the code on `main`, 2026-10-09.
 
 ## Secrets and configuration
 
