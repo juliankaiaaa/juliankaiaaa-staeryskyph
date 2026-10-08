@@ -1,4 +1,4 @@
-# Staery Sky PH
+# Staery Sky PH - Shop Portfolio
 
 [![Made with AI](https://img.shields.io/badge/Made_with-AI_assistance-blue)](AI-USAGE.md)
 
