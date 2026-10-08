@@ -19,10 +19,7 @@ width. Images in [mockup/](mockup/).
 
 ![Contact page mockup](mockup/SSPH_Contact-Page.png)
 
-## Notes to self
-
-These are from an earlier pass, not a 1:1 match to the current build
-anymore. What's different as of 2026-10-09:
+## Notes
 
 - Logo square is plain in the mockup; built version has the scalloped
   frame + polaroid border
