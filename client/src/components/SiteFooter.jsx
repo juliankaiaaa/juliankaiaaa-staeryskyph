@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import Decor from './Decor.jsx'
 import brownStar from '../assets/decorations/brown_star.png'
 
-/* Replace the placeholder links with your real pages */
 const SOCIAL_LINKS = [
   { label: 'X / Twitter', href: '#' },
   { label: 'Facebook', href: '#' },
@@ -34,12 +33,6 @@ export default function SiteFooter() {
 
       <div>
         <h3>Links</h3>
-        <p>
-        </p>
-        <p>
-        </p>
-        <p>
-        </p>
         {SOCIAL_LINKS.map(({ label, href }) => (
           <p key={label}>
             <a href={href}>{label}</a>

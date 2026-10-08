@@ -1,105 +1,59 @@
 # Staery Sky PH
 
-The website for Staery Sky PH, a fan-owned shop established in 2019 that now offers Japan and Korea pasabuy, proxy buying, international shipping, and package consolidation. Visitors can read about the shop, browse its services, and send a request for an item. The owner reviews requests in a private admin page.
+Staery Sky PH is a fan-owned shop, established in 2019, that helps Filipino
+fans get merchandise and finds from overseas that would otherwise be hard to
+reach. What started as fanmade merchandise and collectibles has grown into
+purchase assistance across Japan, Korea, and Thailand — along with
+international shipping and package consolidation, so multiple orders can
+arrive as one shipment.
+
+This repository is the shop's website: a place for people to learn about
+Staery Sky PH, browse what it offers, and send a request for something
+they're looking for.
 
 **Live site:** https://juliankaiaaa.github.io/juliankaiaaa-staeryskyph/
 
-It is built with React and Vite, using react-router-dom (HashRouter) for page navigation and plain CSS for styling. The frontend uses reusable components and shared design tokens to keep the Staery Sky PH scrapbook-inspired design consistent across the site. Service inquiries and other interactive features are handled through Supabase, with a built-in demo mode (toggled via an environment variable) that lets the site run fully offline using mock data when no Supabase project is connected — so the system can switch between local development and a live backend without restructuring the pages.
+## What's on the site
 
-## Contents
+- **Home** — a quick introduction to the shop and a look at a few featured
+  services.
+- **About** — the story behind Staery Sky PH, its mission and vision, and
+  why people choose to shop through it.
+- **Services** — every service offered, laid out as cards. Opening a card
+  shows the full details for that service.
+- **Request** — the actual way to reach out. Pick a service, fill in what
+  you're looking for, and submit it. A successful request shows a receipt
+  with a reference code to keep.
+- **Admin** (private, not linked from the site) — where the shop owner signs
+  in to review incoming requests, search and filter them, leave notes, and
+  export them to a spreadsheet.
 
-- [Features](#features)
-- [Technology](#technology)
-- [Project structure](#project-structure)
-- [Architecture](#architecture)
-- [Getting started](#getting-started)
-- [Configuration](#configuration)
-- [Database setup](#database-setup)
-- [Services](#services)
-- [Forms and inquiries](#forms-and-inquiries)
-- [Design system](#design-system)
-- [Responsive design](#responsive-design)
-- [Animation and interaction](#animation-and-interaction)
-- [Assets](#assets)
-- [Deployment](#deployment)
-- [Troubleshooting](#troubleshooting)
-- [Known limitations and planned work](#known-limitations-and-planned-work)
-- [Documentation](#documentation)
-- [License](#license)
+The whole site follows a scrapbook-style look — paper textures, washi tape,
+hand-drawn stars — to match the shop's own brand.
 
-## Features
+### A look at it
 
-- **Home:** hero with the brand name, an "About" band with a polaroid, and a carousel of featured services.
-- **About:** mission and vision cards, the "Why choose us" points, and an envelope call to action.
-- **Services:** every service as a card in a grid. Selecting a card opens its full description.
-- **Request:** a form for each service, with fields that match that service. Successful requests show a receipt with a reference code.
-- **Admin (`/#/admin`):** sign in with Supabase Auth, then review inquiries, filter them by status, search, add notes, and export CSV.
-- **Demo mode:** runs the whole site in the browser without a database, for design work and previews.
+Full-page mockups of each page are in [docs/mockup/](docs/mockup/), with
+notes in [docs/02-mockup.md](docs/02-mockup.md).
 
-## Technology
+## How it works, briefly
 
-| Area | Tool | Version |
-| --- | --- | --- |
-| UI | React | 18.3 |
-| Build and dev server | Vite | 6 |
-| Routing | react-router-dom (`HashRouter`) | 7 |
-| Database, auth and API | Supabase (`@supabase/supabase-js`) | 2 |
-| Fonts | Poppins, Caveat (Google Fonts) | |
-| Hosting | GitHub Pages, with GitHub Actions | |
+The site is a single-page React app. Service information and submitted
+requests are stored in Supabase (a hosted Postgres database with built-in
+auth), which the browser talks to directly — there's no separate backend
+server to run.
 
-Dependencies are listed in `client/package.json`. The site has no custom server: the browser talks to Supabase directly.
+It also has a built-in **demo mode**, which runs the entire site in the
+browser with sample data and no database connection at all. This is what
+the live site and local development use by default, so you can explore
+everything — including submitting a request — without any setup.
 
-## Project structure
+---
 
-```text
-.
-├── client/                      Front end (React + Vite)
-│   ├── index.html               HTML shell and page metadata
-│   ├── vite.config.js           Build configuration
-│   ├── .env.example             Environment variable template
-│   └── src/
-│       ├── main.jsx             Entry point, routes and scroll reveal setup
-│       ├── App.jsx              Home page
-│       ├── pages/               About, Services, Request and Admin pages
-│       ├── components/          Shared UI (Navbar, Hero, ServiceCard, InquiryForm, ...)
-│       ├── hooks/               useScrollReveal, useScallopFit, useActiveSection
-│       ├── api/                 Data layer: Supabase client, demo stand-in, seed data
-│       ├── data/                Services list and inquiry form definitions
-│       ├── assets/              Images (see Assets below)
-│       └── styles/              Stylesheets, loaded in order from index.css
-├── supabase/
-│   ├── schema.sql               Tables, Row Level Security policies and constraints
-│   └── seed.sql                 Starter services
-├── .github/workflows/
-│   └── deploy-pages.yml         Builds and publishes the client to GitHub Pages
-├── docs/                        Project documents (see Documentation)
-├── AI-USAGE.md                  Record of AI assistance
-├── SECURITY-CHECKLIST.md        Security review
-└── LICENSE                      MIT
-```
+## Running this project
 
-## Architecture
-
-```text
-Browser (React app, built by Vite)
-    │
-    ├── Demo mode (VITE_USE_MOCK_API unset or "true")
-    │     Services from src/api/seed.json; inquiries kept in localStorage
-    │
-    └── Live mode (VITE_USE_MOCK_API="false")
-          │  anon key, public by design
-          ▼
-     Supabase
-       ├── PostgreSQL tables, protected by Row Level Security
-       ├── Auth (admin sign-in)
-       └── Auto-generated REST API
-```
-
-- `src/api/index.js` is the only file the components import for data. It exports the same functions from either `mockApi.js` (demo) or `httpApi.js` (live).
-- `adminApi.js` handles sign-in and inquiry management for the admin page.
-- The static list in `src/data/services.js` appears at once. It is replaced by the API response when that arrives.
-
-## Getting started
+The rest of this README is for anyone who wants to run the site locally,
+connect it to a real Supabase project, or contribute to it.
 
 ### Prerequisites
 
@@ -116,7 +70,10 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173/`. No environment variables are required to run the site locally — it starts in demo mode by default, using the mock data in `src/data/`, until `VITE_USE_MOCK_API` and the Supabase variables are set (see [Configuration](#configuration)).
+Open `http://localhost:5173/`. No environment variables are required — the
+site starts in demo mode by default, using the sample data in `src/data/`,
+until `VITE_USE_MOCK_API` and the Supabase variables are set (see
+[Configuration](#configuration)).
 
 ### Available scripts
 
@@ -128,9 +85,77 @@ Run these from `client/`:
 | `npm run build` | Creates the production build in `client/dist` and copies `index.html` to `404.html` |
 | `npm run preview` | Serves the production build locally for a final check |
 
-## Configuration
+### Technology
 
-Copy `client/.env.example` to `client/.env` and fill in the values. Restart `npm run dev` after any change.
+| Area | Tool | Version |
+| --- | --- | --- |
+| UI | React | 18.3 |
+| Build and dev server | Vite | 6 |
+| Routing | react-router-dom (`HashRouter`) | 7 |
+| Database, auth and API | Supabase (`@supabase/supabase-js`) | 2 |
+| Fonts | Poppins, Caveat (Google Fonts) | |
+| Hosting | GitHub Pages, with GitHub Actions | |
+
+Dependencies are listed in `client/package.json`. The site has no custom
+server: the browser talks to Supabase directly.
+
+### Project structure
+
+```text
+.
+├── client/                      Front end (React + Vite)
+│   ├── index.html               HTML shell and page metadata
+│   ├── vite.config.js           Build configuration
+│   ├── .env.example             Environment variable template
+│   └── src/
+│       ├── main.jsx             Entry point, routes and scroll reveal setup
+│       ├── App.jsx              Home page
+│       ├── pages/               About, Services, Request and Admin pages
+│       ├── components/          Shared UI (Navbar, Hero, ServiceCard, InquiryForm, ...)
+│       ├── hooks/               useScrollReveal, useScallopFit, useActiveSection
+│       ├── api/                 Data layer: Supabase client, demo stand-in, seed data
+│       ├── data/                Services list and inquiry form definitions
+│       ├── assets/              Images (see Assets below)
+│       └── styles/               Stylesheets, loaded in order from index.css
+├── supabase/
+│   ├── schema.sql               Tables, Row Level Security policies and constraints
+│   └── seed.sql                 Starter services
+├── .github/workflows/
+│   └── deploy-pages.yml         Builds and publishes the client to GitHub Pages
+├── docs/                        Project documents and mockups (see Documentation)
+├── AI-USAGE.md                  Record of AI assistance
+├── SECURITY-CHECKLIST.md        Security review
+└── LICENSE                      MIT
+```
+
+### Architecture
+
+```text
+Browser (React app, built by Vite)
+    │
+    ├── Demo mode (VITE_USE_MOCK_API unset or "true")
+    │     Services from src/api/seed.json; inquiries kept in localStorage
+    │
+    └── Live mode (VITE_USE_MOCK_API="false")
+          │  anon key, public by design
+          ▼
+     Supabase
+       ├── PostgreSQL tables, protected by Row Level Security
+       ├── Auth (admin sign-in)
+       └── Auto-generated REST API
+```
+
+- `src/api/index.js` is the only file the components import for data. It
+  exports the same functions from either `mockApi.js` (demo) or
+  `httpApi.js` (live).
+- `adminApi.js` handles sign-in and inquiry management for the admin page.
+- The static list in `src/data/services.js` appears at once. It is replaced
+  by the API response when that arrives.
+
+### Configuration
+
+Copy `client/.env.example` to `client/.env` and fill in the values. Restart
+`npm run dev` after any change.
 
 | Variable | Purpose |
 | --- | --- |
@@ -139,15 +164,16 @@ Copy `client/.env.example` to `client/.env` and fill in the values. Restart `npm
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon public key (Project Settings > API). |
 | `VITE_BASE_PATH` | Optional. The path the site is served from. Defaults to `/juliankaiaaa-staeryskyph/`. The deploy workflow sets it to the repository name. |
 
-`VITE_` values are compiled into the public JavaScript. Use only the anon key. Never add the database password or the `service_role` key.
+`VITE_` values are compiled into the public JavaScript. Use only the anon
+key. Never add the database password or the `service_role` key.
 
-## Database setup
+### Database setup
 
 1. Create a project at [supabase.com](https://supabase.com).
 2. In the SQL Editor, run `supabase/schema.sql`, then `supabase/seed.sql`.
 3. Copy the URL and the anon key into `client/.env`.
 
-### Tables
+#### Tables
 
 | Table | Used by the site | Notes |
 | --- | --- | --- |
@@ -157,11 +183,13 @@ Copy `client/.env.example` to `client/.env` and fill in the values. Restart `npm
 | `guestbook` | No | Defined in the schema. No page uses it yet. |
 | `portfolio_items` | No | Defined in the schema. No page uses it yet. |
 
-`schema.sql` can be run more than once. `seed.sql` clears and re-inserts the services, so it can be re-run to reset them.
+`schema.sql` can be run more than once. `seed.sql` clears and re-inserts the
+services, so it can be re-run to reset them.
 
-### Creating an admin
+#### Creating an admin
 
-1. In Supabase, open **Authentication > Users > Add user**, enter an email and password, and tick **Auto Confirm User**.
+1. In Supabase, open **Authentication > Users > Add user**, enter an email
+   and password, and tick **Auto Confirm User**.
 2. Copy the user's UID.
 3. In the SQL Editor, run:
 
@@ -171,12 +199,14 @@ Copy `client/.env.example` to `client/.env` and fill in the values. Restart `npm
 
 4. Sign in at `/#/admin`. The page is not linked from the site.
 
-## Services
+### Services
 
 Each service is defined in two places that must match:
 
-- `client/src/data/services.js` (the static list, and the source of the photos)
-- `supabase/seed.sql` and `client/src/api/seed.json` (the database and demo data)
+- `client/src/data/services.js` (the static list, and the source of the
+  photos)
+- `supabase/seed.sql` and `client/src/api/seed.json` (the database and demo
+  data)
 
 The current services and their keys:
 
@@ -191,26 +221,31 @@ The current services and their keys:
 | 07 | Weverse Purchase Assistance | `weverse` |
 | 08 | Address Rental / Forwarding | `address` |
 
-### Display order
+The display order is set by `sort_order` in the database. For live mode,
+the order must also be updated in the database — changing the seed files
+alone does not reorder the live site.
 
-The order is set by `sort_order` in the database. For live mode, the order must also be updated in the database. Changing the seed files alone does not reorder the live site.
+To add or change a service: edit the entry in `client/src/data/services.js`,
+`client/src/api/seed.json` and `supabase/seed.sql`, keeping the same
+`number`. For a new service, add its fields to `client/src/data/inquiryForms.js`
+under a new key, and add the mapping in `SLUG_BY_NUMBER`. Then re-run
+`seed.sql`, or update `services` directly, in the database.
 
-### Adding or changing a service
+### Forms and inquiries
 
-1. Edit the entry in `client/src/data/services.js`, `client/src/api/seed.json` and `supabase/seed.sql`, keeping the same `number`.
-2. For a new service, add its fields to `client/src/data/inquiryForms.js` under a new key, and add the mapping in `SLUG_BY_NUMBER`.
-3. In the database, re-run `seed.sql` or update `services` directly.
-
-## Forms and inquiries
-
-- `InquiryForm.jsx` renders the fields defined in `data/inquiryForms.js` for the selected service.
-- Validation runs in the browser and mirrors the length limits in the `CHECK` constraints in `schema.sql`.
-- A successful request is saved with a reference code (for example `SSPH-4F7K`), which is shown on the receipt and stored with the inquiry.
+- `InquiryForm.jsx` renders the fields defined in `data/inquiryForms.js` for
+  the selected service.
+- Validation runs in the browser and mirrors the length limits in the
+  `CHECK` constraints in `schema.sql`.
+- A successful request is saved with a reference code (for example
+  `SSPH-4F7K`), which is shown on the receipt and stored with the inquiry.
 - Requests from demo mode are stored in the browser only.
 
-## Design system
+### Design system
 
-The shared tokens live in `client/src/styles/base.css` (colours, type scale, spacing, radii, shadows) and `client/src/styles/system.css` (surfaces, shadows, card and hero rules, typography overrides and motion).
+The shared tokens live in `client/src/styles/base.css` (colours, type scale,
+spacing, radii, shadows) and `client/src/styles/system.css` (surfaces,
+shadows, card and hero rules, typography overrides and motion).
 
 | Token | Value | Use |
 | --- | --- | --- |
@@ -221,26 +256,38 @@ The shared tokens live in `client/src/styles/base.css` (colours, type scale, spa
 
 Conventions:
 
-- Shapes: cards use 18px corners, panels use the hero radius, and fields use 10px.
-- Shadows: one soft shadow for resting cards and one for hover (`--shadow-soft`, `--shadow-lift`).
-- Typography: headings, body text, labels and buttons use `clamp()` sizes, so they scale smoothly with the viewport.
-- Heights: the hero is `100svh` (minimum 560px), and content sections use viewport-based minimum heights.
+- Shapes: cards use 18px corners, panels use the hero radius, and fields
+  use 10px.
+- Shadows: one soft shadow for resting cards and one for hover
+  (`--shadow-soft`, `--shadow-lift`).
+- Typography: headings, body text, labels and buttons use `clamp()` sizes,
+  so they scale smoothly with the viewport.
+- Heights: the hero is `100svh` (minimum 560px), and content sections use
+  viewport-based minimum heights.
 
-## Responsive design
+### Responsive design
 
-- Breakpoints are set in `styles/responsive.css`. The main ones are 1100px, 1000px, 900px, 700px and 600px.
+- Breakpoints are set in `styles/responsive.css`. The main ones are
+  1100px, 1000px, 900px, 700px and 600px.
 - Layouts are grids that collapse to one column on smaller screens.
-- The service grid is four columns on desktop, two on tablet and one on mobile.
-- Horizontal overflow is prevented on every page at widths from 320px to 1440px.
+- The service grid is four columns on desktop, two on tablet and one on
+  mobile.
+- Horizontal overflow is prevented on every page at widths from 320px to
+  1440px.
 
-## Animation and interaction
+### Animation and interaction
 
-- **Scroll reveal:** `hooks/useScrollReveal.js` fades elements in as they enter the viewport and resets them when they leave, so scrolling back replays them. Nearby elements are staggered.
-- **Hero stars:** the stars on the home hero drift and blink. Three of them vanish and reappear as they move.
-- **Hover:** cards lift and their photos zoom slightly. Buttons and navigation items change colour or position.
-- **Reduced motion:** all of the above are turned off when the visitor's system requests reduced motion.
+- **Scroll reveal:** `hooks/useScrollReveal.js` fades elements in as they
+  enter the viewport and resets them when they leave, so scrolling back
+  replays them. Nearby elements are staggered.
+- **Hero stars:** the stars on the home hero drift and blink. Three of them
+  vanish and reappear as they move.
+- **Hover:** cards lift and their photos zoom slightly. Buttons and
+  navigation items change colour or position.
+- **Reduced motion:** all of the above are turned off when the visitor's
+  system requests reduced motion.
 
-## Assets
+### Assets
 
 ```text
 client/src/assets/
@@ -249,52 +296,80 @@ client/src/assets/
 └── services/       One photo per service
 ```
 
-**Naming:** lowercase, with hyphens or underscores. A service photo should start with its form key, for example `mercari.png` or `korea.png`, so the matcher can find it.
+**Naming:** lowercase, with underscores. A service photo is named
+`<form-key>_photo.<ext>`, for example `mercari_photo.png` or
+`korea_photo.png`, so the matcher in `services.js` can find it.
 
-**Adding a service photo:** place the file in `assets/services/`. The service is matched by the file name, and the card shows the photo in a 4:3 frame automatically. Use about 960px wide, so pages load quickly.
+**Adding a service photo:** place the file in `assets/services/`, named
+`<form-key>_photo.<ext>`. The service is matched by the file name, and the
+card shows the photo in a 4:3 frame automatically. Use about 960px wide, so
+pages load quickly.
 
-**Photo credits:** record the licence and author of any photo you use, especially Creative Commons images.
+**Photo credits:** record the licence and author of any photo you use,
+especially Creative Commons images.
 
-## Deployment
+### Deployment
 
-The `deploy-pages.yml` workflow builds `client/` and publishes it to GitHub Pages on every push to `main`.
+The `deploy-pages.yml` workflow builds `client/` and publishes it to
+GitHub Pages on every push to `main`.
 
 One-time setup:
 
 1. **Settings > Pages > Build and deployment > Source:** GitHub Actions.
-2. **Settings > Secrets and variables > Actions > Variables:** add `VITE_USE_MOCK_API`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
-3. The repository must be **public**. GitHub Pages on a free account publishes public repositories only.
+2. **Settings > Secrets and variables > Actions > Variables:** add
+   `VITE_USE_MOCK_API`, `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`.
+3. The repository must be **public**. GitHub Pages on a free account
+   publishes public repositories only.
 
-The workflow sets `VITE_BASE_PATH` to the repository name, so the site works under `/<repository>/`.
+The workflow sets `VITE_BASE_PATH` to the repository name, so the site
+works under `/<repository>/`.
 
-## Troubleshooting
+### Troubleshooting
 
-**localhost shows an old version.** The dev server runs the branch that is checked out. Check with `git branch --show-current`, switch with `git checkout <branch>`, then run `npm run dev` again if the page doesn't update.
+**localhost shows an old version.** The dev server runs the branch that is
+checked out. Check with `git branch --show-current`, switch with
+`git checkout <branch>`, then run `npm run dev` again if the page doesn't
+update.
 
-**The live site is blank.** Usually the Pages source is not set to GitHub Actions, or the repository is private. Check the Pages settings, and check that the workflow run succeeded.
+**The live site is blank.** Usually the Pages source is not set to GitHub
+Actions, or the repository is private. Check the Pages settings, and check
+that the workflow run succeeded.
 
-**The page or a link shows a 404.** The site uses hash routes such as `/#/about`. Links must include the `#`. Direct links to other paths redirect to the home page.
+**The page or a link shows a 404.** The site uses hash routes such as
+`/#/about`. Links must include the `#`. Direct links to other paths
+redirect to the home page.
 
-**Images are missing.** Check the file name and case. Service photos must start with their form key, and imports must use the exact file name. Run `npm run build` to see missing imports as errors.
+**Images are missing.** Check the file name and case. Service photos must
+be named `<form-key>_photo.<ext>`, and imports must use the exact file
+name. Run `npm run build` to see missing imports as errors.
 
-**The site says it needs Supabase.** Live mode is on but the keys are missing. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in `client/.env`, and restart the dev server.
+**The site says it needs Supabase.** Live mode is on but the keys are
+missing. Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in
+`client/.env`, and restart the dev server.
 
-**Changes to `.env` have no effect.** Vite reads `.env` at startup. Stop and restart `npm run dev`.
+**Changes to `.env` have no effect.** Vite reads `.env` at startup. Stop
+and restart `npm run dev`.
 
-**"This account is not an admin."** The user is signed in but not in the `admins` table. Add their UID with the SQL in [Creating an admin](#creating-an-admin).
+**"This account is not an admin."** The user is signed in but not in the
+`admins` table. Add their UID with the SQL in
+[Creating an admin](#creating-an-admin).
 
-**The services list does not update.** Live mode reads `services` from Supabase. Re-run `supabase/seed.sql`, or update the rows, then reload the page.
+**The services list does not update.** Live mode reads `services` from
+Supabase. Re-run `supabase/seed.sql`, or update the rows, then reload the
+page.
 
-**Build fails with a module or path error.** Run `npm install` in `client/`, then `npm run build` again.
+**Build fails with a module or path error.** Run `npm install` in
+`client/`, then `npm run build` again.
 
-## Known limitations and planned work
+### Known limitations and planned work
 
-- The `guestbook` and `portfolio_items` tables exist but are not used by any page.
+- The `guestbook` and `portfolio_items` tables exist but are not used by
+  any page.
 - The static service list and the database must be kept in sync by hand.
-- `client/src/assets/services/purchase-assistance.png` is not used by any service.
-- Several service photos are large (3–5 MB). Resizing them would speed up the pages.
+- Several service photos are large (3–5 MB). Resizing them would speed up
+  the pages.
 
-## Documentation
+### Documentation
 
 | Document | Purpose |
 | --- | --- |
