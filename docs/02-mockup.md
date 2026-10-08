@@ -1,11 +1,7 @@
 # Mockup
 
-Full-page mockups of the built site, covering the Home, About, Services, and
-Contact (request) pages at desktop width. These show the site as it actually
-looks, with real content and the finished Staery Sky PH scrapbook design,
-not placeholder text.
-
-The images live in [mockup/](mockup/).
+Full-page mockups of Home, About, Services, and Contact (request), desktop
+width. Images in [mockup/](mockup/).
 
 ## Home
 
@@ -23,38 +19,23 @@ The images live in [mockup/](mockup/).
 
 ![Contact page mockup](mockup/SSPH_Contact-Page.png)
 
-## Honest note
+## Notes to self
 
-These mockups do not match the built site exactly. They were made from an
-earlier pass, and the build moved past them in a few places. Checked by
-comparing each image above against a fresh screenshot of the live site on
-2026-10-09:
+These are from an earlier pass, not a 1:1 match to the current build
+anymore. What's different as of 2026-10-09:
 
-- **About photo and Home logo**: the mockups show the logo in a plain
-  gradient square. The built site wraps it in a scalloped frame with a
-  polaroid border.
-- **Service cards**: the mockups use grey placeholder blocks for every
-  service photo. The built cards use real photos (Korea, Japan, and
-  Thailand flags; the Mercari, Bunjang, and Weverse logos) with a
-  washi-tape card style the mockups don't show.
-- **How it works steps** (Services page): the mockup step cards are empty.
-  The built cards are filled in with a numbered badge, heading, and body
-  text for each step.
-- **Call to request** (bottom of About, Services, and Request): the
-  mockup is a flat cream card. The built site turned it into an animated
-  envelope with a letter that slides out on hover.
-- **Mission/vision and "why choose us" cards** (About page): the built
-  cards add washi-tape corners and numbered badges the mockups don't have.
-- **Request form**: the mockup form is flat with a "Submit" button. The
-  built form has a paper tilt, washi tape, a "Send inquiry" button, a
-  required-field counter, a character counter, and two extra links after
-  submitting, none of which are in the mockup.
-- **Page intros**: the mockups reuse the Home tagline ("from here, there,
-  everywhere — to you") on every page. The built About, Services, and
-  Request pages each have their own page-specific intro line instead.
-
-None of this is a regression — the build added detail the mockups didn't
-specify. But since the mockups are meant to represent the finished
-interface, treat them as outdated reference rather than a current, exact
-match. If this gap matters for submission, say so in the weekly report
-rather than letting the mismatch stand unexplained.
+- Logo square is plain in the mockup; built version has the scalloped
+  frame + polaroid border
+- Service card photos are grey placeholders in the mockup; built cards
+  have real photos (flags, Mercari/Bunjang/Weverse logos) + washi tape
+- How it works steps are empty in the mockup; built cards have the
+  number badge, heading, and text filled in
+- Request CTA is a flat card in the mockup; built version is the
+  animated envelope/letter
+- Mission, vision, and why-choose-us cards: built ones have washi tape
+  corners + number badges, mockup doesn't
+- Request form: mockup just has Submit; built form has the tilt, tape,
+  "Send inquiry", required counter, char counter, and the two links
+  after sending
+- Mockup reuses the home tagline on every page; built pages each have
+  their own intro line
