@@ -1,69 +1,81 @@
-# Security and privacy checklist
+# Security checklist template
 
-Work through this **before your first push**, and again before you submit. It is
-short, none of it is exotic, and a grader can check most of it in two minutes.
+Copy this into your workspace `project/SECURITY-CHECKLIST.md` and fill it in
+before you make your project repository public.
 
-Your repository is public, in your own account, and permanent. That is the point
-of it, and it is also why this file exists.
+Every row gets one of **Yes**, **No** or **N/A**, and one line of evidence in
+your own words: what you checked, where, and what you found. "N/A" is a correct
+answer when it is true, but it needs its reason. A blank row scores nothing, and
+a Yes your repository contradicts scores nothing either.
 
-## Before the first push
+Replace the example evidence with your own.
 
-- [ ] `.gitignore` includes `.env`, and `git check-ignore -v .env` confirms it
-- [ ] `git ls-files | grep -iE '\.env$|\.pem$|id_rsa'` prints nothing
-- [ ] `.env.example` is committed, with **placeholder** values only
-- [ ] No connection string, key or password anywhere in the repository,
-      including in a screenshot
-- [ ] No `student.json`, and no name, student number or email of yours or anyone
-      else's
+## Secrets and credentials
 
-Deleting a file later does **not** remove it from the history. If you commit a
-credential, **rotate it first**, at the service, and clean up the history second.
-The rotation is the fix; the cleanup is hygiene.
+| # | Check | Yes / No / N/A | Evidence |
+| --- | --- | --- | --- |
+| 1 | `.env` is gitignored and is not in the repository | | e.g. `.gitignore` line 3, and `git ls-files` shows no `.env` |
+| 2 | A `.env.example` with placeholder values only is committed | | |
+| 3 | No connection string, key, token or password is hardcoded in source, comments or commented-out code | | |
+| 4 | Git history is clean: I searched `git log -p` for password, secret, api key and `postgres://` | | |
+| 5 | Any credential that was ever committed has been rotated | | |
+| 6 | Production credentials live only in my hosting provider's environment settings | | |
 
-## The application
+## GitHub Actions
 
-- [ ] Every SQL query is parameterised. Values go in the array, never into the
-      string. This is one line of defence you already know how to do
-- [ ] Input is validated **on the server**, not only in React. Length limits on
-      every text field
-- [ ] `cors({ origin: allowedOrigins })` names your origins. Not `cors()` with no
-      options, which allows every site on the internet
-- [ ] `NODE_ENV=production` on the host, and no stack trace in any response body
-- [ ] `helmet` installed, which is one line for several real protections
-- [ ] Anything that costs money or accepts a password is rate limited
-- [ ] Passwords, if you have accounts, are hashed with bcrypt and never logged
-- [ ] Every route that touches somebody's data has the ownership check **in the
-      query**, as `AND user_id = $2`, not as an `if` above it
-- [ ] `npm audit` run once, and the easy fixes taken
+If your project has no workflows, mark every row N/A and say so once.
 
-```bash
-npm install helmet
-```
+| # | Check | Yes / No / N/A | Evidence |
+| --- | --- | --- | --- |
+| 7 | No secret value is written literally in any workflow YAML file | | |
+| 8 | Secrets are stored in repository Actions secrets and read with `${{ secrets.NAME }}` | | |
+| 9 | No workflow step echoes, dumps or debug-prints a secret, and I opened a recent run's log to confirm | | |
+| 10 | Uploaded build artifacts contain no `.env`, key file or generated config | | |
+| 11 | Third-party actions are pinned to a commit SHA, not a moveable tag | | |
+| 12 | Secret scanning and push protection are enabled on the repository | | |
 
-```js
-import helmet from 'helmet'
-app.use(helmet())
-```
+## Database
 
-## Privacy
+| # | Check | Yes / No / N/A | Evidence |
+| --- | --- | --- | --- |
+| 13 | Every query taking user input uses parameters, never string concatenation | | e.g. all queries in `db.js` use `$1` placeholders |
+| 14 | The database is not open to the whole internet, or is reachable only by the app | | |
+| 15 | The database user the app connects as has only the permissions it needs | | |
+| 16 | Seed and sample data is invented, not real people's data | | |
+| 17 | Debug, seed and reset routes are removed before going public | | |
 
-The half that matters more, because it is about other people.
+## Access control
 
-- [ ] **No real classmates' names, numbers, emails or photos**, anywhere. Not in
-      seed data, not in screenshots, not in the demo video. Consent for a course
-      project does not cover the next ten years of a public repository
-- [ ] Seed data is invented. Yours will be read
-- [ ] If real people tested your app, even three friends, their data is deleted
-      before you submit
-- [ ] If your app collects anything about anyone, the app says what it collects
-- [ ] Any face in a screenshot is stock, generated, or yours
+| # | Check | Yes / No / N/A | Evidence |
+| --- | --- | --- | --- |
+| 18 | The app has an access layer: Cloudflare Zero Trust, an app-level password, or a real login | | |
+| 19 | If Supabase or Firebase: Row Level Security or security rules are on, and I tested it signed out | | |
+| 20 | If Zero Trust: the reviewer's email is on the access policy. If an app password: the credentials are in my private workspace `project/README.md` | | |
+| 21 | The gate covers every route, including the ones that only change data | | |
+| 22 | The credentials for the gate are environment variables, not in source | | |
 
-If your project handles personal information about real people, you are inside
-the Philippine Data Privacy Act. Collect the minimum, say what you collect, and
-do not collect anything you cannot justify.
+## Input and output
 
-## What to write in your journal
+| # | Check | Yes / No / N/A | Evidence |
+| --- | --- | --- | --- |
+| 23 | Input from the user is validated on the server, not only in the browser | | |
+| 24 | User-supplied text is escaped when rendered, so it cannot inject markup or script | | |
+| 25 | Error responses do not expose stack traces, file paths or connection details | | |
+| 26 | CORS is not a wildcard on routes that change data | | |
 
-One short paragraph: the riskiest thing about your project from this list, what
-you did about it, and what you knowingly accepted. A student who can name the
-tradeoff they made scores better than one who claims there was none.
+## Repository and privacy
+
+| # | Check | Yes / No / N/A | Evidence |
+| --- | --- | --- | --- |
+| 27 | No student number, personal email, phone number or home address in the repository or in commit messages | | |
+| 28 | No classmate's personal data in the repository | | |
+| 29 | Dependencies come from official registries, and `node_modules` is gitignored | | |
+| 30 | Images, fonts and other assets are mine, licensed, or credited | | |
+| 31 | Repository visibility is deliberate, and I checked it after my last push | | |
+
+## Anything I found and fixed
+
+Write two or three sentences. What did this checklist catch that you did not
+already know about, and what did you change? If it caught nothing, say that. An
+honest "nothing, and here is what I checked" is worth more than an invented
+finding.
