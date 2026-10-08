@@ -92,7 +92,7 @@ done.
 
 ## 3. Who wrote what
 
-In short: I handled the main ideas, the content, the design decisions, the
+Note: I handled the main ideas, the content, the design decisions, the
 revisions, and the review and testing. AI assisted with implementation:
 writing the actual code, troubleshooting bugs, and turning some of my
 design ideas into working CSS and React.
