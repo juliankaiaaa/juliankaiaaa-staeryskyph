@@ -1,5 +1,4 @@
-// Admin sign-in and inquiry management. Access is limited by the Row Level
-// Security rules in supabase/schema.sql: only rows in the admins table pass.
+// Admin sign-in and inquiry management. Only users in the admins table pass Row Level Security.
 
 import { supabase, isSupabaseConfigured } from './supabaseClient.js'
 

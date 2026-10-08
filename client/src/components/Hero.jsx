@@ -4,7 +4,7 @@ import Decor from './Decor.jsx'
 import useScallopFit from '../hooks/useScallopFit.js'
 import brownStar from '../assets/decorations/brown_star.png'
 
-/* The cover shared by every page. variant "page" uses the smaller inner title */
+/* Page cover. variant="page" uses the smaller title */
 export default function Hero({ id, active, kicker, title, intro, variant }) {
   const panelRef = useRef(null)
 

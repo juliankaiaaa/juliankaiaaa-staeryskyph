@@ -5,7 +5,7 @@ import { SERVICE_FORMS, validateInquiry } from '../data/inquiryForms.js'
 
 const EMPTY_VALUES = { name: '', email: '', message: '' }
 
-// One form for every service. The fields change with the service chosen.
+// One form for every service; the fields change with the selected service.
 const makeRefCode = () =>
   'SSPH-' + Math.random().toString(36).slice(2, 6).toUpperCase()
 

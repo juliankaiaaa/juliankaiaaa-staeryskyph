@@ -1,5 +1,4 @@
-// The live client. Talks straight to Supabase, with access limited by the
-// Row Level Security rules in supabase/schema.sql.
+// Live Supabase client. Access is limited by Row Level Security (supabase/schema.sql).
 
 import { supabase, isSupabaseConfigured } from './supabaseClient.js'
 
@@ -20,8 +19,7 @@ export async function listServices() {
   return data
 }
 
-// No .select() after insert: anonymous visitors cannot read inquiries back,
-// so asking for the row would be refused.
+// No .select() after insert: anonymous visitors cannot read inquiries back.
 export async function createInquiry(input) {
   const { error } = await requireClient()
     .from('inquiries')

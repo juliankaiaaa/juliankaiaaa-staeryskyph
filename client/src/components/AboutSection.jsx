@@ -1,6 +1,6 @@
 import AboutImage from './AboutImage.jsx'
 
-/* Pink text block beside the scalloped image. Used on Home and the About page */
+/* Text block beside the scalloped image, used on Home and About */
 export default function AboutSection({ id, label, title, action, children }) {
   return (
     <section id={id} className="about">

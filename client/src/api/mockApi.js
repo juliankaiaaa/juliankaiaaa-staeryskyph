@@ -1,6 +1,4 @@
-// The browser-only stand-in. Same function names and return shapes as
-// httpApi.js, so the pages cannot tell the difference. Data stays in the
-// visitor's own browser.
+// Browser-only stand-in for httpApi.js, with the same function names and return shapes. Data stays in the browser.
 
 import seed from './seed.json'
 
@@ -28,6 +26,6 @@ export async function createInquiry(input) {
     const stored = JSON.parse(localStorage.getItem(INQUIRIES_KEY) || '[]')
     localStorage.setItem(INQUIRIES_KEY, JSON.stringify([...stored, saved]))
   } catch {
-    // Storage can be blocked. The demo still counts the request as sent.
+    // Storage may be blocked; the request still counts as sent.
   }
 }

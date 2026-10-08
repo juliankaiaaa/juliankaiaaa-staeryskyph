@@ -138,7 +138,7 @@
 }
 
 
-/* home carousel cards: the text sits in .service-copy, so target it there */
+/* carousel card text */
 .services-carousel .service-card:not(.service-card--expanded) .service-copy {
   display: flex;
   flex-direction: column;

@@ -1,20 +1,15 @@
 # Project documents
 
-Everything your project is marked on that is not code. Keep it here, in the
-repository, so it is versioned alongside the thing it describes.
+Course documents for Staery Sky PH. Keep them in the repository so they are versioned with the code.
 
-| File | What it is | When |
+| File | Purpose | Status |
 | --- | --- | --- |
-| [01-proposal.md](01-proposal.md) | the revised proposal | finals, m8a1 |
-| [02-mockup.md](02-mockup.md) | what the app will look like | finals, m8a2 |
-| [03-design-system.md](03-design-system.md) | colours, type, components | finals, m8a3 |
-| [04-weekly-reports.md](04-weekly-reports.md) | a few lines a week | every week |
-| [05-demo-video.md](05-demo-video.md) | the recording, and its plan | the end |
-| [06-security-and-privacy.md](06-security-and-privacy.md) | what you checked before making this public | before your first push |
+| [01-proposal.md](01-proposal.md) | Revised project proposal | Template, not yet written |
+| [02-mockup.md](02-mockup.md) | Mockup of the finished interface, with images in [mockup/](mockup/) | Done |
+| [03-design-system.md](03-design-system.md) | Colours, type and components | Template, not yet written |
+| [04-weekly-reports.md](04-weekly-reports.md) | Weekly progress notes | Template, not yet started |
+| [05-demo-video.md](05-demo-video.md) | Demo video link and plan | Template, not yet written |
+| [06-security-and-privacy.md](06-security-and-privacy.md) | Course security checklist | Template. The project's current review is in [SECURITY-CHECKLIST.md](../SECURITY-CHECKLIST.md) |
+| [week2-progress.png](week2-progress.png) | Week 2 progress screenshot, shown in the project history | Image |
 
-Put images in `assets/`. A screenshot named `assets/screenshot.png` is referenced
-by the main README, and a README with an image reads as finished in a way one
-without an image does not.
-
-**Write these as you go.** A weekly report written on the last day is obvious to
-read and worth very little.
+Images for these documents go in `docs/`.

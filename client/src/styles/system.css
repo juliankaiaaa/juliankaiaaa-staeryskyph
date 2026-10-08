@@ -10,6 +10,18 @@
 
   --grad-pink: linear-gradient(165deg, #f9d9e4 0%, #f4c9d6 55%, #efbccd 100%);
   --veil-warm: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 236, 226, 0.07), transparent 70%);
+
+  /* paper form palette: admin table and request receipt */
+  --paper-ink: #34231f;
+  --paper-ink-soft: #5b463f;
+  --paper-cream: #f3eedd;
+  --paper-cream-light: #fbf8ee;
+  --paper-border: #cfc6ad;
+  --paper-pink: #ecb8c6;
+  --paper-blue: #c5d9ea;
+  --paper-sage: #c5c4a0;
+  --paper-row-border: #e3dcc5;
+  --paper-pink-shadow: #c98fa1;
 }
 
 /* surfaces */
@@ -93,7 +105,7 @@
           mask: radial-gradient(circle at 50% 100%, #000 13px, transparent 14px) 0 0 / 28px 15px repeat-x;
 }
 
-/* simplify: floating extras in the mission band */
+/* hidden mission band extras */
 
 /* typography */
 
@@ -143,7 +155,7 @@ nav a {
   font-size: var(--fs-body);
 }
 
-/* section heights: tall enough to feel intentional, free to grow with content */
+/* section heights */
 
 .band {
   display: flex;
@@ -170,7 +182,7 @@ nav a {
   }
 }
 
-/* service photos fill their frame at the card's ratio */
+/* service photo */
 img.service-photo {
   height: auto;
   object-fit: cover;
@@ -178,7 +190,7 @@ img.service-photo {
   box-sizing: border-box;
 }
 
-/* service cards: one size, one photo ratio, one hover */
+/* service card sizing and hover */
 
 .band--brown .grid--4 {
   grid-auto-rows: 1fr;
@@ -263,21 +275,11 @@ section.hero {
 }
 
 
-/* brand logo above the About heading */
-.about-logo {
-  display: block;
-  width: clamp(120px, 12vw, 160px);
-  height: auto;
-  border: 3px solid var(--cream);
-  border-radius: 20px;
-  box-shadow: var(--shadow-soft);
-}
 
 /* logo inside the polaroid */
 .polaroid-photo {
   display: grid;
   place-items: center;
-  background: #f3eedd;
 }
 
 .polaroid-photo img {

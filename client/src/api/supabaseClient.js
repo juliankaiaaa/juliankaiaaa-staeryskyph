@@ -1,11 +1,10 @@
 import { createClient } from '@supabase/supabase-js'
 
-// The anon key is public by design. Row Level Security in supabase/schema.sql
-// is what limits what it can do, so it is safe to ship in the browser.
+// The anon key is public. Row Level Security (supabase/schema.sql) limits what it can do.
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-// Demo mode imports this file too, so it must not throw when the keys are unset.
+// Must not throw when the keys are unset, because demo mode imports this file.
 export const isSupabaseConfigured = Boolean(url && anonKey)
 
 export const supabase = isSupabaseConfigured

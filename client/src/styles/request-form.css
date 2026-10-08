@@ -296,7 +296,7 @@
 }
 
 
-/* request card: dashed paper frame, tape, and the received card */
+/* request card */
 .request-tape {
   position: absolute;
   top: -12px;

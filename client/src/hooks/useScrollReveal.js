@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-/* Blocks that ease in as they scroll into view, and reset when they leave, so scrolling back up replays them */
+/* Elements that fade in on scroll and reset when they leave the viewport */
 const TARGETS = [
   'main :is(h1, h2, h3, p, .section-label, .page-kicker, .btn, .card, .step, .service-card, .polaroid, .services-carousel)',
   '.site-footer > div',

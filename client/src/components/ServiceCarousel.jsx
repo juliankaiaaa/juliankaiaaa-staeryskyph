@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-/* Horizontal scroller with arrows that only show when there is more to scroll to */
+/* Horizontal scroller with arrows shown only when content overflows */
 export default function ServiceCarousel({ children }) {
   const track = useRef(null)
   const [edge, setEdge] = useState({ start: true, end: true })

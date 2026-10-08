@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
-/* Starts every page at the top, so a route change never keeps the old scroll position */
+/* Scrolls to the top on each route change */
 export default function ScrollToTop() {
   const { pathname } = useLocation()
 

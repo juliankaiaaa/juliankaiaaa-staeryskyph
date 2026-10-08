@@ -6,7 +6,7 @@ import brownStar from '../assets/decorations/brown_star.png'
 const IDLE_MS = 10 * 60 * 1000
 const ACTIVITY = ['mousemove', 'mousedown', 'keydown', 'scroll', 'touchstart']
 
-/* A paper note that appears after 10 minutes without activity */
+/* Paper note shown after 10 minutes of inactivity */
 export default function IdlePopup() {
   const [open, setOpen] = useState(false)
 
