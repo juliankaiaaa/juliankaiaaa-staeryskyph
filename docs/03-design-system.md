@@ -113,6 +113,25 @@ proposal.
 | Request | Navbar, Hero (page variant), InquiryForm, receipt (after submit), SiteFooter |
 | Admin (`/#/admin`, not linked from the nav) | AdminLogin, AdminInquiries (filter, search, notes, CSV export) |
 
+## 8. Responsive design
+
+- Breakpoints are set in `styles/responsive.css`: 1100px, 1000px, 900px,
+  700px, and 600px.
+- Layouts are grids that collapse to one column on smaller screens.
+- The service grid is four columns on desktop, two on tablet, one on
+  mobile.
+- No horizontal overflow on any page from 320px to 1440px wide.
+
+## 9. Animation
+
+- **Scroll reveal:** elements fade in as they enter the viewport and reset
+  when they leave, so scrolling back replays them (`useScrollReveal.js`).
+- **Hero stars:** drift and blink; three vanish and reappear as they move.
+- **Hover:** cards lift and their photos zoom slightly; buttons and nav
+  items shift color or position.
+- **Reduced motion:** all of the above turn off when the visitor's system
+  requests reduced motion.
+
 ## As originally proposed
 
 The original m8a1 submission specified a different palette and type scale,
