@@ -68,9 +68,7 @@ Supabase, protected by Row Level Security. There is no custom server.
 
 Going through this checklist, the main thing it caught was item 30: the
 service photos (flags, brand logos) don't have a recorded license or
-credit anywhere in the repo, even though the logo and decorations do. I
-haven't fixed that yet — it's now written down as an actual gap instead of
-being left unmentioned. Everything else held up: no real secret has ever
+credit anywhere in the repo, even though the logo and decorations do.Everything else held up: no real secret has ever
 been committed (only placeholder values from an old, removed Docker setup
 that's no longer part of the project), the GitHub Actions workflow doesn't
 leak anything, and reading the actual Row Level Security policies in
