@@ -382,6 +382,10 @@ page.
 | [AI-USAGE.md](AI-USAGE.md) | Record of AI assistance (mainly Claude, via Claude Code; ChatGPT was also used for general help) |
 | [SECURITY-CHECKLIST.md](SECURITY-CHECKLIST.md) | Security review |
 
+## Author
+
+**Rebusa, Amber Kaia J.** — CS-402
+
 ## License
 
 Released under the [MIT License](LICENSE).
