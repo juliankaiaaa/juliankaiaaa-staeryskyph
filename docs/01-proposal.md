@@ -106,7 +106,7 @@ real submission service.
 ## What's changed since this was written
 
 This proposal was the starting plan. The build moved past parts of it, as
-expected. Checked against the current code and live site:
+expected:
 
 - **A fifth route was added.** The proposal scoped the app to four routes.
   An Admin page (`/#/admin`) was added for the shop owner to review and

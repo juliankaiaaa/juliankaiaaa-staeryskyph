@@ -1,6 +1,6 @@
 # Design system
 
-This describes the design system as actually built, verified against
+This describes the design system as actually built. The real tokens are in
 `client/src/styles/base.css` and `system.css`. The original submitted
 proposal (m8a1) is kept at the bottom, under "As originally proposed," since
 the built site moved in a different direction from that plan.
