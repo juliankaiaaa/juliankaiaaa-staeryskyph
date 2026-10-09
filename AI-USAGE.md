@@ -25,7 +25,7 @@ done.
 - **What I asked for:** Help setting up the GitHub Actions deployment workflow correctly, including the action versions.
 - **What it gave back:** A fix for the pinned SHA in `deploy-pages.yml` that was causing the workflow to fail.
 - **What I kept, what I changed, and why:** I kept the fix because it solved the deployment problem.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/6a4b5d8
+- **Commit:** [6a4b5d8](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/6a4b5d8)
 
 ### 2026-10-05 - Frontend components and page structure
 
@@ -33,7 +33,7 @@ done.
 - **What I asked for:** Help creating shared React components such as the Navbar, Hero, ServiceCard, and footer, instead of repeating the same code on every page.
 - **What it gave back:** The shared components in `client/src/components/` and common color and spacing values.
 - **What I kept, what I changed, and why:** I kept the component structure but changed some layouts and content as the design developed.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/294c0e3
+- **Commit:** [294c0e3](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/294c0e3)
 
 ### 2026-10-05 - Supabase backend setup
 
@@ -41,7 +41,7 @@ done.
 - **What I asked for:** Help creating a backend for the request form and an admin page for managing submissions without having to run my own server.
 - **What it gave back:** The Supabase schema in `supabase/schema.sql`, Row Level Security policies, and the admin sign-in and inquiry management page.
 - **What I kept, what I changed, and why:** I kept Supabase because it could handle the backend without needing my own server. I also removed the earlier Express server because it was no longer needed.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/4f5cfb8
+- **Commit:** [4f5cfb8](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/4f5cfb8)
 
 ### 2026-10-05 - Service inquiry forms
 
@@ -49,7 +49,7 @@ done.
 - **What I asked for:** Help creating a request form where the fields change depending on the selected service, with validation and a progress indicator.
 - **What it gave back:** `InquiryForm.jsx` and the field definitions in `data/inquiryForms.js`.
 - **What I kept, what I changed, and why:** I kept the basic structure but changed the wording, service list, order, and styling several times to match what I wanted.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb7ecf7
+- **Commit:** [bb7ecf7](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb7ecf7)
 
 ### 2026-10-05 - Service card design and ordering
 
@@ -57,7 +57,7 @@ done.
 - **What I asked for:** Help with the size, spacing, and order of the service cards.
 - **What it gave back:** Different versions of the card sizes and spacing, as well as the sorting using `sort_order`.
 - **What I kept, what I changed, and why:** I rejected several versions before choosing the current card layout. I kept the final spacing and order because they matched the design I wanted.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/63273a9
+- **Commit:** [63273a9](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/63273a9)
 
 ### 2026-10-05 - Animations and interaction
 
@@ -65,7 +65,7 @@ done.
 - **What I asked for:** Help adding a hero entrance animation, moving and blinking stars, and scroll animations for the content sections.
 - **What it gave back:** The star animations and `hooks/useScrollReveal.js`.
 - **What I kept, what I changed, and why:** I asked for several changes, such as adding more stars, making them move slower, and making them fully disappear when off-screen.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/b6bb42a
+- **Commit:** [b6bb42a](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/b6bb42a)
 
 ## 2. Where the AI got it wrong
 
@@ -74,21 +74,21 @@ done.
 - **What it gave me:** Several design attempts, including CSS-made hero symbols, creative decorations, and different spacing for the expanded service card.
 - **What was wrong with it:** The designs did not match what I wanted after I saw them on the actual website. Some spacing changes also came back after I had already reverted them.
 - **What I did instead:** I reverted the changes and asked for a different design.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/e358b6f
+- **Commit:** [e358b6f](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/e358b6f)
 
 ### Case 2 - CSS animation was not working
 
 - **What it gave me:** Star animations that looked correct in the code but did not move in the browser.
 - **What was wrong with it:** A later stylesheet, `motion.css`, had an `animation: none` rule that stopped the animations.
 - **What I did instead:** I found and removed the conflicting rules, then checked the animations in the browser to make sure they worked.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb6a10a
+- **Commit:** [bb6a10a](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb6a10a)
 
 ### Case 3 - Service card design needed revisions
 
 - **What it gave me:** Different versions of the service card spacing and layout.
 - **What was wrong with it:** Some versions did not match the look and spacing I wanted.
 - **What I did instead:** I reviewed the versions, rejected the ones I did not like, and asked for changes until I was satisfied with the final layout.
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/46a715f
+- **Commit:** [46a715f](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/46a715f)
 
 ## 3. Who wrote what
 
