@@ -13,7 +13,9 @@ Live app: https://juliankaiaaa.github.io/juliankaiaaa-staeryskyph/
 Staery Sky PH is the portfolio website for a fan-owned shop offering Japan,
 Korea, and Thailand purchase assistance, shipping, and package
 consolidation. Visitors browse the services and send a request; the shop
-owner reviews requests from a private admin page.
+owner reviews requests from a private admin page at `/#/admin`, not linked
+from the public site, that only the shop owner (admin) can sign in to and
+access.
 
 ## What it looks like
 
