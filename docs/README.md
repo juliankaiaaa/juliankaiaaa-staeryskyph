@@ -10,6 +10,5 @@ Course documents for Staery Sky PH. Keep them in the repository so they are vers
 | [04-weekly-reports.md](04-weekly-reports.md) | Weekly progress notes | Done |
 | [05-demo-video.md](05-demo-video.md) | Demo video link and plan | Template, not yet written |
 | [06-security-and-privacy.md](06-security-and-privacy.md) | Course security checklist, same content as [SECURITY-CHECKLIST.md](../SECURITY-CHECKLIST.md) | Done |
-| [week2-progress.png](week2-progress.png) | Week 2 progress screenshot, shown in the project history | Image |
 
 Images for these documents go in `docs/`.
