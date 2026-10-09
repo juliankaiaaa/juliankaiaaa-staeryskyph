@@ -17,7 +17,7 @@ owner reviews requests from a private admin page.
 
 ## What it looks like
 
-The site uses a scrapbook-style look: paper textures, washi tape, and
+The site uses a creative look: paper textures, washi tape, and
 hand-drawn stars over a brown-and-pink palette.
 
 ![Home page](docs/home-screenshot.png)

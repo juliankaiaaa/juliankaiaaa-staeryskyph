@@ -24,7 +24,7 @@ done.
 - **Tool:** Claude (Claude Code)
 - **What I asked for:** Help setting up the GitHub Actions deployment workflow correctly, including the action versions.
 - **What it gave back:** A fix for the pinned SHA in `deploy-pages.yml` that was causing the workflow to fail.
-- **What I kept, what I changed, and why:** I kept the fix because it solved the deployment problem. More deployment issues were fixed the following week.
+- **What I kept, what I changed, and why:** I kept the fix because it solved the deployment problem.
 - **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/6a4b5d8
 
 ### 2026-10-05 - Frontend components and page structure
@@ -71,7 +71,7 @@ done.
 
 ### Case 1 - Design ideas that did not work
 
-- **What it gave me:** Several design attempts, including CSS-made hero symbols, scrapbook decorations, and different spacing for the expanded service card.
+- **What it gave me:** Several design attempts, including CSS-made hero symbols, creative decorations, and different spacing for the expanded service card.
 - **What was wrong with it:** The designs did not match what I wanted after I saw them on the actual website. Some spacing changes also came back after I had already reverted them.
 - **What I did instead:** I reverted the changes and asked for a different design.
 - **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/e358b6f
@@ -95,25 +95,31 @@ done.
 Note: I handled the main ideas, the content, the design decisions, the
 revisions, and the review and testing. AI assisted with implementation:
 writing the actual code, troubleshooting bugs, and turning some of my
-design ideas into working CSS and React.
+design ideas into working CSS and React. I also directly changed and
+adjusted parts of the code based on what I saw while testing the website.
 
 ### What I handled
 
 - **File:** Website content, overall design direction, service list and
-  order, and every design revision
-- **Commit:** Multiple commits throughout the project
+  order, CSS adjustments, animation fixes, and every design revision
+- **Commit:** Multiple commits throughout the project, including
+  [bb6a10a](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb6a10a),
+  [63273a9](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/63273a9),
+  and [bb7ecf7](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/bb7ecf7)
 - **What it does and why it is built this way:** I decided the website
-  content, the services offered, the overall design and scrapbook style,
-  the colors, the layouts, and how each section should look. I reviewed
-  every change AI made, tested it in the browser, and decided what to
+  content, the services offered, the overall visual style, colors,
+  layouts, and how each section should look. I also directly worked on
+  changes to the CSS and service content, reviewed every AI-assisted
+  implementation, tested the website in the browser, and decided what to
   keep, change, or reject.
 
 ### What AI helped implement
 
-- **File:** `client/src/components/`, `supabase/schema.sql`, `data/inquiryForms.js`
-- **Commit:** https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/294c0e3
-- **What it does and why we kept it:** These parts organize the website
-  into reusable components, handle the inquiry form, and connect the
-  project to Supabase. AI wrote the code for these based on what I asked
-  for. I kept them because they work and make the project easier to
-  manage.
+- **File:** `client/src/components/`, `supabase/schema.sql`,
+  `data/inquiryForms.js`, and animation-related files
+- **Commit:** [294c0e3](https://github.com/juliankaiaaa/juliankaiaaa-staeryskyph/commit/294c0e3)
+- **What it does and why we kept it:** These parts organize the website into
+  reusable components, handle the inquiry form, connect the project to
+  Supabase, and add the website interactions and animations. I kept and changed the
+  implementations based on how they worked in the actual website and
+  whether they matched my design.
