@@ -57,7 +57,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key
 
 ## Presentation
 
-- Video (public Google Drive link): not yet added
+- Video (public Google Drive link): https://drive.google.com/drive/folders/1GWAt-p0Z6NgyOu5LGU3-CSBgbi8jxH4c?usp=sharing
 - Slides (link or PDF): not yet added
 - Square image: not yet added
 
